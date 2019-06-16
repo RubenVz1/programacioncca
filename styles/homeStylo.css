@@ -1,0 +1,70 @@
+body
+{
+	display: flex;
+	justify-content: center;
+	align-content: center;
+	text-align: center;
+	background-image: radial-gradient(circle,rgb(255,255,255),rgb(19,122,157));
+	background-repeat: no-repeat;
+	background-size: 100% 400%;
+	margin: 0px;
+}
+
+header
+{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: rgb(75,86,92);
+	height: 20%;
+	width: 100%;
+	color: white;
+}
+
+#boton
+{
+	display: block;
+	text-decoration: none;
+	background-color: red;
+	color: white;
+}
+
+#boton:hover
+{
+}
+
+#ventana
+{
+	background-color: white;
+	width: 200px;
+	height: 200px;
+	box-shadow: 3px 3px 10px;
+}
+
+#cabecera
+{
+	background-color: rgb(75,86,92);
+	height: 20%;
+	width: 100%;
+	color: white;
+	padding-top: 10px;
+}
+
+#menu li
+{
+	list-style-type: none;
+}
+
+#menu a
+{
+	background-color: rgb(227,221,197);
+	display: block;
+	margin-top: 20px; 
+	text-decoration: none;
+	color: black;
+}
+
+#menu a:hover
+{
+	background-color: rgb(227,200,156);
+}
