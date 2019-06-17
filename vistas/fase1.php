@@ -1,10 +1,21 @@
+<?php
+	include_once '../includes/user.php';
+    include_once '../includes/user_session.php';
+    $userSession = new UserSession();
+    $user = new User();
+
+	if(isset($_SESSION['user']))
+    {
+        $user->setUser($userSession->getCurrentUser());
+    }
+?>
 <!DOCTYPE html>
 <html lang = "es">
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<title>Fase 1</title>
-		<link rel="stylesheet" href="styles/Fase1Stylo.css">
+		<link rel="stylesheet" href="../styles/Fase1Stylo.css">
 	</head>
 	<body>
 		<div id="inicioSesion">

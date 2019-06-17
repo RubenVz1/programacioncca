@@ -1,7 +1,7 @@
 <?php 
-include_once 'db.php';
+include 'db.php';
 
-class USEr extends DB
+class User extends DB
 {
 	private $nombre;
 	private $username;
@@ -13,11 +13,12 @@ class USEr extends DB
 
 		if($query->rowCount())
 		{
-			//echo "user.php dice: existe el usuario<br>";
 			return true;
 		}
-		//echo "user.php dice: no existe el usuario<br>";
-		return false;
+		else
+		{
+			return false;
+		}
 	}
 
 	public function setUser($user)

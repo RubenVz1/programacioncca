@@ -18,7 +18,7 @@
 				<h1>Iniciar sesion</h1>
 			</section>
 			<section id="cuerpo">
-				<form action="index.php" method="post">
+				<form action="" method="post">
 					<p>Usuario: </p><input type="text" name="username" value="Usuario"><br>
 					<p>Contraseña: </p><input type="password" name="password" value="Contraseña"><br>
 					<input id = "boton"type="submit" value="Iniciar sesion">

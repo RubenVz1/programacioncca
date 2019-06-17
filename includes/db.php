@@ -23,10 +23,8 @@ class DB
 		{
 			$connection = "mysql:host=" . $this->host . ";dbname=" . $this->db . ";charset=" . $this->charset;
 			$options = [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-						PDO::ATTR_EMULATE_PREPARES => false];
+						PDO::ATTR_EMULATE_PREPARES => false,];
 			$pdo = new PDO($connection,$this->user,$this->password,$options);
-			
-			//echo "db.php dice se conecto bien<br>";
 			
 			return $pdo;
 		}
