@@ -1,6 +1,9 @@
 body
 {
-	display: flex;
+	display: grid;
+	grid-template-columns: auto;
+	grid-template-rows: 250px 250px 250px;
+	grid-template-areas: "ar" "en" "ab";
 	justify-content: center;
 	align-content: center;
 	text-align: center;
@@ -11,12 +14,20 @@ body
 
 #inicioSesion
 {
+	grid-area: "en";
 	background-color: white;
 	width: 300px;
 	height: 200px;
 	box-shadow: 3px 3px 10px;
 }
-
+#arriba
+{
+	grid-area: "ar";
+}
+#abajo
+{
+	grid-area: "ab";
+}
 #cabecera
 {
 	background-color: rgb(75,86,92);
@@ -50,4 +61,3 @@ input
 {
 	background-color: rgb(227,200,156);
 }
-

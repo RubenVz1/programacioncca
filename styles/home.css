@@ -1,6 +1,9 @@
 body
 {
-	display: flex;
+	display: grid;
+	grid-template-columns: 1600px;
+	grid-template-rows: 100px 200px 200px;
+	grid-template-areas: "hd" "en" "ft";
 	justify-content: center;
 	align-content: center;
 	text-align: center;
@@ -12,13 +15,15 @@ body
 
 header
 {
+	grid-area: "hd";
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	background-color: rgb(75,86,92);
-	height: 20%;
+	height: 100px;
 	width: 100%;
 	color: white;
+	font-size: 20px;
 }
 
 #boton
@@ -35,6 +40,7 @@ header
 
 #ventana
 {
+	grid-area: "vn";
 	background-color: white;
 	width: 200px;
 	height: 200px;
@@ -67,4 +73,22 @@ header
 #menu a:hover
 {
 	background-color: rgb(227,200,156);
+}
+#area
+{
+	
+	grid-area: "vlv";
+}
+footer
+{
+	grid-area: "ft";
+}
+#enmedio
+{
+	display: grid;
+	grid-template-columns: 1315px 200px;
+	grid-template-rows: 200px;
+	grid-template-areas: "vlv vn";
+	/*display: flex;*/
+	grid-area: "en";
 }
