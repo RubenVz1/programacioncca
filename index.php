@@ -7,7 +7,7 @@
     if(isset($_SESSION['user']))
     {
         $user->setUser($userSession->getCurrentUser());
-        header("location: vistas/home.php");
+        include_once 'vistas/home.php';
     }
     else if(isset($_POST['username']) && isset($_POST['password']))
     {
@@ -19,7 +19,7 @@
         {
             $userSession->setCurrentUser($userForm);
             $user->setUser($userForm);
-            header("location: vistas/home.php");
+            include_once 'vistas/home.php';
         }
         else
         {
