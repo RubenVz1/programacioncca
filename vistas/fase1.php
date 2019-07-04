@@ -1,16 +1,20 @@
 <?php
 	include_once '../includes/user.php';
-	include_once '../includes/user_session.php';
-
-	$connection = mysqli_connect("localhost","root","QQWWEERR1","prueba");
-
+    include_once '../includes/user_session.php';
     $userSession = new UserSession();
     $user = new User();
-
 	if(isset($_SESSION['user']))
     {
         $user->setUser($userSession->getCurrentUser());
-	}
+    }
+    else
+    {
+        include_once 'vistas/login.php';
+    }
+    if($user->getCargo()!="Administrador")
+    {
+    	header("location: calendar.php");
+    }
 ?>
 <!DOCTYPE html>
 <html lang = "es">
