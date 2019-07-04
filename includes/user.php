@@ -23,7 +23,11 @@ class User extends DB
 
 	public function setUser($user)
 	{
-		$query = $this->connect()->prepare('SELECT * FROM usuarios WHERE username = :user');
+		//$query = $this->connect()->prepare('SELECT * FROM usuarios WHERE username = :user');
+		$query = $this->connect()->prepare('SELECT u.nombre,u.username,t.nombreCargo
+											FROM usuarios u, tipousuarios t 
+											WHERE u.idTipoUsuario = t.idTipoUsuario
+											AND username = :user');
 		$query->execute(['user' => $user]);
 		foreach($query as $currentUser)
 		{
