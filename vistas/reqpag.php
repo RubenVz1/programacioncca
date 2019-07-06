@@ -48,7 +48,6 @@
 				</div>
 			</section>
 		</div>
-	<script src="../js/fase1e.js"></script>
 			</section>
 		</div>
 	</body>

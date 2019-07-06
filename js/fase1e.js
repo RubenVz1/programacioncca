@@ -11,66 +11,42 @@ $('#menos').click(function(){
     $('#br1').remove();
 });
 
-//Script para aperecer la opcion de introducir costo al seleccionar la opcion de costo
+//Script para aperecer la opcion de introducir costo al seleccionar la opcion de costo y bloque la opcion de libre
 $('#cst').change(function(){
-    if($(this).is(":checked")){
-        $('#cstvalor').append("<div id='si'><p>Costo: $</p><input type='text' name='costo' value='' required='required'><br></div>");
-    }else{
-        $('#si').remove();
-    }
-});
-//Script para desplegar y ocultar los formularios
-var banpro = 0;
-$('#h1pro').click(function(){
-    if(banpro == 0)
+    if($(this).is(":checked"))
     {
-        banpro =1;
-        $('#pro').hide();
+        $('#cstvalor').append("<div id='si'><p>Costo: $</p><input type='text' name='costo' value='' required='required'><br></div>");
+        $('#lbr').hide();
     }
     else
     {
-        banpro=0;
-        $('#pro').show();
+        $('#si').remove();
+        $('#lbr').show();
     }
 });
 
-var bandis = 0;
-$('#h1dis').click(function(){
-    if(bandis == 0)
+//Script que no permite seleccionar los 3 tipos de entrada a la vez
+$('#lbr').change(function(){
+    if($(this).is(":checked"))
     {
-        $('#reqdis').hide();
-        bandis =1;
+        $('#cst').hide();
     }
     else
     {
-        bandis=0;
-        $('#reqdis').show();
+        $('#cst').show();
     }
 });
-var bantec = 0;
-$('#h1tec').click(function(){
-    if(bantec==0)
+
+//Script que impide que continue con campos vacios
+
+$('#boton').click(function()
+{
+    if($('#fch').val() != "" && $('#activa').val() != "" && $('#actividad').val() != "" && $('#disc').val() != "" && $('#place').val() != "" && $('#hrs').val() != "" && $('#mn').val() != "" && $('#durh').val() != "" && $('#durmin').val() != "")
     {
-        bantec =1;
-        $('#reqtec').hide();
+        $('#boton').attr("href","reqdis.php");
     }
     else
     {
-        bantec=0;
-        $('#reqtec').show();
+        $('#fin').append("<p>Faltan campos por llenarse</p>");
     }
 });
-var banpag = 0;
-$('#h1pag').click(function(){
-    if(banpag==0)
-    {
-        banpag =1;
-        $('#reqpag').hide();
-    }
-    else
-    {
-        banpag=0;
-        $('#reqpag').show();
-    }
-});
-//Script que muestra la alerta de diías de retraso
