@@ -40,7 +40,6 @@
 				<p>Requerimientos</p><br><textarea name="message" rows="5" cols="30"></textarea><br>
 				<br>
 				<a id="boton" href="reqpag.php">Continuar</a>
-				<a id="boton" href="reqdis.php">Regresar</a>
 				<br>
 			</div>
 			</section>

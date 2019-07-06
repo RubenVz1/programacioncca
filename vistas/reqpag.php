@@ -39,15 +39,18 @@
 			<section id="cuerpo">
 			<div id="reqpag">
 				<p>Requerimientos</p><br><textarea name="message" rows="5" cols="30"></textarea><br>
-				<p>Fecha en que cubrió toda la documentación</p><input type="date" name="documentacionok" value=""><br>
+				<p>Fecha en que cubrió toda la documentación</p><input type="date" name="documentacionok" value=""><input type="checkbox" id="si" value=1><br>
+				<div id="ok"></div>
+				<!--
 				<p>Fecha tentativa de pago</p><input type="date" name="fechapago" value=""><br>
                 <br>
-                <a id="boton" href="">Crear</a>
-				<a id="boton" href="reqtec.php">Regresar</a>
+				-->
+                <a id="boton" href="home.php">Crear</a>
                 <br>
 				</div>
 			</section>
 		</div>
+		<script src="../js/reqpag.js"></script>
 			</section>
 		</div>
 	</body>

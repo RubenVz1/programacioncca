@@ -41,20 +41,18 @@
 					<p>Fecha de entrega: </p><input type="date" name="entregareq" value=""><br>
 					<p>Fotografias en alta resolucion:</p><input type="file" name="fotos" multiple><br>
 					<p>Logotipos: </p><input type="file" name="logos" multiple><br><br>
+					<p>Programa de mano: </p><input type="checkbox" id="pm" name="programamano" value="1"><br>
+					<div id="cstvalor"></div>
+					<!--
 					<p>Semblanza de la compañía grupo, artista, ponente, ciclo, etc:</p><br><textarea name="message" rows="5" cols="30"></textarea><br>
 					<p>Semblanza de la actividad:</p><br><textarea name="message" rows="5" cols="30"></textarea><br>
-					<p>Programa de mano: </p><input type="checkbox" name="programamano" value="1"><br>
+					-->
 					<br>
                     <a id="boton" href="reqtec.php">Continuar</a>
-                    <?php
-                    if($user->getCargo() == "Administrador")
-                    {
-                        echo "<a id = \"botonRegresar\" href=\"fase1.php\">Regresar</a><br>";
-                    }
-                    ?>
 					</form>
 			</section>
 		</div>
+		<script src="../js/reqdis.js"></script>
 			</section>
 		</div>
 	</body>
