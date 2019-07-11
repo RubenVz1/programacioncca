@@ -8,7 +8,6 @@
 		<link href="img/icon.ico" type="image/ico" rel="shortcut icon">
 	</head>
 	<body>
-		
 		<div id="arriba"></div>
 		<div id="inicioSesion">
 			<section id="cabecera">
