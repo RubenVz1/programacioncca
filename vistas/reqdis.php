@@ -14,7 +14,9 @@
     if($user->getCargo()!="Administrador")
     {
     	header("location: calendar.php");
-    }
+	}
+	ini_set('mysql.connect_timeout',300);
+	ini_set('default_socket_timeout',30);
 ?>
 <!DOCTYPE html>
 <html lang = "es">
@@ -37,20 +39,74 @@
 					<h1 id="h1dis">Requerimientos para diseño</h1>
 			</section>
 			<section id="cuerpo">
-					<form id="reqdis" method="post" action="">
+					<form id="reqdis" method="post" action="" enctype="multipart/form-data">
 					<p>Fecha de entrega: </p><input type="date" name="entregareq" value=""><br>
-					<p>Fotografias en alta resolucion:</p><input type="file" name="fotos" multiple><br>
-					<p>Logotipos: </p><input type="file" name="logos" multiple><br><br>
+					<p>Fotografias en alta resolucion:</p><input type="file" name="fotos"><br>
+					<p>Logotipos: </p><input type="file" name="logos"><br><br>
 					<p>Programa de mano: </p><input type="checkbox" id="pm" name="programamano" value="1"><br>
 					<div id="cstvalor"></div>
 					<!--
-					<p>Semblanza de la compañía grupo, artista, ponente, ciclo, etc:</p><br><textarea name="message" rows="5" cols="30"></textarea><br>
+					<p>Semblanza de la compañía grupo, artista, ponente, ciclo, etc:</p><br><textarea name="semcom" rows="5" cols="30"></textarea><br>
 					<p>Semblanza de la actividad:</p><br><textarea name="message" rows="5" cols="30"></textarea><br>
 					-->
 					<br>
-                    <a id="boton" href="reqtec.php">Continuar</a>
+                    <input id="boton" type="submit" name="agrega" value="agregar">
 					</form>
 			</section>
+			<?php
+				if(isset($_POST['agrega']))
+				{
+					$servidor = "localhost";
+            			$nombreusuario = "root";
+            			$password = "QQWWEERR1";
+            			$db = "prueba";
+						$conexion = new mysqli($servidor, $nombreusuario, $password, $db);
+
+						if($_POST['entregareq'])
+						{
+							$fechaentrega = $_POST['entregareq'];
+						}
+						else{$fechaentrega = "";}
+						if($_FILES['fotos']['tmp_name'])
+						{
+							$imagen = addslashes(file_get_contents($_FILES['fotos']['tmp_name']));
+						}
+						else{$imagen = "";}
+						if($_FILES['logos']['tmp_name'])
+						{
+							$logo = addslashes(file_get_contents($_FILES['logos']['tmp_name']));
+						}
+						else{$logo = "";}
+						if(isset($_POST['semcom']))
+						{
+							$semblanzacom = $_POST['semcom'];
+						}
+						else{$semblanzacom = "";}
+						if(isset($_POST['semact']))
+						{
+							$semblanzaact = $_POST['semact'];
+						}
+						else{$semblanzaact = "";}
+						if(isset($_POST['programamano']))
+						{
+							$programamano = "1";
+						}
+						else{$programamano = "0";}
+
+						$sql = "INSERT INTO `requerimientodiseno`(`fechaEntrega`, `fotografia`, `logotipo`, `semblanzaCompania`, `semblanzaActividad`, `programaMano`) VALUES ('$fechaentrega','$imagen','$logo','$semblanzacom','$semblanzaact','$programamano');";
+						$resultado = $conexion->query($sql);
+					if($resultado)
+					{
+					    echo "<script>window.location='reqtec.php';</script>";
+					}
+					else
+					{
+						echo "<script>alert('error');</script>";
+						die("Error al insertar datos: " . $conexion->error);
+					}
+				}
+			?>
+
 		</div>
 		<script src="../js/reqdis.js"></script>
 			</section>

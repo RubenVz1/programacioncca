@@ -1,4 +1,5 @@
 //Script que pone la fecha del dia
+
 $(document).ready(function(){
     var d = new Date();
     var meshoy,diahoy;
@@ -7,14 +8,13 @@ $(document).ready(function(){
     {
         meshoy= "0"+ meshoy;
     }
-
-    if(d.getDay() <= 9)
+    if(d.getDate() <= 9)
     {
-        diahoy= "0"+ d.getDay();
+        diahoy= "0"+ d.getDate();
     }
     else
     {
-        diahoy=d.getDay();
+        diahoy=d.getDate();
     }
 
     var fechahoy = d.getFullYear() + "-" + meshoy + "-" + diahoy;
@@ -24,17 +24,26 @@ $(document).ready(function(){
 //Script para agreegar y quitar horarios 
 $(document).ready(function(){
 
-
+var numerodehorarios = 1;
 $('#mas').click(function(){
-    $('#agrhor').append("<br id='br1'><input id='hrs' type='number' min='0' max='24' step='1' value='0'><p id='jsjsjs'>hrs</p><input type='number' min='0' max='60' step='5' id='mns' value='0'><p id='jsjs'>min</p>");
+    if(numerodehorarios <3)
+    {
+        numerodehorarios++;
+        $('#agrhor').append("<br id='br1"+numerodehorarios+"'><input id='horas"+numerodehorarios+"'type='number' min='0' max='24' step='1' value=''><p id='jsjsjs"+numerodehorarios+"'>hrs</p><input type='number' min='0' max='60' step='5' id='minutos"+numerodehorarios+"' value=''><p id='jsjs"+numerodehorarios+"'>min</p>");
+    }
 });
 $('#menos').click(function(){
-    $('#hrs').remove();
-    $('#mns').remove();
-    $('#br1').remove();
-    $('#jsjs').remove();
-    $('#jsjsjs').remove();
+    if(numerodehorarios>1)
+    {
+        $("#horas"+numerodehorarios).remove();
+        $("#minutos"+numerodehorarios).remove();
+        $('#br1'+numerodehorarios).remove();
+        $('#jsjs'+numerodehorarios).remove();
+        $('#jsjsjs'+numerodehorarios).remove();
+        numerodehorarios--;
+    }
 });
+
 
 
 });
@@ -65,19 +74,57 @@ $('#lbr').change(function(){
 });
 
 //Script que impide que continue con campos vacios
+//opcion 1
 var faltancampos = true;
+var aparecerboton = 0;
+
+$(document).change(function(){
+/*
+});
 $('#boton').click(function()
-{
-    if($('#fch').val() != "" && $('#activa').val() != "" && $('#actividad').val() != "" && $('#disc').val() != "" && $('#place').val() != "" && $('#horas').val() != "" && $('#minutos').val() != "" && $('#durh').val() != "" && $('#durmin').val() != "")
+{*/
+    var valoresopciones = [$('#lbr').prop('checked') , $('#cort').prop('checked') , $('#cst').prop('checked')];
+    var excepcion = 0;
+    for(var i = 0 ; i < 3 ; i++)
     {
-        $('#boton').attr("href","reqdis.php");
+        if(valoresopciones[i] != false)
+        {
+            excepcion++;
+        }
+    }
+    if(excepcion > 0 && $('#fch').val() != "" && $('#compañia').val() != "" && $('#actividad').val() != "" && $('#disc').val() != "" && $('#place').val() != "" && $('#horas').val() != "" && $('#minutos').val() != "" && $('#durh').val() != "" && $('#durmin').val() != "")
+    {
+        if($('#lbr').val() != 1 && $('#cort').val() != 1 && $('#cst').val() != 1)
+        {
+            if(aparecerboton == 0)
+            {
+                aparecerboton = 1;
+                $('#fin').append("<button id ='crea' type='submit' name='confirma'>Confirmar</button>");
+                $('#error').remove();
+                faltancampos=true;
+            }
+            /*$('#boton').attr("type","submit");
+            window.location='reqdis.php';*/
+        }
     }
     else
     {
         if(faltancampos == true)
         {
-            $('#fin').append("<p id='error' style='color:red'>Faltan campos por llenarse</p>");
-            faltancampos=false;
+            if(excepcion == 0)
+            {
+                $('#fin').append("<p id='error' style='color:red'>Selecciona mínimo un tipo de entrada</p>");
+                $('#crea').remove();
+                aparecerboton=0;
+                faltancampos=false;
+            }
+            else
+            {
+                $('#fin').append("<p id='error' style='color:red'>Faltan campos por llenarse</p>");
+                $('#crea').remove();
+                aparecerboton=0;
+                faltancampos=false;
+            }
         }
     }
 });
@@ -94,11 +141,11 @@ $('#fch').change(function(){
     }
     if(f.getDay() <= 9)
     {
-        dia= "0"+ f.getDay();
+        dia= "0"+ f.getDate();
     }
     else
     {
-        dia=f.getDay();
+        dia=f.getDate();
     }
     var textofecha1 = f.getFullYear() + "-" + mes + "-" + dia;
     var textofecha2 = $('#fch').val();

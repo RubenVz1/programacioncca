@@ -36,15 +36,42 @@
 					<h1 id="h1tec">Requerimientos técnicos</h1>
 			</section>
 			<section id="cuerpo">
+			<form method="post">
 			<div id="reqtec">
 				<p>Requerimientos</p><br><textarea name="message" rows="5" cols="30"></textarea><br>
 				<br>
-				<a id="boton" href="reqpag.php">Continuar</a>
+				<input type="submit" name="agrega" value="Continuar">
 				<br>
+				</form>
 			</div>
 			</section>
 		</div>
-			</section>
+		<?php
+			if(isset($_POST['agrega']))
+			{
+				if(isset($_POST['message']))
+				{
+					$requrimientotecnico = $_POST['message'];
+				}else $requrimientotecnico ="";
+				$servidor = "localhost";
+            	$nombreusuario = "root";
+            	$password = "QQWWEERR1";
+            	$db = "prueba";
+				$conexion = new mysqli($servidor, $nombreusuario, $password, $db);
+				$sql = "INSERT INTO `requerimientotecnico`( `requerimiento`) VALUES ('$requrimientotecnico')";
+				$resultado = $conexion->query($sql);
+				if($resultado)
+				{
+					echo "<script>window.location='reqpag.php';</script>";
+				}
+				else
+				{
+					echo "<script>alert('error');</script>";
+					die("Error al insertar datos: " . $conexion->error);
+				}
+
+			}
+		?>
 		</div>
 	</body>
 </html>
