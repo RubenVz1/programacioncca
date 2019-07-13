@@ -105,8 +105,17 @@
 						//inset que junta todas las tablas de la fase de programacion
 						$sqlprogramacion = "INSERT INTO `programacion`(`idRequerimientoActividad`, `idRequerimientoDiseno`, `idRequerimientoTecnico`, `idRequerimientoPago`) VALUES ('$idprogramacion','$iddiseño','$idtecnico','$idpago')";
 						$resultadofusion = $mysqli->query($sqlprogramacion);
-						//echo "<script>window.location='home.php';</script>";
-						echo "<script>alert('ahuevo soy la vrga');</script>";
+
+						//trae el id de la progrmacion y la inserta en una tabla de actividad
+						$getidactividad = "SELECT MAX(idProgramacion) as id FROM `programacion`";
+						$resactividad = $mysqli->query($getidactividad);
+						$objetoidactividad = $resactividad->fetch_assoc();
+						$idactividad = $objetoidactividad['id'];
+						$sqlactividad = "INSERT INTO `actividad`(`idProgramacion`) VALUES ($idactividad)";
+						$mysqli->query($sqlactividad);
+
+						echo "<script>window.location='home.php';</script>";
+						//echo "<script>alert('ahuevo soy la vrga');</script>";
 					}
 					else
 					{

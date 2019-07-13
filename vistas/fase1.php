@@ -142,7 +142,7 @@
 						//$pdoQuery = "INSERT INTO `requerimientoactividad`(`fechaProgramacion`, `fechaEvento`, `nombreCompania`, `nombreActividad`, `disciplina`, `lugar`, `tipoEntrada`, `duracion`) VALUES (CURRENT_DATE(),'".$fechaeve."','".$nomcom."','".$nomact."','".$disciplina."','".$lugar."',1,'".$duracionh.":".$duracionm.":00')";  
 						if($conexion->query($sql) === true)
 						{
-                    		echo "<script>alert('lml');window.location='reqdis.php';</script>";
+                    		echo "<script>window.location='reqdis.php';</script>";
 						}else
 						{
                     		die("Error al insertar datos: " . $conexion->error);
