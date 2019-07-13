@@ -105,8 +105,7 @@
 						//inset que junta todas las tablas de la fase de programacion
 						$sqlprogramacion = "INSERT INTO `programacion`(`idRequerimientoActividad`, `idRequerimientoDiseno`, `idRequerimientoTecnico`, `idRequerimientoPago`) VALUES ('$idprogramacion','$iddiseño','$idtecnico','$idpago')";
 						$resultadofusion = $mysqli->query($sqlprogramacion);
-						//echo "<script>window.location='home.php';</script>";
-						echo "<script>alert('ahuevo soy la vrga');</script>";
+						echo "<script>window.location='home.php';</script>";
 					}
 					else
 					{

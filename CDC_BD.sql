@@ -21,7 +21,7 @@ CREATE TABLE `Usuarios`
   `password` varchar(15) DEFAULT NULL,
   `idTipoUsuario` int(11) DEFAULT NULL,
    PRIMARY KEY (idUsuario),
-   FOREIGN KEY (idTipoUsuario) REFERENCES TipoUsuarios(idTipoUsuario)
+   FOREIGN KEY (idTipoUsuario) REFERENCES TipoUsuarios(idTipoUsuario) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 INSERT INTO `Usuarios` ( `nombre`, `username`, `password`,`idTipoUsuario`) VALUES
@@ -97,10 +97,10 @@ CREATE TABLE `Programacion`
   `idRequerimientoTecnico` int(11) DEFAULT NULL,
   `idRequerimientoPago` int(11) DEFAULT NULL,
   PRIMARY KEY (idProgramacion),
-  FOREIGN KEY (idRequerimientoActividad) REFERENCES requerimientoActividad(idRequerimientoActividad),
-  FOREIGN KEY (idRequerimientoDiseno) REFERENCES requerimientoDiseno(idRequerimientoDiseno),
-  FOREIGN KEY (idRequerimientoTecnico) REFERENCES requerimientoTecnico(idRequerimientoTecnico),
-  FOREIGN KEY (idRequerimientoPago) REFERENCES requerimientoPago(idRequerimientoPago)
+  FOREIGN KEY (idRequerimientoActividad) REFERENCES requerimientoActividad(idRequerimientoActividad) ON DELETE CASCADE,
+  FOREIGN KEY (idRequerimientoDiseno) REFERENCES requerimientoDiseno(idRequerimientoDiseno) ON DELETE CASCADE,
+  FOREIGN KEY (idRequerimientoTecnico) REFERENCES requerimientoTecnico(idRequerimientoTecnico) ON DELETE CASCADE,
+  FOREIGN KEY (idRequerimientoPago) REFERENCES requerimientoPago(idRequerimientoPago) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 INSERT INTO `Programacion` (`idProgramacion`, `idRequerimientoActividad`,`idRequerimientoDiseno`,
@@ -115,7 +115,7 @@ CREATE TABLE `Actividad`
   `idDiseno` int(11) DEFAULT NULL,
   `idDifusion` int(11) DEFAULT NULL,
   PRIMARY KEY (idActividad),
-  FOREIGN KEY (idProgramacion) REFERENCES Programacion(idProgramacion)
+  FOREIGN KEY (idProgramacion) REFERENCES Programacion(idProgramacion) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 INSERT INTO `actividad` (`idActividad`, `idProgramacion`,`idDiseno`,`idDifusion`) VALUES
