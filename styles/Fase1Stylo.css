@@ -31,16 +31,7 @@ body
 	padding-bottom: 10px;
 	border: 2px black solid;
 }
-h1:hover
-{
-	color: rgb(75,86,92);
-	height: 20%;
-	width: 100%;
-	background-color: white;
-	padding-top: 10px;
-	padding-bottom: 10px;
-	border: 2px black solid;
-}
+
 
 #cabecera h1
 {
