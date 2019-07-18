@@ -114,7 +114,7 @@
 						$sqlactividad = "INSERT INTO `actividad`(`idProgramacion`) VALUES ($idactividad)";
 						$mysqli->query($sqlactividad);
 
-						echo "<script>window.location='home.php';</script>";
+						echo "<script>window.location='fase2.php';</script>";
 						//echo "<script>alert('ahuevo soy la vrga');</script>";
 					}
 					else
