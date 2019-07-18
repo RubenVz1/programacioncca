@@ -32,14 +32,14 @@
 			?>
 			<a id = "boton" href="../includes/logout.php">Cerrar sesion</a>
 		</header>
-		<div id="datos">
+		<div id="calendario">
 			<table border="1" id="tabla">
 				<caption>Calendario</caption>
 				<tr>
 					<?php
 					function fechaAnterior($anterior)
 					{
-						if($anterior[0]==0)
+						if($anterior[0]==1)
 						{
 							$anterior[0]=12;
 							$anterior[1]-=1;
@@ -55,7 +55,7 @@
 					{
 						if($siguiente[0]>11)
 						{
-							$siguiente[0]=0;
+							$siguiente[0]=1;
 							$siguiente[1]+=1;
 						}
 						else
@@ -117,13 +117,22 @@
 				<?php
 					$primeraCelda = date("w",mktime(0,0,0,$mes,1,$anio))+7;
 					$finMes = date("d",(mktime(0,0,0,$mes+1,1,$anio)-1));
+					if($primeraCelda >= 8)
+					{
+						$primeraCelda = $primeraCelda - 7;
+					}
 					$ultimaCelda = $primeraCelda + $finMes;
+					$limite = 6;
+					if($ultimaCelda <= 36)
+					{
+						$limite = 5;
+					}
 					$contador = 1;
 					$dia = 1;
-					for($i=0;$i<6;$i++)
+					for($i = 0 ; $i < $limite ; $i++)
 					{
 						echo "<tr>";
-						for($j=0;$j<7;$j++)
+						for($j = 0 ; $j < 7 ; $j++)
 						{
 							echo "<th>";
 							if($contador >= $primeraCelda && $contador < $ultimaCelda)
