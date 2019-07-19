@@ -39,6 +39,7 @@ CREATE TABLE `requerimientoActividad`
   `lugar` varchar(15) DEFAULT NULL,
   `horario` time DEFAULT NULL,
   `tipoEntrada` int(11) DEFAULT NULL,
+  `costo` int(11) DEFAULT NULL,
   `duracion` time DEFAULT NULL,
   PRIMARY KEY (idRequerimientoActividad)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -52,8 +53,8 @@ CREATE TABLE `requerimientoDiseno`
 (
   `idRequerimientoDiseno` int(11) DEFAULT NULL AUTO_INCREMENT,
   `fechaEntrega` date DEFAULT NULL,
-  `fotografia` blob DEFAULT NULL,
-  `logotipo` blob DEFAULT NULL,
+  `fotografia` longblob DEFAULT NULL,
+  `logotipo` longblob DEFAULT NULL,
   `semblanzaCompania` varchar(15) DEFAULT NULL,
   `semblanzaActividad` varchar(15) DEFAULT NULL,
   `programaMano` varchar(15) DEFAULT NULL,

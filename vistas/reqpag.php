@@ -66,7 +66,6 @@
 					{
 						$fechapago=$_POST['fechapago'];
 					}else $fechapago="";
-
 					$servidor = "localhost";
             		$nombreusuario = "root";
             		$password = "QQWWEERR1";
@@ -75,7 +74,6 @@
 					
 					$sqlreqpag = "INSERT INTO `requerimientopago`(`requerimiento`, `fechaDocumentacion`, `fechaTentativa`) VALUES ('$requerimientos','$fecha','$fechapago')";
 					$resultadoreqpag = $mysqli->query($sqlreqpag);
-
 					if($resultadoreqpag)
 					{
 						//trae el id del ultimo insert de requerimientos de programacion
@@ -83,29 +81,33 @@
 						$resprogramacion = $mysqli->query($getidprogramacion);
 						$objetoidprogramacion = $resprogramacion->fetch_assoc();
 						$idprogramacion = $objetoidprogramacion['id'];
-
 						//trae el id del ultimo insert de requerimientos de diseño
 						$getiddiseño =  "SELECT MAX(idRequerimientoDiseno) as id FROM `requerimientodiseno`";
 						$resdiseno =  $mysqli->query($getiddiseño);
 						$objetoiddiseño = $resdiseno->fetch_assoc();
 						$iddiseño = $objetoiddiseño['id'];
-
 						//trae el id del ultimo insert de requerimientos técnicos
 						$getidtecnico =  "SELECT MAX(idRequerimientoTecnico) as id FROM `requerimientotecnico`";
 						$restecnico =  $mysqli->query($getidtecnico);
 						$objetoidtecnico = $restecnico->fetch_assoc();
 						$idtecnico = $objetoidtecnico['id'];
-
 						//trae el id del ultimo insert de requerimientos para pagos
 						$getidpagos =  "SELECT MAX(idRequerimientoPago) as id FROM `requerimientopago`";
 						$respago =  $mysqli->query($getidpagos);
 						$objetoidpago = $respago->fetch_assoc();
 						$idpago = $objetoidpago['id'];
-
 						//inset que junta todas las tablas de la fase de programacion
 						$sqlprogramacion = "INSERT INTO `programacion`(`idRequerimientoActividad`, `idRequerimientoDiseno`, `idRequerimientoTecnico`, `idRequerimientoPago`) VALUES ('$idprogramacion','$iddiseño','$idtecnico','$idpago')";
 						$resultadofusion = $mysqli->query($sqlprogramacion);
-						echo "<script>window.location='home.php';</script>";
+						//trae el id de la progrmacion y la inserta en una tabla de actividad
+						$getidactividad = "SELECT MAX(idProgramacion) as id FROM `programacion`";
+						$resactividad = $mysqli->query($getidactividad);
+						$objetoidactividad = $resactividad->fetch_assoc();
+						$idactividad = $objetoidactividad['id'];
+						$sqlactividad = "INSERT INTO `actividad`(`idProgramacion`) VALUES ($idactividad)";
+						$mysqli->query($sqlactividad);
+						echo "<script>window.location='fase2.php';</script>";
+						//echo "<script>alert('ahuevo soy la vrga');</script>";
 					}
 					else
 					{
@@ -120,5 +122,3 @@
 		</div>
 	</body>
 </html>
-
-
