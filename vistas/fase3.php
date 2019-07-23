@@ -45,6 +45,45 @@
         <?php
             if(isset($_POST['agrega']))
             {
+                $difusion = $_POST['fechadifusion'];
+
+                /*$db = new DB();
+                $query = $db->connect()->prepare("INSERT INTO `difusion`(`fechadifusion`) VALUES ('$difusion')");
+                $query->execute();
+                $result = $query->fetchAll();*/
+
+                $servidor = "localhost";
+            		$nombreusuario = "root";
+            		$password = "QQWWEERR1";
+            		$db = "prueba";
+                    $mysqli = new mysqli($servidor, $nombreusuario, $password, $db);
+                
+                $mysqli->query("INSERT INTO `difusion`(`fechadifusion`) VALUES ('$difusion')");
+
+                //trae el id del ultimo insert de fase1
+				$getidprogramacion = "SELECT MAX(idProgramacion) as id FROM `programacion`";
+				$resprogramacion = $mysqli->query($getidprogramacion);
+				$objetoidprogramacion = $resprogramacion->fetch_assoc();
+                $idprogramacion = $objetoidprogramacion['id'];
+                
+                //trae el id del ultimo insert de fase2
+                $getiddiseño = "SELECT MAX(iddiseno) as id FROM `diseno`";
+                $resdiseño = $mysqli->query($getiddiseño);
+                echo $mysqli->error; 
+				$objetoiddiseño = $resdiseño->fetch_assoc();
+                $iddiseño = $objetoiddiseño['id'];
+                echo $iddiseño;
+
+                //trae el id del ultimo insert de fase3
+                $getiddifusion = "SELECT MAX(idfase3) as id FROM `difusion`";
+				$resdifusion = $mysqli->query($getiddifusion);
+				$objetoiddifusion = $resdifusion->fetch_assoc();
+                $idfase3 = $objetoiddifusion['id'];
+                        
+                // inserta en una tabla de actividad
+				$sqlactividad = "INSERT INTO `actividad`(`idProgramacion`, `idDiseno`, `idDifusion`) VALUES ('$idprogramacion','$iddiseño','$idfase3')";
+                $mysqli->query($sqlactividad);
+                
                 echo "<script>window.location='home.php';</script>";            
             }
         ?>
