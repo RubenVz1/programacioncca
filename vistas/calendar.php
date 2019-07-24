@@ -23,18 +23,19 @@
 	</head>
 	<body>
 		<header>
-			<?php
-				echo "<p>Bienvenido ".$user->getNombre()." con cargo ".$user->getCargo()."</p>";
-				if($user->getCargo() == "Administrador")
+			<?php echo "<p>Bienvenido ".$user->getNombre()." con cargo ".$user->getCargo()."</p>";
+			if($user->getCargo() == "Administrador")
 				{
 					echo "<a id = \"botonRegresar\" href=\"home.php\">Regresar</a>";
 				}
 			?>
-			<a id = "boton" href="../includes/logout.php">Cerrar sesion</a>
+			<a id="botonSalir" href="../includes/logout.php">Cerrar sesion</a>
 		</header>
 		<div id="calendario">
 			<table border="1" id="tabla">
-				<caption>Calendario</caption>
+				<section id="cabecera">
+					<h1>Calendario</h1>
+				</section>
 				<tr>
 					<?php
 					function fechaAnterior($anterior)

@@ -26,23 +26,20 @@
 		<link href="../img/icon.ico" type="image/ico" rel="shortcut icon">
 	</head>
 	<body>
-
 		<header>
 			<?php echo "<p>Bienvenido ".$user->getNombre()." con cargo ".$user->getCargo()."</p>"?>
-			<a id = "boton" href="../includes/logout.php">Cerrar sesion</a>
+			<a href="../includes/logout.php">Cerrar sesion</a>
 		</header>
-		<div id="enmedio">
-			<section id="ventana">
-				<div id="cabecera">
-					<p>Menu</p>
-				</div>
-				<ul id="menu">
-					<li><a href="../vistas/calendar.php">Calendario</a></li>
-					<li><a href="../vistas/administracion.php">Administracion de Actividades</a></li>
-					<li><a href="../vistas/fase1.php">Nueva actividad</a></li>
-				</ul>
+		<section id="ventana">
+			<section id="cabecera">
+				<h1>Menu</h1>
 			</section>
-		</div>
+			<ul id="menu">
+				<li><a href="../vistas/calendar.php">Calendario</a></li>
+				<li><a href="../vistas/administracion.php">Administracion de Actividades</a></li>
+				<li><a href="../vistas/fase1.php">Nueva actividad</a></li>
+			</ul>
+		</section>
 		<footer>
 		</footer>
 	</body>

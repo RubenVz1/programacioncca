@@ -8,7 +8,6 @@
 		<link href="img/icon.ico" type="image/ico" rel="shortcut icon">
 	</head>
 	<body>
-		<div id="arriba"></div>
 		<div id="inicioSesion">
 			<section id="cabecera">
 				<h1>Iniciar sesion</h1>
@@ -21,21 +20,29 @@
 				</form>
 			</section>
 		</div>
-		<div id="error">
-		<?php 
-			if(isset($errorLogin))
-			{
-				echo "<style type="."text/css".">
-				#error{
-				color: white;
-				border: 2px solid black;
-				height: 25px;
-				background-color: rgb(75,86,92);}
-				</style>", $errorLogin;
-				
-			}
-		?>
-		</div>
-		<div id="abajo"></div>
+		
+			<?php 
+				if(isset($errorLogin))
+				{
+					echo "<div id='error'>";
+					echo "<style type="."text/css".">
+					#error
+					{
+						grid-area: c;
+						background-color: rgb(75,86,92);
+						padding-top: 5px;
+						color: white;
+						border: 1px solid black;
+						box-shadow: 3px 3px 10px black;
+						height: 25px;
+						width: 300px;
+						margin: auto;
+					}
+					</style>", $errorLogin;
+					echo "</div>";
+					
+				}
+			?>
+		
 	</body>
 </html>
