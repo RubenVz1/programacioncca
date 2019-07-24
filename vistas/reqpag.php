@@ -66,13 +66,17 @@
 					{
 						$fechapago=$_POST['fechapago'];
 					}else $fechapago="";
+					
 					$servidor = "localhost";
             		$nombreusuario = "root";
             		$password = "QQWWEERR1";
             		$db = "prueba";
 					$mysqli = new mysqli($servidor, $nombreusuario, $password, $db);
+
 					
 					$sqlreqpag = "INSERT INTO `requerimientopago`(`requerimiento`, `fechaDocumentacion`, `fechaTentativa`) VALUES ('$requerimientos','$fecha','$fechapago')";
+
+
 					$resultadoreqpag = $mysqli->query($sqlreqpag);
 					if($resultadoreqpag)
 					{
@@ -99,13 +103,8 @@
 						//inset que junta todas las tablas de la fase de programacion
 						$sqlprogramacion = "INSERT INTO `programacion`(`idRequerimientoActividad`, `idRequerimientoDiseno`, `idRequerimientoTecnico`, `idRequerimientoPago`) VALUES ('$idprogramacion','$iddiseño','$idtecnico','$idpago')";
 						$resultadofusion = $mysqli->query($sqlprogramacion);
-						//trae el id de la progrmacion y la inserta en una tabla de actividad
-						$getidactividad = "SELECT MAX(idProgramacion) as id FROM `programacion`";
-						$resactividad = $mysqli->query($getidactividad);
-						$objetoidactividad = $resactividad->fetch_assoc();
-						$idactividad = $objetoidactividad['id'];
-						$sqlactividad = "INSERT INTO `actividad`(`idProgramacion`) VALUES ($idactividad)";
-						$mysqli->query($sqlactividad);
+
+						
 						echo "<script>window.location='fase2.php';</script>";
 						//echo "<script>alert('ahuevo soy la vrga');</script>";
 					}

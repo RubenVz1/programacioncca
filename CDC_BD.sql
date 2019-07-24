@@ -109,6 +109,70 @@ INSERT INTO `Programacion` (`idProgramacion`, `idRequerimientoActividad`,`idRequ
 (1,1,1,1,1),
 (4,5,7,2,32);
 
+
+create TABLE `fase2`
+(
+  `idfase2` int(11) DEFAULT NULL AUTO_INCREMENT,
+  `nombrediseñador` varchar(15) DEFAULT NULL,
+  `fechaentra` date DEFAULT NULL,
+  `fotos` int(2) DEFAULT NULL,
+  `viñeta` int(2) DEFAULT NULL,
+  `logos` int(2) DEFAULT NULL,
+  `lugar` varchar(15) DEFAULT NULL,
+  `fecha` date DEFAULT NULL,
+  `hora` time DEFAULT NULL,
+  `leyenda` varchar(15) DEFAULT NULL,
+  `fechasalida` date DEFAULT NULL,
+  `cartel` int(2) DEFAULT NULL,
+  `web` int(2) DEFAULT NULL,
+  `cortesias` int(2) DEFAULT NULL,
+  `programa` int(2) DEFAULT NULL,
+  `invitacion` int(2) DEFAULT NULL,
+  PRIMARY KEY (idfase2)
+)ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+create TABLE `cartelycortesias`
+(
+  `idcartelycortesias` int(11) DEFAULT NULL AUTO_INCREMENT,
+  `digital` date DEFAULT NULL,
+  `offset` date DEFAULT NULL,
+  `serigrafia` date DEFAULT NULL,
+  `fuera` date DEFAULT NULL,
+  `entregaprograma` date DEFAULT NULL,
+  `invitacion` date DEFAULT NULL,
+  `volante` date DEFAULT NULL,
+  PRIMARY KEY(idcartelycortesias)
+)ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+create TABLE `corrector`
+(
+  `idcorrector` int(11) DEFAULT NULL AUTO_INCREMENT,
+  `fechaentra` date DEFAULT NULL,
+  `nombrecorrector` varchar(25) DEFAULT NULL,
+  `fechasale` date DEFAULT NULL,
+  PRIMARY KEY(idcorrector)
+)ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE `diseno`
+(
+  `iddiseno` int(11) DEFAULT NULL AUTO_INCREMENT,
+  `idfase2` int(11) DEFAULT NULL,
+  `idcartelycortesias` int(11) DEFAULT NULL,
+  `idcorrector` int(11) DEFAULT NULL,
+  PRIMARY KEY (iddiseno),
+  FOREIGN KEY (idfase2) REFERENCES fase2(idfase2) ON DELETE CASCADE,
+  FOREIGN KEY (idcartelycortesias) REFERENCES cartelycortesias(idcartelycortesias) ON DELETE CASCADE,
+  FOREIGN KEY (idcorrector) REFERENCES corrector(idcorrector) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+create TABLE `difusion`
+(
+  `idfase3` int(11) DEFAULT NULL AUTO_INCREMENT,
+  `fechadifusion` date DEFAULT NULL,
+  PRIMARY KEY(idfase3)
+)ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
 CREATE TABLE `Actividad`
 (
   `idActividad` int(11) DEFAULT NULL AUTO_INCREMENT,
@@ -116,9 +180,11 @@ CREATE TABLE `Actividad`
   `idDiseno` int(11) DEFAULT NULL,
   `idDifusion` int(11) DEFAULT NULL,
   PRIMARY KEY (idActividad),
-  FOREIGN KEY (idProgramacion) REFERENCES Programacion(idProgramacion) ON DELETE CASCADE
+  FOREIGN KEY (idProgramacion) REFERENCES Programacion(idProgramacion) ON DELETE CASCADE,
+  FOREIGN KEY (idDiseno) REFERENCES diseno(iddiseno) ON DELETE CASCADE,
+  FOREIGN KEY (idDifusion) REFERENCES difusion(idfase3) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-INSERT INTO `actividad` (`idActividad`, `idProgramacion`,`idDiseno`,`idDifusion`) VALUES
+/*INSERT INTO `actividad` (`idActividad`, `idProgramacion`,`idDiseno`,`idDifusion`) VALUES
 (1,1,1,1),
-(5,4,6,6);
+(5,4,6,6);*/
