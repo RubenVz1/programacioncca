@@ -83,6 +83,7 @@ header p
 	padding-top: 10px;
 	font-size: 22px;
 }
+<<<<<<< HEAD
 
 #observaciones
 {
@@ -128,4 +129,14 @@ header p
 	width: 200px;
 	text-align: center;
 	text-decoration: none;
+=======
+#inicioSesion
+{
+	margin: auto;
+	grid-area: b;
+	background-color: white;
+	width: 300px;
+	height: 200px;
+	box-shadow: 3px 3px 10px;
+>>>>>>> administracion
 }
