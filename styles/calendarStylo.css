@@ -83,3 +83,12 @@ header p
 	padding-top: 10px;
 	font-size: 22px;
 }
+#inicioSesion
+{
+	margin: auto;
+	grid-area: b;
+	background-color: white;
+	width: 300px;
+	height: 200px;
+	box-shadow: 3px 3px 10px;
+}
