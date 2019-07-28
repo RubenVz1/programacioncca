@@ -24,8 +24,8 @@
     <body>
         <header>
             <?php echo "<p>Bienvenido ".$user->getNombre()." con cargo ".$user->getCargo()."</p>"?>
-            <a id = botonRegresar" href="calendar.php">Regresar</a>
-            <a id = "boton" href="../includes/logout.php">Cerrar sesion</a>
+            <a id = "botonRegresar" href="calendar.php">Regresar</a>
+            <a id = "botonSalir" href="../includes/logout.php">Cerrar sesion</a>
         </header>
         <?php
             $db = new DB();
@@ -46,7 +46,7 @@
                 }
                 else
                 {
-                    echo "Hubo un error al cargar la avtividad";
+                    echo "Hubo un error al cargar la actividad";
                 }
             }
             else

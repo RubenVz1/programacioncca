@@ -28,11 +28,11 @@
 	<body>
 		<header>
 			<?php echo "<p>Bienvenido ".$user->getNombre()." con cargo ".$user->getCargo()."</p>"?>
-			<a id = botonRegresar" href="home.php">Regresar</a>
-			<a id = "boton" href="../includes/logout.php">Cerrar sesion</a>
+			<a id = "botonRegresar" href="home.php">Regresar</a>
+			<a id = "botonSalir" href="../includes/logout.php">Cerrar sesion</a>
 		</header>
 		<div id="datos">
-			<table border="1">
+			<table border="1" id="tabla">
 				<?php
 				$db = new DB();
 				if(isset($_GET['id']))
@@ -68,18 +68,19 @@
 			    $result = $query->fetchAll();
 			    if($query->rowCount())
 				{
-					echo "<caption>Eventos</caption>
+					echo "<section id='cabecera'>
+							<h1>Eventos</h1>
+						  </section>
 							<tr>
-								<th>idEvento</th>
-								<th>nombreEvento</th>
-								<th>fechaEvento</th>
+								<th>Nombre del evento</th>
+								<th>Fecha del evento</th>
 								<th>Actualizar</th>
 								<th>Eliminar</th>
 							</tr>";
 					for($i = 0 ; $i < count($result) ; $i++)
 					{
 						echo "<tr>";
-					    for($j = 0 ; $j < 3 ; $j++)
+					    for($j = 1 ; $j < 3 ; $j++)
 					    {
 					    	echo "<td>".$result[$i][$j]."</td>";
 					    }

@@ -145,7 +145,7 @@
 									{
 									    if($result[$k][2] == fechaString($dia,$mes,$anio))
 									    {
-									    	echo "<br><a href='../vistas/activity.php?id=".$result[$k][0]."'>".$result[$k][1]."</a><br>";
+									    	echo "<br><a href='calendar.php?mes=".$mes."&anio=".$anio."&id=".$result[$k][0]."'>".$result[$k][1]."</a><br>";
 									    }
 									}
 								}
@@ -163,5 +163,74 @@
 				?>
 			</table>
 		</div>
+		<div id="observaciones">
+			<section id="cabecera2">
+				<h1>Observaciones</h1>			
+			</section>
+			<section id="cuerpo">
+			<?php
+				if(isset($_GET['id']))
+            	{
+	                $id = $_GET['id'];
+	                $query = $db->connect()->prepare("SELECT r.observacion
+	                                                  FROM actividad a, programacion p, requerimientoActividad r
+	                                                  WHERE a.idProgramacion = p.idProgramacion
+	                                                  AND p.idRequerimientoActividad = r.idRequerimientoActividad
+	                                                  AND a.idActividad = $id");
+	                $query->execute();
+	                $query->setFetchMode(PDO::FETCH_NUM);
+	                $result = $query->fetchAll();
+	                if($query->rowCount())
+	                {
+	                    echo "<p>".$result[0][0]."</p>";
+	                }
+	                else
+	                {
+	                    echo "Hubo un error al cargar la actividad";
+	                }
+            	}
+			?>	
+			</section>
+		</div>
+		<div id="datos">
+			<section id="cabecera2">
+				<h1>Datos</h1>
+			</section>
+			<section id="cuerpo">
+				<?php
+				if(isset($_GET['id']))
+            	{
+	                $id = $_GET['id'];
+	                $query = $db->connect()->prepare("SELECT r.nombreActividad,r.nombreCompania,r.lugar,r.fechaProgramacion, r.fechaEvento
+	                                                  FROM actividad a, programacion p, requerimientoActividad r
+	                                                  WHERE a.idProgramacion = p.idProgramacion
+	                                                  AND p.idRequerimientoActividad = r.idRequerimientoActividad
+	                                                  AND a.idActividad = $id");
+	                $query->execute();
+	                $query->setFetchMode(PDO::FETCH_NUM);
+	                $result = $query->fetchAll();
+	                if($query->rowCount())
+	                {
+	                    echo "<p>Nombre de la actividad: ".$result[0][0]."</p>";
+	                    echo "<p>Nombre de la compania: ".$result[0][1]."</p>";
+	                    echo "<p>Lugar del evento: ".$result[0][2]."</p>";
+	                    echo "<p>Fecha de programacion: ".$result[0][3]."</p>";
+	                    echo "<p>Fecha del evento: ".$result[0][4]."</p>";
+	                }
+	                else
+	                {
+	                    echo "Hubo un error al cargar la actividad";
+	                }
+            	}
+			?>
+			</section>
+		</div>
+		<?php
+			if(isset($_GET['id']))
+			{
+				echo "<a id='boton'href='../vistas/activity.php?id=".$_GET['id']."'>Mas informacion</a>";
+			}
+		?>
+		<a href='../vistas/activity'></a>
 	</body>
 </html>

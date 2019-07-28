@@ -7,11 +7,11 @@
 body
 {
 	display: grid;
-	grid-template-rows: 1fr 1fr 1fr;
-	grid-template-columns: 1fr auto 1fr;
+	grid-template-rows: 80px 1fr 1fr;
+	grid-template-columns: 1fr 1fr 1fr;
 	grid-template-areas: "a a a"
-						 ". b ." 
-						 ". . .";
+						 "b c d" 
+						 ". e .";
 	background-image: radial-gradient(circle,rgb(255,255,255),rgb(19,122,157));
 	background-repeat: no-repeat;
 	background-size: 100% 400%;
@@ -67,7 +67,7 @@ header p
 
 #calendario
 {
-	grid-area: b;
+	grid-area: c;
 	background-color: white;
 	width: 400px;
 	height: 250px;
@@ -82,4 +82,50 @@ header p
 	width: 100%;
 	padding-top: 10px;
 	font-size: 22px;
+}
+
+#observaciones
+{
+	grid-area: b;
+	background-color: white;
+	width: 300px;
+	height: 450px;
+	box-shadow: 3px 3px 10px;
+}
+
+#datos
+{
+	grid-area: d;
+	background-color: white;
+	width: 300px;
+	height: 450px;
+	box-shadow: 3px 3px 10px;
+}
+
+#cabecera2
+{
+	background-color: rgb(75,86,92);
+	color: white;
+	height: 10%;
+	width: 100%;
+	padding-top: 10px;
+	font-size: 22px;
+}
+
+#cuerpo
+{
+	color: black;
+	padding-top: 10px;
+	font-size: 14px;
+}
+
+#boton
+{
+	grid-area: e;
+	background-color: black;
+	color: white;
+	height: 30px;
+	width: 200px;
+	text-align: center;
+	text-decoration: none;
 }

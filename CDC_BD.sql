@@ -41,13 +41,14 @@ CREATE TABLE `requerimientoActividad`
   `tipoEntrada` int(11) DEFAULT NULL,
   `costo` int(11) DEFAULT NULL,
   `duracion` time DEFAULT NULL,
+  `observacion` varchar(500) DEFAULT NULL,
   PRIMARY KEY (idRequerimientoActividad)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 INSERT INTO `requerimientoActividad` (`idRequerimientoActividad`, `fechaProgramacion`, `fechaEvento`,
-`nombreCompania`, `nombreActividad`, `disciplina`, `lugar`, `horario`, `tipoEntrada`, `duracion`) VALUES
-(1, '2019-07-05', '2019-08-05','programacioncca','estreno','informatica','fesAcatlan','03:20:10',3,'02:30:40'),
-(5, '2018-04-03', '2016-07-01','finalizacionProgramacion','cierre','cedetec','fesAcatlanUnam','02:10:15',2,'02:02:02');
+`nombreCompania`, `nombreActividad`, `disciplina`, `lugar`, `horario`, `tipoEntrada`, `duracion`, `observacion`) VALUES
+(1, '2019-07-05', '2019-08-05','programacioncca','estreno','informatica','fesAcatlan','03:20:10',3,'02:30:40','Esta observacion es de la actividad estreno'),
+(5, '2018-04-03', '2019-09-01','finalizacionProgramacion','cierre','cedetec','fesAcatlanUnam','02:10:15',2,'02:02:02','Esta observacion es de la actividad cierre');
 
 CREATE TABLE `requerimientoDiseno`
 (
@@ -180,11 +181,11 @@ CREATE TABLE `Actividad`
   `idDiseno` int(11) DEFAULT NULL,
   `idDifusion` int(11) DEFAULT NULL,
   PRIMARY KEY (idActividad),
-  FOREIGN KEY (idProgramacion) REFERENCES Programacion(idProgramacion) ON DELETE CASCADE,
+  FOREIGN KEY (idProgramacion) REFERENCES Programacion(idProgramacion) ON DELETE CASCADE/*,
   FOREIGN KEY (idDiseno) REFERENCES diseno(iddiseno) ON DELETE CASCADE,
-  FOREIGN KEY (idDifusion) REFERENCES difusion(idfase3) ON DELETE CASCADE
+  FOREIGN KEY (idDifusion) REFERENCES difusion(idfase3) ON DELETE CASCADE*/
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-/*INSERT INTO `actividad` (`idActividad`, `idProgramacion`,`idDiseno`,`idDifusion`) VALUES
+INSERT INTO `actividad` (`idActividad`, `idProgramacion`,`idDiseno`,`idDifusion`) VALUES
 (1,1,1,1),
-(5,4,6,6);*/
+(5,4,6,6);
