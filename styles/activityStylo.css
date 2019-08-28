@@ -14,7 +14,7 @@ body
 						 ". e .";
 	background-image: radial-gradient(circle,rgb(255,255,255),rgb(19,122,157));
 	background-repeat: no-repeat;
-	background-size: 100% 400%;
+	background-size: 100% 500%;
 	text-align: center;
 }
 
@@ -43,9 +43,24 @@ header p
 	text-align: center;
 	width: 150px;
 	text-decoration: none;
+	border-radius: 8px;
+}
+#botonRegresar:hover
+{
+	background-color: rgb(14,33,169);
 }
 
-#botonRegresar:hover
+#botonManejo
+{
+	grid-column: 1/2;
+	background-color: rgb(31,56,237);
+	color: white;
+	text-align: center;
+	width: 150px;
+	text-decoration: none;
+	border-radius: 8px;
+}
+#botonManejo: hover
 {
 	background-color: rgb(14,33,169);
 }
@@ -58,6 +73,7 @@ header p
 	text-align: center;
 	width: 150px;
 	text-decoration: none;
+	border-radius: 8px;
 }
 
 #botonSalir:hover
@@ -128,6 +144,51 @@ header p
 	width: 200px;
 	text-align: center;
 	text-decoration: none;
+	border-radius: 8px;
+}
+
+#botonMenu
+{
+	position: relative;
+	/*grid-area: e;*/
+	font-size: 25px;
+	background-color: black;
+	color: white;
+	width: 250px;
+	text-align: center;
+	text-decoration: none;
+	margin: 0 auto;
+    padding: 0;
+    display: block;
+    vertical-align: middle;
+    border-radius: 8px;
+}
+
+#botonMenu:hover
+{
+	background-color: rgb(89, 89, 89);
+}
+
+#btnUser
+{
+	position: relative;
+	/*grid-area: e;*/
+	font-size: 25px;
+	background-color: black;
+	color: white;
+	width: 250px;
+	text-align: center;
+	text-decoration: none;
+	margin: 0 auto;
+    padding: 0;
+    display: block;
+    vertical-align: middle;
+    border-radius: 8px;
+}
+
+#btnUser:hover
+{
+	background-color: rgb(89, 89, 89);
 }
 
 #inicioSesion
@@ -135,7 +196,7 @@ header p
 	margin: auto;
 	grid-area: b;
 	background-color: white;
-	width: 300px;
-	height: 200px;
+	width: 100%;
+	height: 100%;
 	box-shadow: 3px 3px 10px;
 }

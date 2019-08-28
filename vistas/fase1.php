@@ -22,7 +22,6 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<title>Fase 1</title>
-
 		<link rel="stylesheet" href="../styles/Fase1c.css">
 		<link href="../img/icon.ico" type="image/ico" rel="shortcut icon">
 		<script src="../js/jquery.min.js"></script>
@@ -59,11 +58,8 @@
 					<div id='cstvalor'></div>
 					<p>Duracion: </p><input type="number" id="durh" name="duracionh" min="0" max="5" step="1" value=""><p>horas</p><input type="number" id="durmin" min="0" max="60" step="5" name="duracionm" value="" ><p>minutos</p><br>
 					<br>
+					<p>Observacion:</p><br><textarea name="observacion" rows="5" cols="30"></textarea>
 					<div id="fin"></div>
-					<!--
-					<a id ="boton" type="button" name="crear">Continuar</a>
-					<button id ='boton' type='submit' name='confirma'>Confirmar</button>
-					-->
 					<?php 
 					if($user->getCargo() == "Administrador")
 					{
@@ -138,8 +134,7 @@
 							$duracionm = $_POST['duracionm'];
 						}
 						
-						$sql = "INSERT INTO `requerimientoactividad`(`fechaProgramacion`, `fechaEvento`, `nombreCompania`, `nombreActividad`, `disciplina`, `lugar`, `tipoEntrada`, `duracion`,`horario`) VALUES (CURRENT_DATE(),'".$fechaeve."','".$nomcom."','".$nomact."','".$disciplina."','".$lugar."',1,'".$duracionh.":".$duracionm.":00','".$horariohoras.":".$horariominutos.":00')";
-						//$pdoQuery = "INSERT INTO `requerimientoactividad`(`fechaProgramacion`, `fechaEvento`, `nombreCompania`, `nombreActividad`, `disciplina`, `lugar`, `tipoEntrada`, `duracion`) VALUES (CURRENT_DATE(),'".$fechaeve."','".$nomcom."','".$nomact."','".$disciplina."','".$lugar."',1,'".$duracionh.":".$duracionm.":00')";  
+						$sql = "INSERT INTO `requerimientoactividad`(`fechaProgramacion`, `fechaEvento`, `nombreCompania`, `nombreActividad`, `disciplina`, `lugar`, `tipoEntrada`, `duracion`,`horario`,`costo`,`observacion`) VALUES (CURRENT_DATE(),'".$fechaeve."','".$nomcom."','".$nomact."','".$disciplina."','".$lugar."',1,'".$duracionh.":".$duracionm.":00','".$horariohoras.":".$horariominutos.":00',".$costo.",'".$_POST['observacion']."')"; 
 						if($conexion->query($sql) === true)
 						{
                     		echo "<script>window.location='reqdis.php';</script>";
@@ -148,31 +143,6 @@
                     		die("Error al insertar datos: " . $conexion->error);
                			}
 						$conexion->close();
-						/*echo 
-							"<p>Fecha de programacion:</p>".date("Y-m-d")."<br>
-							<p>Fecha del evento: </p>".$fechaeve."<br>
-							<p>Nombre de la compañia: </p>".$nomcom."<br>
-							<p>Nombre de la actividad: </p>".$nomact."<br>
-							<p>Duracion: </p>".$duracionh.":".$duracionm."<br>
-							<p>Lugar: </p>".$lugar."<br>
-							<p>Horario: </p>".$horariohoras.":".$horariominutos."<br>
-							<p>Tipo de entrada:</p>
-							<p>libre </p>".$elibre."
-							<p>cortesia </p>".$ecortesia."
-							<p>costo </p>".$ecosto."<br>
-							<p>Costo: $</p>".$costo."<br>
-							<p>Disciplina: </p>".$disciplina."<br>";
-						$insertar = "INSERT INTO actividad(fechapro,fechaeve,nomcom,nomact,duracion,lugar,horarioi,horariof,elibre,ecortesia,ecosto,costo,diciplina,observaciones)VALUES ('$fechapro','$fechaeve','$nomcom','$nomact','$duracion','$lugar','$horarioi','$horariof','$elibre','$ecortesia','$ecosto','$costo','$diciplina','$observaciones')";
-						$resultado = mysqli_query($connection,$insertar);
-						if(!$resultado)
-						{
-							echo "Error al registrarse";
-						}else
-						{
-							echo '<script>alert("registrado correctamente");</script>';
-						}
-						mysqli_close($connection);*/
-						//echo '<script>alert("registrado correctamente");</script>';
 					}
 					?>
 				</form>
