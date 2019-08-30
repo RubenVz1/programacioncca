@@ -86,8 +86,8 @@
 					    {
 					    	echo "<td>".$result[$i][$j]."</td>";
 					    }
-					    echo "<td><a href=\"administracion.php\">Actualizar</a></td>";
-					    echo "<td><a href=\"administracion.php?id=".$result[$i][0]."\">Eliminar</a></td>";
+					    echo "<td><a href='actualizacion.php?id=".$result[$i][0]."'>Actualizar</a></td>";
+					    echo "<td><a href='administracion.php?id=".$result[$i][0]."'>Eliminar</a></td>";
 					    echo "</tr>";
 					}
 				}
