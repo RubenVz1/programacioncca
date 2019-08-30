@@ -68,7 +68,7 @@
                 $invitacion = $_POST['invitacion'];
 
                 $db = new DB();
-                $query = $db->connect()->prepare("INSERT INTO `fase2`(`nombrediseñador`, `fechaentra`, `fotos`, `viñeta`, `logos`, `lugar`, `fecha`, `hora`, `leyenda`, `fechasalida`, `cartel`, `web`, `cortesias`, `programa`, `invitacion`) VALUES ('$nombrediseñador','$entregaaldiseñador','$fotos','$viñeta','$logos','$lugar','$fecha','$Hora','$leyenda','$fechaentrega','$cartel','$web','$cortesias','$programa','$invitacion')");
+                $query = $db->connect()->prepare("INSERT INTO `fase2`(`nombredisenador`, `fechaentra`, `fotos`, `vineta`, `logos`, `lugar`, `fecha`, `hora`, `leyenda`, `fechasalida`, `cartel`, `web`, `cortesias`, `programa`, `invitacion`) VALUES ('$nombrediseñador','$entregaaldiseñador','$fotos','$viñeta','$logos','$lugar','$fecha','$Hora','$leyenda','$fechaentrega','$cartel','$web','$cortesias','$programa','$invitacion')");
                 $query->execute();
 				$result = $query->fetchAll();
                 echo "<script>window.location='entregacartelycortesias.php';</script>";            

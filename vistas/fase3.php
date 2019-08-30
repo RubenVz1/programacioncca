@@ -75,13 +75,13 @@
                 echo $iddiseño;
 
                 //trae el id del ultimo insert de fase3
-                $getiddifusion = "SELECT MAX(idfase3) as id FROM `difusion`";
+                $getiddifusion = "SELECT MAX(idDifusion) as id FROM `difusion`";
 				$resdifusion = $mysqli->query($getiddifusion);
 				$objetoiddifusion = $resdifusion->fetch_assoc();
-                $idfase3 = $objetoiddifusion['id'];
+                $idDifusion = $objetoiddifusion['id'];
                         
                 // inserta en una tabla de actividad
-				$sqlactividad = "INSERT INTO `actividad`(`idProgramacion`, `idDiseno`, `idDifusion`) VALUES ('$idprogramacion','$iddiseño','$idfase3')";
+				$sqlactividad = "INSERT INTO `actividad`(`idProgramacion`, `idDiseno`, `idDifusion`) VALUES ('$idprogramacion','$iddiseño','$idDifusion')";
                 $mysqli->query($sqlactividad);
                 
                 echo "<script>window.location='home.php';</script>";            

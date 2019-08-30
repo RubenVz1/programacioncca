@@ -43,7 +43,7 @@
                                                   corrector k
                                                   WHERE a.idProgramacion = b.idProgramacion
                                                   AND a.idDiseno = c.iddiseno
-                                                  AND a.idDifusion = d.idfase3
+                                                  AND a.idDifusion = d.idDifusion
                                                   AND b.idRequerimientoActividad = e.idRequerimientoActividad
                                                   AND b.idRequerimientoDiseno = f.idRequerimientoDiseno
                                                   AND b.idRequerimientoTecnico = g.idRequerimientoTecnico
@@ -66,75 +66,78 @@
                     echo "<p>Diciplina: ".$result[0][20]."</p><br>";
                     echo "<p>Lugar: ".$result[0][21]."</p><br>";
                     echo "<p>horario: ".$result[0][22]."hrs</p><br>";
+
                     echo "<p>tipo de entrada: ".$result[0][23]."</p><br>";
                     echo "<p>Costo: $".$result[0][24]."</p><br>";
                     echo "<p>Duracion: ".$result[0][25]."hrs</p><br>";
                     echo "<p>Observacion: ".$result[0][26]."</p><br>";
                     echo "<h3>Requerimientos de Diseño</h3><br>";
                     echo "<p>fecha de entrega: ".$result[0][28]."</p><br>";
-                    echo "<p>fotografia:<img height='100px' src='data:image/jpg;base64,".base64_encode($result[0][29])."'/></p><br>";
-                    echo "<p>logo: <img height='100px' src='data:image/jpg;base64,".base64_encode($result[0][30])."'/></p><br>";
-                    echo "<p>Semblanza compañia: ".$result[0][31]."</p><br>";
-                    echo "<p>Semblanza actividad: ".$result[0][32]."</p><br>";
+                    /***********************************************************************/
+                    //echo "<p>fotografia:<img height='100px' src='data:image/jpg;base64,".base64_encode()."'/></p><br>";
+                    //echo "<p>logo: <img height='100px' src='data:image/jpg;base64,".base64_encode()."'/></p><br>";
+                    /***********************************************************************/
+                    echo "<p>Semblanza compañia: ".$result[0][29]."</p><br>";
+                    echo "<p>Semblanza actividad: ".$result[0][30]."</p><br>";
                     echo "<p>Programa de mano: ";
-                    if($result[0][33] == 0)
+                    if($result[0][31] == 0)
                     echo "No";
                     else echo"Sí";
                     echo "</p><br>";
                     echo "<h3>Requerimientos técnicos</h3><br>";
-                    echo "<p>Requerimiento: ".$result[0][35]."</p><br>";
+                    echo "<p>Requerimiento: ".$result[0][33]."</p><br>";
                     echo "<h1 id='cabecera'>Diseño</h1><br>";
-                    echo "<p>Nombre del diseñador: ".$result[0][41]."</p><br>";
-                    echo "<p>fecha de entrega al diseñador: ".$result[0][42]."</p><br>";
+                    echo "<p>Nombre del diseñador: ".$result[0][39]."</p><br>";
+                    echo "<p>fecha de entrega al diseñador: ".$result[0][40]."</p><br>";
                     echo "<p>fotos: ";
-                    if($result[0][43] == 0)echo "No";
+                    if($result[0][41] == 0)echo "No";
                     else echo "Sí";
                     echo "</p><br>";
                     echo "<p>viñeta: ";
-                    if($result[0][44] == 0)echo "No";
+                    if($result[0][42] == 0)echo "No";
                     else echo "Sí";
                     echo "</p><br>";
                     echo "<p>logos: ";
-                    if($result[0][44] == 0)echo "No";
+                    if($result[0][43] == 0)echo "No";
                     else echo "Sí";
                     echo "</p><br>";
-                    echo "<p>lugar: ".$result[0][46]."</p><br>";
-                    echo "<p>fecha: ".$result[0][47]."</p><br>";
-                    echo "<p>hora: ".$result[0][48]."</p><br>";
-                    echo "<p>leyenda: ".$result[0][49]."</p><br>";
-                    echo "<p>fecha de entrega del diseñador: ".$result[0][50]."</p><br>";
+                    echo "<p>lugar: ".$result[0][44]."</p><br>";
+                    echo "<p>fecha: ".$result[0][45]."</p><br>";
+                    echo "<p>hora: ".$result[0][46]."</p><br>";
+                    echo "<p>leyenda: ".$result[0][47]."</p><br>";
+                    echo "<p>fecha de entrega del diseñador: ".$result[0][48]."</p><br>";
                     echo "<p>cartel: ";
-                    if($result[0][51] == 0)echo "No";
+                    if($result[0][49] == 0)echo "No";
                     else echo "Sí";
                     echo "</p><br>";
                     echo "<p>web: ";
-                    if($result[0][52] == 0)echo "No";
+                    if($result[0][50] == 0)echo "No";
                     else echo "Sí";
                     echo "</p><br>";
                     echo "<p>cortesia: ";
-                    if($result[0][53] == 0)echo "No";
+                    if($result[0][51] == 0)echo "No";
                     else echo "Sí";
                     echo "</p><br>";
                     echo "<p>programa: ";
-                    if($result[0][54] == 0)echo "No";
+                    if($result[0][52] == 0)echo "No";
                     else echo "Sí";
                     echo "</p><br>";
                     echo "<p>invitacion: ";
-                    if($result[0][55] == 0)echo "No";
+                    if($result[0][53] == 0)echo "No";
                     else echo "Sí";
                     echo "</p><br>";
                     echo "<h3>Cartel y cortesias</h3><br>";
-                    echo "<p>Digital: ".$result[0][57]."</p><br>";
-                    echo "<p>offset: ".$result[0][58]."</p><br>";
-                    echo "<p>Serigrafía: ".$result[0][59]."</p><br>";
-                    echo "<p>Por fuera: ".$result[0][60]."</p><br>";
-                    echo "<p>Entrega de programa de mano: ".$result[0][61]."</p><br>";
-                    echo "<p>invitacion: ".$result[0][62]."</p><br>";
-                    echo "<p>volante: ".$result[0][63]."</p><br>";
+                    echo "<p>Digital: ".$result[0][55]."</p><br>";
+                    echo "<p>offset: ".$result[0][56]."</p><br>";
+                    echo "<p>Serigrafía: ".$result[0][57]."</p><br>";
+                    echo "<p>Por fuera: ".$result[0][58]."</p><br>";
+                    echo "<p>Entrega de programa de mano: ".$result[0][59]."</p><br>";
+                    echo "<p>invitacion: ".$result[0][60]."</p><br>";
+                    echo "<p>volante: ".$result[0][61]."</p><br>";
                     echo "<h3>Corrector</h3><br>";
-                    echo "<p>Nombre corrector: ".$result[0][66]."</p><br>";
-                    echo "<p>fecha de entrega al corrector: ".$result[0][65]."</p><br>";
-                    echo "<p>fecha de entrega del corrector: ".$result[0][67]."</p><br>";
+                    echo "<p>Nombre corrector: ".$result[0][64]."</p><br>";
+                    echo "<p>fecha de entrega al corrector: ".$result[0][63]."</p><br>";
+                    echo "<p>fecha de entrega del corrector: ".$result[0][65]."</p><br>";
                     echo "<h1 id='cabecera'>Difusion</h1><br>";
                     echo "<p>Fecha difusion: ".$result[0][14]."</p><br>";
                     

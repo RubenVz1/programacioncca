@@ -41,14 +41,10 @@
 			<section id="cuerpo">
 					<form id="reqdis" method="post" action="" enctype="multipart/form-data">
 					<p>Fecha de entrega: </p><input type="date" name="entregareq" value=""><br>
-					<p>Fotografias en alta resolucion:</p><input type="file" name="fotos"><br>
+					<p>Fotografias en alta resolucion:</p><input type="file" name="foto1"><br>
 					<p>Logotipos: </p><input type="file" name="logos"><br><br>
 					<p>Programa de mano: </p><input type="checkbox" id="pm" name="programamano" value="1"><br>
 					<div id="cstvalor"></div>
-					<!--
-					<p>Semblanza de la compañía grupo, artista, ponente, ciclo, etc:</p><br><textarea name="semcom" rows="5" cols="30"></textarea><br>
-					<p>Semblanza de la actividad:</p><br><textarea name="message" rows="5" cols="30"></textarea><br>
-					-->
 					<br>
                     <input id="boton" type="submit" name="agrega" value="agregar">
 					</form>
@@ -57,47 +53,64 @@
 				if(isset($_POST['agrega']))
 				{
 					$servidor = "localhost";
-            			$nombreusuario = "root";
-            			$password = "QQWWEERR1";
-            			$db = "prueba";
-						$conexion = new mysqli($servidor, $nombreusuario, $password, $db);
-
-						if($_POST['entregareq'])
-						{
-							$fechaentrega = $_POST['entregareq'];
-						}
-						else{$fechaentrega = "";}
+            		$nombreusuario = "root";
+            		$password = "QQWWEERR1";
+            		$db = "prueba";
+					$conexion = new mysqli($servidor, $nombreusuario, $password, $db);
+					if($_POST['entregareq'])
+					{
+						$fechaentrega = $_POST['entregareq'];
+					}
+					else{$fechaentrega = "";}
+					/******************************************************************/
+					/*
+					for($i = 0; $i < 3; $i++)
+					{
 						if($_FILES['fotos']['tmp_name'])
 						{
 							$imagen = addslashes(file_get_contents($_FILES['fotos']['tmp_name']));
 						}
-						else{$imagen = "";}
-						if($_FILES['logos']['tmp_name'])
+						else
 						{
-							$logo = addslashes(file_get_contents($_FILES['logos']['tmp_name']));
+							$imagen = "";
 						}
-						else{$logo = "";}
-						if(isset($_POST['semcom']))
-						{
-							$semblanzacom = $_POST['semcom'];
-						}
-						else{$semblanzacom = "";}
-						if(isset($_POST['semact']))
-						{
-							$semblanzaact = $_POST['semact'];
-						}
-						else{$semblanzaact = "";}
-						if(isset($_POST['programamano']))
-						{
-							$programamano = "1";
-						}
-						else{$programamano = "0";}
-
-						$sql = "INSERT INTO `requerimientodiseno`(`fechaEntrega`, `fotografia`, `logotipo`, `semblanzaCompania`, `semblanzaActividad`, `programaMano`) VALUES ('$fechaentrega','$imagen','$logo','$semblanzacom','$semblanzaact','$programamano');";
-						$resultado = $conexion->query($sql);
+					}
+					*/
+					/******************************************************************/
+					if($_FILES['foto1']['tmp_name'])
+					{
+						$imagen = addslashes(file_get_contents($_FILES['foto1']['tmp_name']));
+						echo $imagen;
+					}
+					else{$imagen = "";}
+					if($_FILES['logos']['tmp_name'])
+					{
+						$logo = addslashes(file_get_contents($_FILES['logos']['tmp_name']));
+						echo $logo;
+					}
+					else{$logo = "";}
+					if(isset($_POST['semcom']))
+					{
+						$semblanzacom = $_POST['semcom'];
+					}
+					else{$semblanzacom = "";}
+					if(isset($_POST['semact']))
+					{
+						$semblanzaact = $_POST['semact'];
+					}
+					else{$semblanzaact = "";}
+					if(isset($_POST['programamano']))
+					{
+						$programamano = "1";
+					}
+					else{$programamano = "0";}
+					$sql = "INSERT INTO `requerimientodiseno`(`fechaEntrega`, `semblanzaCompania`, `semblanzaActividad`, `programaMano`) VALUES ('$fechaentrega','$semblanzacom','$semblanzaact','$programamano');";
+					$resultado = $conexion->query($sql);
 					if($resultado)
 					{
 					    echo "<script>window.location='reqtec.php';</script>";
+					    //echo "<script>alert('se realizo la consulta');</script>";
+
 					}
 					else
 					{
@@ -106,7 +119,6 @@
 					}
 				}
 			?>
-
 		</div>
 		<script src="../js/reqdis.js"></script>
 			</section>
