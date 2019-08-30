@@ -2,13 +2,15 @@
 {
 	padding: 0px;
 	margin: 0px;
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	font-size: 13px;
 }
 
 body
 {
 	display: grid;
-	grid-template-rows: 80px 1fr 1fr;
-	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-rows: 100px auto auto;
+	grid-template-columns: auto auto auto;
 	grid-template-areas: "a a a"
 						 "b c d" 
 						 ". e .";
@@ -68,10 +70,13 @@ header p
 #calendario
 {
 	grid-area: c;
+	justify-items: center;
+	align-items: center;
 	background-color: white;
-	width: 400px;
-	height: 250px;
+	width: 500px;
+	height: 450px;
 	box-shadow: 3px 3px 10px;
+	margin-left: 50px;
 }
 
 #cabecera
@@ -91,6 +96,8 @@ header p
 	width: 300px;
 	height: 450px;
 	box-shadow: 3px 3px 10px;
+	margin-left: 50px;
+
 }
 
 #datos
@@ -100,6 +107,7 @@ header p
 	width: 300px;
 	height: 450px;
 	box-shadow: 3px 3px 10px;
+	margin-left: 50px;
 }
 
 #cabecera2
@@ -128,6 +136,7 @@ header p
 	width: 200px;
 	text-align: center;
 	text-decoration: none;
+	margin-left: 50px;
 }
 
 #inicioSesion
@@ -138,4 +147,10 @@ header p
 	width: 300px;
 	height: 200px;
 	box-shadow: 3px 3px 10px;
+}
+#tabla
+{
+margin: auto;
+margin-top: 20px;
+margin-bottom: auto;
 }

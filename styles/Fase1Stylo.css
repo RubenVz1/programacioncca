@@ -1,14 +1,30 @@
+*
+{
+	padding: 0px;
+	margin: 0px;
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	font-size: 13px;
+}
 body
 {
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
-	align-content: center;
+	align-content: auto;
 	text-align: center;
+	align-items: center;
 	background-image: radial-gradient(circle,rgb(255,255,255),rgb(19,122,157));
 	background-repeat: no-repeat;
 	background-size: 100% 300%;
 }
-
+#arriba
+{
+	height: 100px;
+}
+#abajo
+{
+	height: 100px;
+}
 #inicioSesion
 {
 	background-color: white;

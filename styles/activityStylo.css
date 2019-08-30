@@ -2,25 +2,22 @@
 {
 	padding: 0px;
 	margin: 0px;
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	font-size: 13px;
 }
-
 body
 {
-	display: grid;
-	grid-template-rows: 80px 1fr 1fr;
-	grid-template-columns: 1fr 1fr 1fr;
-	grid-template-areas: "a a a"
-						 "b c d" 
-						 ". e .";
+	display:flexbox;
+	flex-direction: column;
 	background-image: radial-gradient(circle,rgb(255,255,255),rgb(19,122,157));
 	background-repeat: no-repeat;
 	background-size: 100% 500%;
 	text-align: center;
+	margin: 5px;
 }
 
 header
 {
-	grid-area: a;
 	background-color: rgb(75,86,92);
 	height: 30px;
 	color: white;
@@ -60,7 +57,7 @@ header p
 	text-decoration: none;
 	border-radius: 8px;
 }
-#botonManejo: hover
+#botonManejo:hover
 {
 	background-color: rgb(14,33,169);
 }
@@ -83,7 +80,6 @@ header p
 
 #calendario
 {
-	grid-area: c;
 	background-color: white;
 	width: 400px;
 	height: 250px;
@@ -100,23 +96,6 @@ header p
 	font-size: 22px;
 }
 
-#observaciones
-{
-	grid-area: b;
-	background-color: white;
-	width: 300px;
-	height: 450px;
-	box-shadow: 3px 3px 10px;
-}
-
-#datos
-{
-	grid-area: d;
-	background-color: white;
-	width: 300px;
-	height: 450px;
-	box-shadow: 3px 3px 10px;
-}
 
 #cabecera2
 {
@@ -196,7 +175,7 @@ header p
 	margin: auto;
 	grid-area: b;
 	background-color: white;
-	width: 100%;
+	width: 600px;
 	height: 100%;
 	box-shadow: 3px 3px 10px;
 }

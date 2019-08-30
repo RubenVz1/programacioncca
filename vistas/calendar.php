@@ -20,9 +20,11 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<title>Calendario</title>
 		<link rel="stylesheet" href="../styles/calendarStylo.css">
+		<link href="../img/icon.ico" type="image/ico" rel="shortcut icon">
+
 	</head>
 	<body>
-		<header>
+	<header>
 			<?php echo "<p>Bienvenido ".$user->getNombre()." con cargo ".$user->getCargo()."</p>";
 			if($user->getCargo() == "Administrador")
 				{
@@ -30,7 +32,7 @@
 				}
 			?>
 			<a id="botonSalir" href="../includes/logout.php">Cerrar sesion</a>
-		</header>
+	</header>
 		<div id="calendario">
 			<table border="1" id="tabla">
 				<section id="cabecera">
@@ -163,6 +165,7 @@
 				?>
 			</table>
 		</div>
+
 		<div id="observaciones">
 			<section id="cabecera2">
 				<h1>Observaciones</h1>			

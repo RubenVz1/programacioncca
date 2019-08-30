@@ -30,10 +30,9 @@
 		<script src="../js/jquery.min.js"></script>
 		<link href="http://cdn.jsdelivr.net/timepicker.js/latest/timepicker.min.css" rel="stylesheet"/>
 		<link rel="stylesheet" href="../styles/Fase1Stylo.css">
-		<link href="../img/icon.ico" type="image/ico" rel="shortcut icon">
 	</head>
 	<body>
-		<script></script>
+	<div id="arriba"></div>
 		<div id="inicioSesion">
 			<section id="cabecera">
 					<h1 id="h1dis">Requerimientos para diseño</h1>
@@ -111,6 +110,7 @@
 		<script src="../js/reqdis.js"></script>
 			</section>
 		</div>
+		<div id="abajo"></div>
 	</body>
 </html>
 

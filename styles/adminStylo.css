@@ -2,8 +2,9 @@
 {
 	padding: 0px;
 	margin: 0px;
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+	font-size: 13px;
 }
-
 body
 {
 	display: grid;
@@ -17,7 +18,10 @@ body
 	background-size: 100% 400%;
 	text-align: center;
 }
-
+#tabla
+{
+	margin: 5px;
+}
 header
 {
 	grid-area: a;
@@ -69,8 +73,8 @@ header p
 {
 	grid-area: b;
 	background-color: white;
-	width: 400px;
-	height: 250px;
+	width: auto;
+	height:auto;
 	box-shadow: 3px 3px 10px;
 }
 

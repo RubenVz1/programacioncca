@@ -22,15 +22,13 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<title>Fase 1</title>
-		<link rel="stylesheet" href="../styles/Fase1c.css">
 		<link href="../img/icon.ico" type="image/ico" rel="shortcut icon">
 		<script src="../js/jquery.min.js"></script>
 		<link href="http://cdn.jsdelivr.net/timepicker.js/latest/timepicker.min.css" rel="stylesheet"/>
 		<link rel="stylesheet" href="../styles/Fase1Stylo.css">
-		<link href="../img/icon.ico" type="image/ico" rel="shortcut icon">
 	</head>
 	<body>
-		<script></script>
+		<div id="arriba"></div>
 		<div id="inicioSesion">
 			<section id="cabecera">
 				<h1 id="h1pro" >Programación</h1>
@@ -148,8 +146,9 @@
 				</form>
 			</section>
 		</div>
-	<script src="../js/fase1e.js"></script>
+		<script src="../js/fase1e.js"></script>
 			</section>
 		</div>
+		<div id="abajo"></div>
 	</body>
 </html>

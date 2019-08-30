@@ -23,13 +23,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Fase 2</title>
-
 	<link href="../img/icon.ico" type="image/ico" rel="shortcut icon">
 	<script src="../js/jquery.min.js"></script>
 	<link href="http://cdn.jsdelivr.net/timepicker.js/latest/timepicker.min.css" rel="stylesheet"/>
 	<link rel="stylesheet" href="../styles/Fase1Stylo.css">
 </head>
 <body>
+<div id="arriba"></div>
     <div id="inicioSesion">
         <section id="cabecera">
             <h1>Diseño</h1>
@@ -75,5 +75,6 @@
             }
         ?>
     </div>
+    <div id="abajo"></div>
 </body>
 </html>
