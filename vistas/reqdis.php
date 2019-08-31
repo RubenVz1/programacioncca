@@ -24,8 +24,6 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<title>Fase 1</title>
-
-		<link rel="stylesheet" href="../styles/Fase1c.css">
 		<link href="../img/icon.ico" type="image/ico" rel="shortcut icon">
 		<script src="../js/jquery.min.js"></script>
 		<link href="http://cdn.jsdelivr.net/timepicker.js/latest/timepicker.min.css" rel="stylesheet"/>
@@ -40,9 +38,10 @@
 			<section id="cuerpo">
 					<form id="reqdis" method="post" action="" enctype="multipart/form-data">
 					<p>Fecha de entrega: </p><input type="date" name="entregareq" value=""><br>
-					<p>Fotografias en alta foto 0:</p><input type="file" name="foto0"><br>
-					<p>Fotografias en alta foto 1:</p><input type="file" name="foto1"><br>
-					<p>Fotografias en alta foto 2:</p><input type="file" name="foto2"><br>
+					<input type="hidden" name="numero" id="numfotos" value="1" size="1" ><br>
+					<p>Fotografias en alta foto 0:</p><input type="file" name="foto0"><input id="mas" name="masfotos" type="button"value="+"><input id="menos" name="menos" type="button" value="--"><br>
+					<div id="fotos">
+					</div>
 					<p>Logotipos: </p><input type="file" name="logos"><br><br>
 					<p>Programa de mano: </p><input type="checkbox" id="pm" name="programamano" value="1"><br>
 					<div id="cstvalor"></div>
@@ -51,6 +50,7 @@
 					</form>
 			</section>
 			<?php
+
 				if(isset($_POST['agrega']))
 				{
 					$servidor = "localhost";
@@ -64,7 +64,9 @@
 					}
 					else{$fechaentrega = "";}
 					/******************************************************************/
-					for($i = 0; $i < 3; $i++)
+					$inputs = $_POST['numero'];
+
+					for($i = 0; $i < $inputs; $i++)
 					{
 						$nombre = "foto".$i;
 						if($_FILES[$nombre]['tmp_name'])
@@ -107,7 +109,7 @@
 					$resultado = $conexion->query($sql);
 					$row = $resultado->fetch_assoc();
 
-					for($i = 0; $i < 3; $i++)
+					for($i = 0; $i < $inputs; $i++)
 					{
 						$imgk = $imagenes[$i];
 						$idk = $row['id'];
@@ -116,7 +118,7 @@
 					}
 					if($resultado)
 					{
-					    echo "<script>window.location='reqtec.php';</script>";
+						echo "<script>window.location='reqtec.php';</script>";
 					}
 					else
 					{
@@ -126,7 +128,7 @@
 				}
 			?>
 		</div>
-		<script src="../js/reqdis.js"></script>
+		<script src="../js/reqdiseño.js"></script>
 			</section>
 		</div>
 		<div id="abajo"></div>
