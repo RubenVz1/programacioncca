@@ -40,7 +40,9 @@
 			<section id="cuerpo">
 					<form id="reqdis" method="post" action="" enctype="multipart/form-data">
 					<p>Fecha de entrega: </p><input type="date" name="entregareq" value=""><br>
-					<p>Fotografias en alta resolucion:</p><input type="file" name="foto1"><br>
+					<p>Fotografias en alta foto 0:</p><input type="file" name="foto0"><br>
+					<p>Fotografias en alta foto 1:</p><input type="file" name="foto1"><br>
+					<p>Fotografias en alta foto 2:</p><input type="file" name="foto2"><br>
 					<p>Logotipos: </p><input type="file" name="logos"><br><br>
 					<p>Programa de mano: </p><input type="checkbox" id="pm" name="programamano" value="1"><br>
 					<div id="cstvalor"></div>
@@ -62,26 +64,20 @@
 					}
 					else{$fechaentrega = "";}
 					/******************************************************************/
-					/*
 					for($i = 0; $i < 3; $i++)
 					{
-						if($_FILES['fotos']['tmp_name'])
+						$nombre = "foto".$i;
+						if($_FILES[$nombre]['tmp_name'])
 						{
-							$imagen = addslashes(file_get_contents($_FILES['fotos']['tmp_name']));
+							$imagen = addslashes(file_get_contents($_FILES[$nombre]['tmp_name']));
 						}
 						else
 						{
 							$imagen = "";
 						}
+						$imagenes[] = $imagen;
 					}
-					*/
 					/******************************************************************/
-					if($_FILES['foto1']['tmp_name'])
-					{
-						$imagen = addslashes(file_get_contents($_FILES['foto1']['tmp_name']));
-						echo $imagen;
-					}
-					else{$imagen = "";}
 					if($_FILES['logos']['tmp_name'])
 					{
 						$logo = addslashes(file_get_contents($_FILES['logos']['tmp_name']));
@@ -103,13 +99,24 @@
 						$programamano = "1";
 					}
 					else{$programamano = "0";}
+					
 					$sql = "INSERT INTO `requerimientodiseno`(`fechaEntrega`, `semblanzaCompania`, `semblanzaActividad`, `programaMano`) VALUES ('$fechaentrega','$semblanzacom','$semblanzaact','$programamano');";
 					$resultado = $conexion->query($sql);
+
+					$sql = "SELECT MAX(idRequerimientoDiseno) as id FROM requerimientodiseno;";
+					$resultado = $conexion->query($sql);
+					$row = $resultado->fetch_assoc();
+
+					for($i = 0; $i < 3; $i++)
+					{
+						$imgk = $imagenes[$i];
+						$idk = $row['id'];
+						$sql = "INSERT INTO `Fotografia`(`fotografia`, `idRequerimientoDiseno`) VALUES ('$imgk','$idk');";
+						$resultado = $conexion->query($sql);
+					}
 					if($resultado)
 					{
 					    echo "<script>window.location='reqtec.php';</script>";
-					    //echo "<script>alert('se realizo la consulta');</script>";
-
 					}
 					else
 					{

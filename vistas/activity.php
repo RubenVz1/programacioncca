@@ -51,7 +51,7 @@
                                                   and c.idfase2 = i.idfase2
                                                   and c.idcartelycortesias = j.idcartelycortesias
                                                   AND c.idcorrector = k.idcorrector
-                                                  AND a.idActividad = $id
+                                                  AND a.idActividad = $id;
                                                   ");
                 $query->execute();
                 $query->setFetchMode(PDO::FETCH_NUM);
@@ -74,6 +74,36 @@
                     echo "<h3>Requerimientos de Diseño</h3><br>";
                     echo "<p>fecha de entrega: ".$result[0][28]."</p><br>";
                     /***********************************************************************/
+                    $query1 = $db->connect()->prepare("SELECT f.fotografia
+                                                      FROM Actividad a, Programacion p, requerimientoDiseno r, fotografia f
+                                                      WHERE a.idProgramacion = p.idProgramacion
+                                                      AND p.idRequerimientoDiseno = r.idRequerimientoDiseno
+                                                      AND f.idRequerimientoDiseno = r.idRequerimientoDiseno 
+                                                      AND a.idActividad = $id;");
+                    $query1->execute();
+                    $query1->setFetchMode(PDO::FETCH_NUM);
+                    $result1 = $query1->fetchAll();
+                    for($i = 0 ; $i < count($result1) ; $i++)
+                    {
+                        echo "<p>Fotografia ".($i+1).":<img height='100px' src='data:image/jpg;base64,".base64_encode($result1[$i][0])."'/></p><br>";
+                    }
+
+                    /***********************************************************************/
+
+                    $query2 = $db->connect()->prepare("SELECT l.logotipo
+                                                      FROM Actividad a, Programacion p, requerimientoDiseno r, logotipo l
+                                                      WHERE a.idProgramacion = p.idProgramacion
+                                                      AND p.idRequerimientoDiseno = r.idRequerimientoDiseno
+                                                      AND l.idRequerimientoDiseno = r.idRequerimientoDiseno 
+                                                      AND a.idActividad = $id;");
+                    $query2->execute();
+                    $query2->setFetchMode(PDO::FETCH_NUM);
+                    $result2 = $query2->fetchAll();
+                    for($i = 0 ; $i < count($result2) ; $i++)
+                    {
+                        echo "<p>Logo ".($i+1).":<img height='100px' src='data:image/jpg;base64,".base64_encode($result2[$i][0])."'/></p><br>";
+                    }
+
                     //echo "<p>fotografia:<img height='100px' src='data:image/jpg;base64,".base64_encode()."'/></p><br>";
                     //echo "<p>logo: <img height='100px' src='data:image/jpg;base64,".base64_encode()."'/></p><br>";
                     /***********************************************************************/
