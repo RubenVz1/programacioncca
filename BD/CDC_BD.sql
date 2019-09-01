@@ -37,7 +37,6 @@ CREATE TABLE `requerimientoActividad`
   `nombreActividad` varchar(15) DEFAULT NULL,
   `disciplina` varchar(15) DEFAULT NULL,
   `lugar` varchar(15) DEFAULT NULL,
-  `horario` time DEFAULT NULL,
   `tipoEntrada` int(11) DEFAULT NULL,
   `costo` int(11) DEFAULT NULL,
   `duracion` time DEFAULT NULL,
@@ -45,16 +44,49 @@ CREATE TABLE `requerimientoActividad`
   PRIMARY KEY (idRequerimientoActividad)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-INSERT INTO `requerimientoactividad` (`idRequerimientoActividad`, `fechaProgramacion`, `fechaEvento`, `nombreCompania`, `nombreActividad`, `disciplina`, `lugar`, `horario`, `tipoEntrada`, `costo`, `duracion`, `observacion`) VALUES
-(1, '2019-07-05', '2019-08-05', 'programacioncca', 'estreno', 'informatica', 'fesAcatlan', '03:20:10', 3, NULL, '02:30:40', 'Esta observacion es de la actividad estreno'),
-(5, '2018-04-03', '2019-09-01', 'finalizacionPro', 'cierre', 'cedetec', 'fesAcatlanUnam', '02:10:15', 2, NULL, '02:02:02', 'Esta observacion es de la actividad cierre'),
-(6, '2019-07-28', '2019-10-14', 'notcelis', 'fortnite', 'juegos', 'el chain', '00:00:00', 1, NULL, '02:30:00', NULL),
-(7, '2019-07-28', '2019-07-17', 'celis', 'skate', 'ytretyerty', 'mi casa', '00:00:00', 1, 100, '01:05:00', ''),
-(8, '2019-07-28', '2019-07-31', 'celis', 'skate', 'ytretyerty', 'mi casa', '00:00:00', 1, 100, '01:05:00', 'jsjsjsjs'),
-(9, '2019-07-28', '2019-10-13', 'celis', 'mi cumple', 'ytretyerty', 'mi casa', '20:30:00', 1, 25, '05:30:00', 'trae tu alcohol'),
-(10, '2019-07-28', '2019-08-29', 'celis', 'skate', 'ytretyerty', 'mi casa', '00:00:00', 1, 0, '01:05:00', ''),
-(11, '2019-07-28', '2019-07-29', 'celis', 'fotos', 'ytretyerty', 'mi casa', '00:00:00', 1, 0, '01:05:00', ''),
-(12, '2019-07-28', '2019-10-14', 'nombre compaÃ±i', 'nombre activida', 'disciplina', 'lugar', '20:30:00', 1, 100, '01:30:00', 'observacion');
+INSERT INTO `requerimientoactividad` (`idRequerimientoActividad`, `fechaProgramacion`, `fechaEvento`, `nombreCompania`, `nombreActividad`, `disciplina`, `lugar`, `tipoEntrada`, `costo`, `duracion`, `observacion`) VALUES
+(1, '2019-07-05', '2019-08-05', 'programacioncca', 'estreno', 'informatica', 'fesAcatlan', 3, NULL, '02:30:40', 'Esta observacion es de la actividad estreno'),
+(5, '2018-04-03', '2019-09-01', 'finalizacionPro', 'cierre', 'cedetec', 'fesAcatlanUnam', 2, NULL, '02:02:02', 'Esta observacion es de la actividad cierre'),
+(6, '2019-07-28', '2019-10-14', 'notcelis', 'fortnite', 'juegos', 'el chain', 1, NULL, '02:30:00', NULL),
+(7, '2019-07-28', '2019-07-17', 'celis', 'skate', 'ytretyerty', 'mi casa', 1, 100, '01:05:00', ''),
+(8, '2019-07-28', '2019-07-31', 'celis', 'skate', 'ytretyerty', 'mi casa', 1, 100, '01:05:00', 'jsjsjsjs'),
+(9, '2019-07-28', '2019-10-13', 'celis', 'mi cumple', 'ytretyerty', 'mi casa', 1, 25, '05:30:00', 'trae tu alcohol'),
+(10, '2019-07-28', '2019-08-29', 'celis', 'skate', 'ytretyerty', 'mi casa', 1, 0, '01:05:00', ''),
+(11, '2019-07-28', '2019-07-29', 'celis', 'fotos', 'ytretyerty', 'mi casa', 1, 0, '01:05:00', ''),
+(12, '2019-07-28', '2019-10-14', 'nombre compaÃ±i', 'nombre activida', 'disciplina', 'lugar', 1, 100, '01:30:00', 'observacion');
+
+CREATE TABLE `Horario`
+(
+  `idHorario` int(11) DEFAULT NULL AUTO_INCREMENT,
+  `horario` time DEFAULT NULL,
+  `idRequerimientoActividad` int(11),
+  PRIMARY KEY (idHorario),
+  FOREIGN KEY (idRequerimientoActividad) REFERENCES requerimientoActividad(idRequerimientoActividad)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+INSERT INTO `horario` (`horario`, `idRequerimientoActividad`) VALUES
+('02:21:00', 1),
+('03:22:00', 1),
+('04:20:00', 1),
+('01:21:00', 1),
+('02:22:00', 1),
+('03:23:00', 1),
+('01:25:00', 1),
+('02:24:00', 5),
+('03:23:00', 5),
+('01:15:00', 5),
+('02:25:00', 6),
+('04:35:00', 6),
+('01:45:00', 7),
+('02:45:00', 8),
+('03:55:00', 9),
+('01:15:00', 9),
+('02:10:00', 10),
+('03:10:00', 10),
+('01:15:00', 11),
+('02:20:00', 11),
+('03:22:00', 11),
+('01:23:00', 12);
 
 CREATE TABLE `requerimientoDiseno`
 (

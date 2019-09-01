@@ -44,9 +44,12 @@
 					<p>Nombre de la actividad: </p><input type="text" id="actividad" name="nomact" value=""><br>
 					<p>Disciplina: </p><input type="text" id="disc" name="disciplina" value=""><br>
 					<p>Lugar: </p><input type="text" id="place" name="lugar" value=""><br>
-					<br><p>Horario: </p><button type="button" id = "mas">Agregar</button><button type="button" id = "menos">Quitar</button>
+					<input type="hidden" name="numeroHorarios" id="numeroHorarios" value="1" size="1" ><br>
+					<br><p>Horario: </p>
+					<button type="button" id="mas">Agregar</button>
+					<button type="button" id="menos">Quitar</button>
 					<div id='agrhor'>
-						<input type="number" min="0" max="24" step="1" id="horas1" name="horariohoras" value="">hrs<input type="number" min="0" max="60" step="5" id="minutos1" name="horariominutos" value="">min
+						<input type="number" min="0" max="24" step="1" id="horas1" name="horariohoras1" value=""> hrs <input type="number" min="0" max="60" step="5" id="minutos1" name="horariominutos1" value=""> min
 					</div>
 					<br>
 					<p>Tipo de entrada:</p>
@@ -95,13 +98,17 @@
 						{
 							$lugar = $_POST['lugar'];
 						}
-						if(isset($_POST['horariohoras']))
+						$numeroHorarios = $_POST['numeroHorarios'];
+						for($i = 1; $i <= $numeroHorarios; $i++)
 						{
-							$horariohoras = $_POST['horariohoras'];
-						}
-						if(isset($_POST['horariominutos']))
-						{
-							$horariominutos = $_POST['horariominutos'];
+							$nombreHoras = "horariohoras".$i;
+							$nombreMinutos = "horariominutos".$i;
+							if(isset($_POST[$nombreHoras]) && isset($_POST[$nombreMinutos]))
+							{
+								$horarioHoras = $_POST[$nombreHoras];
+								$horarioMinutos = $_POST[$nombreMinutos];
+							}
+							$horarios[] = $horarioHoras.":".$horarioMinutos.":00";
 						}
 						if(isset($_POST['elibre']))
 						{
@@ -132,11 +139,23 @@
 							$duracionm = $_POST['duracionm'];
 						}
 						
-						$sql = "INSERT INTO `requerimientoactividad`(`fechaProgramacion`, `fechaEvento`, `nombreCompania`, `nombreActividad`, `disciplina`, `lugar`, `tipoEntrada`, `duracion`,`horario`,`costo`,`observacion`) VALUES (CURRENT_DATE(),'".$fechaeve."','".$nomcom."','".$nomact."','".$disciplina."','".$lugar."',1,'".$duracionh.":".$duracionm.":00','".$horariohoras.":".$horariominutos.":00',".$costo.",'".$_POST['observacion']."')"; 
-						if($conexion->query($sql) === true)
+						$sql = "INSERT INTO `requerimientoactividad`(`fechaProgramacion`, `fechaEvento`, `nombreCompania`, `nombreActividad`, `disciplina`, `lugar`, `tipoEntrada`, `duracion`,`costo`,`observacion`) VALUES (CURRENT_DATE(),'".$fechaeve."','".$nomcom."','".$nomact."','".$disciplina."','".$lugar."',1,'".$duracionh.":".$duracionm.":00',".$costo.",'".$_POST['observacion']."')"; 
+						$resultado = $conexion->query($sql);
+						$sql = "SELECT MAX(idRequerimientoActividad) as id FROM requerimientoactividad;";
+						$resultado = $conexion->query($sql);
+						$row = $resultado->fetch_assoc();
+						$idk = $row['id'];
+						for($i = 0; $i < $numeroHorarios; $i++)
+						{
+							$hrk = $horarios[$i];
+							$sql = "INSERT INTO `Horario`(`horario`, `idRequerimientoActividad`) VALUES ('$hrk','$idk');";
+							$resultado = $conexion->query($sql);
+						}
+						if($resultado)
 						{
                     		echo "<script>window.location='reqdis.php';</script>";
-						}else
+						}
+						else
 						{
                     		die("Error al insertar datos: " . $conexion->error);
                			}

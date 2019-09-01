@@ -38,11 +38,20 @@
 			<section id="cuerpo">
 					<form id="reqdis" method="post" action="" enctype="multipart/form-data">
 					<p>Fecha de entrega: </p><input type="date" name="entregareq" value=""><br>
-					<input type="hidden" name="numero" id="numfotos" value="1" size="1" ><br>
-					<p>Fotografias en alta foto 0:</p><input type="file" name="foto0"><input id="mas" name="masfotos" type="button"value="+"><input id="menos" name="menos" type="button" value="--"><br>
-					<div id="fotos">
+					<input type="hidden" name="numeroImagenes" id="numeroImagenes" value="1" size="1" ><br>
+					<p>Fotografia en alta resolucion:</p>
+					<input type="file" name="foto0">
+					<input id="masImagenes" name="masImagenes" type="button"value="+">
+					<input id="menosImagenes" name="menosImagenes" type="button" value="--"><br>
+					<div id="imagenes">
 					</div>
-					<p>Logotipos: </p><input type="file" name="logos"><br><br>
+					<input type="hidden" name="numeroLogos" id="numeroLogos" value="1" size="1" ><br>
+					<p>Logo en alta resolucion:</p>
+					<input type="file" name="logo0">
+					<input id="masLogos" name="masLogos" type="button"value="+">
+					<input id="menosLogos" name="menosLogos" type="button" value="--"><br>
+					<div id="logos">
+					</div>
 					<p>Programa de mano: </p><input type="checkbox" id="pm" name="programamano" value="1"><br>
 					<div id="cstvalor"></div>
 					<br>
@@ -50,7 +59,6 @@
 					</form>
 			</section>
 			<?php
-
 				if(isset($_POST['agrega']))
 				{
 					$servidor = "localhost";
@@ -63,10 +71,8 @@
 						$fechaentrega = $_POST['entregareq'];
 					}
 					else{$fechaentrega = "";}
-					/******************************************************************/
-					$inputs = $_POST['numero'];
-
-					for($i = 0; $i < $inputs; $i++)
+					$numeroImagenes = $_POST['numeroImagenes'];
+					for($i = 0; $i < $numeroImagenes; $i++)
 					{
 						$nombre = "foto".$i;
 						if($_FILES[$nombre]['tmp_name'])
@@ -79,13 +85,20 @@
 						}
 						$imagenes[] = $imagen;
 					}
-					/******************************************************************/
-					if($_FILES['logos']['tmp_name'])
+					$numeroLogos = $_POST['numeroLogos'];
+					for($i = 0; $i < $numeroLogos; $i++)
 					{
-						$logo = addslashes(file_get_contents($_FILES['logos']['tmp_name']));
-						echo $logo;
+						$nombre = "logo".$i;
+						if($_FILES[$nombre]['tmp_name'])
+						{
+							$logo = addslashes(file_get_contents($_FILES[$nombre]['tmp_name']));
+						}
+						else
+						{
+							$logo = "";
+						}
+						$logos[] = $logo;
 					}
-					else{$logo = "";}
 					if(isset($_POST['semcom']))
 					{
 						$semblanzacom = $_POST['semcom'];
@@ -101,19 +114,22 @@
 						$programamano = "1";
 					}
 					else{$programamano = "0";}
-					
 					$sql = "INSERT INTO `requerimientodiseno`(`fechaEntrega`, `semblanzaCompania`, `semblanzaActividad`, `programaMano`) VALUES ('$fechaentrega','$semblanzacom','$semblanzaact','$programamano');";
 					$resultado = $conexion->query($sql);
-
 					$sql = "SELECT MAX(idRequerimientoDiseno) as id FROM requerimientodiseno;";
 					$resultado = $conexion->query($sql);
 					$row = $resultado->fetch_assoc();
-
-					for($i = 0; $i < $inputs; $i++)
+					$idk = $row['id'];
+					for($i = 0; $i < $numeroImagenes; $i++)
 					{
 						$imgk = $imagenes[$i];
-						$idk = $row['id'];
 						$sql = "INSERT INTO `Fotografia`(`fotografia`, `idRequerimientoDiseno`) VALUES ('$imgk','$idk');";
+						$resultado = $conexion->query($sql);
+					}
+					for($i = 0; $i < $numeroLogos; $i++)
+					{
+						$logok = $logos[$i];
+						$sql = "INSERT INTO `Logotipo`(`logotipo`, `idRequerimientoDiseno`) VALUES ('$logok','$idk');";
 						$resultado = $conexion->query($sql);
 					}
 					if($resultado)

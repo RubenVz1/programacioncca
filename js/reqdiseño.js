@@ -9,23 +9,43 @@ $('#pm').change(function(){
         $('#si').remove();
     }
 });
+   
+var indice1 = 0;
+$('#masImagenes').click(function()
+{
+    indice1++;
+	$('#imagenes').append("<p id='p"+indice1+"'>Fotografia en alta resolucion: </p><input id='photo"+indice1+"' type='file' name='foto"+indice1+"'><br id='s"+indice1+"'>");
+	$('#numeroImagenes').val(indice1+1);
+});
 
+$('#menosImagenes').click(function()
+{
+	if(indice1 > 0)
+	{
+		$("#photo"+indice1).remove();
+		$("#p"+indice1).remove();
+		$("#s"+indice1).remove();
+		indice1--;
+		$('#numeroImagenes').val(indice1+1);
+	}
+});
 
+var indice2 = 0;
+$('#masLogos').click(function()
+{
+    indice2++;
+    $('#logos').append("<p id='q"+indice2+"'>Logo en alta resolucion: </p><input id='logo"+indice2+"' type='file' name='logo"+indice2+"'><br id='r"+indice2+"'>");
+    $('#numeroLogos').val(indice2+1);
+});
 
-    
-var indice = 0;
-					$('#mas').click(function(){
-						indice++;
-    					$('#fotos').append("<p id='p"+indice+"'>Fotografias en alta foto "+indice+":</p><input id='photo"+indice+"' type='file' name='foto"+indice+"'><br id='s"+indice+"'>");
-						$('#numfotos').val(indice+1);
-					});
-					$('#menos').click(function(){
-    					if(indice > 0)
-    					{
-        					$("#photo"+indice).remove();
-        					$("#p"+indice).remove();
-							$("#s"+indice).remove();
-							indice--;
-							$('#numfotos').val(indice+1);
-    					}
+$('#menosLogos').click(function()
+{
+    if(indice2 > 0)
+    {
+        $("#logo"+indice2).remove();
+        $("#q"+indice2).remove();
+        $("#r"+indice2).remove();
+        indice2--;
+        $('#numeroLogos').val(indice2+1);
+    }
 });

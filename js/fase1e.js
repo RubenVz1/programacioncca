@@ -22,18 +22,22 @@ $(document).ready(function(){
 });
 
 //Script para agreegar y quitar horarios 
-$(document).ready(function(){
-
+$(document).ready(function()
+{
 var numerodehorarios = 1;
-$('#mas').click(function(){
-    if(numerodehorarios <3)
+$('#mas').click(function()
+{
+    if(numerodehorarios < 3)
     {
         numerodehorarios++;
-        $('#agrhor').append("<br id='br1"+numerodehorarios+"'><input id='horas"+numerodehorarios+"'type='number' min='0' max='24' step='1' value=''><p id='jsjsjs"+numerodehorarios+"'>hrs</p><input type='number' min='0' max='60' step='5' id='minutos"+numerodehorarios+"' value=''><p id='jsjs"+numerodehorarios+"'>min</p>");
+        $('#agrhor').append("<br id='br1"+numerodehorarios+"'><input id='horas"+numerodehorarios+"' name='horariohoras"+numerodehorarios+"' type='number' min='0' max='24' step='1' value=''><p id='jsjsjs"+numerodehorarios+"'> hrs </p><input type='number' min='0' max='60' step='5' id='minutos"+numerodehorarios+"' name='horariominutos"+numerodehorarios+"' value=''><p id='jsjs"+numerodehorarios+"'> min</p>");
+        $('#numeroHorarios').val(numerodehorarios);
+        console.log(numerodehorarios);
     }
 });
-$('#menos').click(function(){
-    if(numerodehorarios>1)
+$('#menos').click(function()
+{
+    if(numerodehorarios > 1)
     {
         $("#horas"+numerodehorarios).remove();
         $("#minutos"+numerodehorarios).remove();
@@ -41,6 +45,8 @@ $('#menos').click(function(){
         $('#jsjs'+numerodehorarios).remove();
         $('#jsjsjs'+numerodehorarios).remove();
         numerodehorarios--;
+        $('#numeroHorarios').val(numerodehorarios);
+        console.log(numerodehorarios);
     }
 });
 
