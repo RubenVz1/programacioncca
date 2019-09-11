@@ -38,16 +38,14 @@
 			<section id="cuerpo">
 					<form id="reqdis" method="post" action="" enctype="multipart/form-data">
 					<p>Fecha de entrega: </p><input type="date" name="entregareq" value=""><br>
-					<input type="hidden" name="numeroImagenes" id="numeroImagenes" value="1" size="1" ><br>
-					<p>Fotografia en alta resolucion:</p>
-					<input type="file" name="foto0">
+					<input type="hidden" name="numeroImagenes" id="numeroImagenes" value="0" size="1" ><br>
+					<p>Añadir fotografia</p><br>
 					<input id="masImagenes" name="masImagenes" type="button"value="+">
 					<input id="menosImagenes" name="menosImagenes" type="button" value="--"><br>
 					<div id="imagenes">
 					</div>
-					<input type="hidden" name="numeroLogos" id="numeroLogos" value="1" size="1" ><br>
-					<p>Logo en alta resolucion:</p>
-					<input type="file" name="logo0">
+					<input type="hidden" name="numeroLogos" id="numeroLogos" value="0" size="1" ><br>
+					<p>Añadir logo</p><br>
 					<input id="masLogos" name="masLogos" type="button"value="+">
 					<input id="menosLogos" name="menosLogos" type="button" value="--"><br>
 					<div id="logos">
@@ -59,6 +57,35 @@
 					</form>
 			</section>
 			<?php
+				function generateRandomString($length = 6)
+				{
+					$possibleChars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+					$id = '';
+					for($i = 0; $i < $length; $i++)
+					{
+						$rand = rand(0, strlen($possibleChars) - 1);
+						$id .= substr($possibleChars, $rand, 1);
+					}
+					return $id;
+				}
+				function isImageValid($imagen)
+				{
+					switch ($imagen['type']) 
+					{
+						case 'image/jpeg':
+							return true;
+						break;
+						case 'image/jpg':
+							return true;
+						break;
+						case 'image/png':
+							return true;
+						break;
+						default:
+							return false;
+						break;
+					}
+				}
 				if(isset($_POST['agrega']))
 				{
 					$servidor = "localhost";
@@ -77,13 +104,18 @@
 						$nombre = "foto".$i;
 						if($_FILES[$nombre]['tmp_name'])
 						{
-							$imagen = addslashes(file_get_contents($_FILES[$nombre]['tmp_name']));
+							if(!isImageValid($_FILES[$nombre]))
+							{
+								echo "<script>alert('La imagen ".($i+1)." tiene un formato invalido, no se guardara en la base de datos')</script>";
+								$imagenes[] = "";
+								continue;
+							}
+							$imagen = "../images/".generateRandomString()."__".$_FILES[$nombre]['name'];
+							move_uploaded_file($_FILES[$nombre]['tmp_name'],$imagen);
+							$imagenes[] = $imagen;
 						}
 						else
-						{
-							$imagen = "";
-						}
-						$imagenes[] = $imagen;
+							$imagenes[] = "";
 					}
 					$numeroLogos = $_POST['numeroLogos'];
 					for($i = 0; $i < $numeroLogos; $i++)
@@ -91,13 +123,18 @@
 						$nombre = "logo".$i;
 						if($_FILES[$nombre]['tmp_name'])
 						{
-							$logo = addslashes(file_get_contents($_FILES[$nombre]['tmp_name']));
+							if(!isImageValid($_FILES[$nombre]))
+							{
+								echo "<script>window.location='reqtec.php';</script>";
+								$imagenes[] = "";
+								continue;
+							}
+							$logo = "../images/".generateRandomString()."__".$_FILES[$nombre]['name'];
+							move_uploaded_file($_FILES[$nombre]['tmp_name'],$logo);
+							$logos[] = $logo;
 						}
 						else
-						{
-							$logo = "";
-						}
-						$logos[] = $logo;
+							$logos[] = "";
 					}
 					if(isset($_POST['semcom']))
 					{
@@ -120,18 +157,24 @@
 					$resultado = $conexion->query($sql);
 					$row = $resultado->fetch_assoc();
 					$idk = $row['id'];
-					for($i = 0; $i < $numeroImagenes; $i++)
-					{
-						$imgk = $imagenes[$i];
-						$sql = "INSERT INTO `Fotografia`(`fotografia`, `idRequerimientoDiseno`) VALUES ('$imgk','$idk');";
-						$resultado = $conexion->query($sql);
-					}
-					for($i = 0; $i < $numeroLogos; $i++)
-					{
-						$logok = $logos[$i];
-						$sql = "INSERT INTO `Logotipo`(`logotipo`, `idRequerimientoDiseno`) VALUES ('$logok','$idk');";
-						$resultado = $conexion->query($sql);
-					}
+					if($numeroImagenes != 0)
+						for($i = 0; $i < $numeroImagenes; $i++)
+						{
+							if($imagenes[$i] == "")
+								continue;
+							$imgk = $imagenes[$i];
+							$sql = "INSERT INTO `Fotografia`(`fotografia`, `idRequerimientoDiseno`) VALUES ('$imgk','$idk');";
+							$resultado = $conexion->query($sql);
+						}
+					if($numeroLogos != 0)
+						for($i = 0; $i < $numeroLogos; $i++)
+						{
+							if($logos[$i] == "")
+								continue;
+							$logok = $logos[$i];
+							$sql = "INSERT INTO `Logotipo`(`logotipo`, `idRequerimientoDiseno`) VALUES ('$logok','$idk');";
+							$resultado = $conexion->query($sql);
+						}
 					if($resultado)
 					{
 						echo "<script>window.location='reqtec.php';</script>";

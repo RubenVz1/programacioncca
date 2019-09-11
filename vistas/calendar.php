@@ -94,7 +94,7 @@
 					}
 					$db = new DB();
 					
-					$query = $db->connect()->prepare("SELECT a.idActividad,r.nombreActividad,r.fechaEvento
+					$query = $db->connect()->prepare("SELECT a.idActividad,r.nombreCompania,r.fechaEvento
 			    						 		  FROM actividad a, programacion p, requerimientoActividad r
 			    						 		  WHERE a.idProgramacion = p.idProgramacion
 			    						 		  AND p.idRequerimientoActividad = r.idRequerimientoActividad
@@ -214,16 +214,24 @@
 	                $result = $query->fetchAll();
 	                if($query->rowCount())
 	                {
+	                	echo "<p>Nombre de la compania: ".$result[0][1]."</p>";
 	                    echo "<p>Nombre de la actividad: ".$result[0][0]."</p>";
-	                    echo "<p>Nombre de la compania: ".$result[0][1]."</p>";
 	                    echo "<p>Lugar del evento: ".$result[0][2]."</p>";
 	                    echo "<p>Fecha de programacion: ".$result[0][3]."</p>";
 	                    echo "<p>Fecha del evento: ".$result[0][4]."</p>";
 	                }
-	                else
-	                {
-	                    echo "Hubo un error al cargar la actividad";
-	                }
+	                $query = $db->connect()->prepare("SELECT h.horario
+	                                                  FROM actividad a, programacion p, requerimientoActividad r, horario h
+	                                                  WHERE a.idProgramacion = p.idProgramacion
+	                                                  AND p.idRequerimientoActividad = r.idRequerimientoActividad
+	                                                  AND r.idRequerimientoActividad = h.idRequerimientoActividad
+	                                                  AND a.idActividad = $id");
+	                $query->execute();
+	                $query->setFetchMode(PDO::FETCH_NUM);
+	                $result = $query->fetchAll();
+	                if($query->rowCount())
+	                	for($i = 0 ; $i < count($result) ; $i++)
+	                        echo "<p>Horarios ".($i+1).": ".$result[$i][0]."</p>";
             	}
 			?>
 			</section>

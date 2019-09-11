@@ -80,7 +80,6 @@
     		$activity = $obj->nombreActividad;
     		$discipline = $obj->disciplina;
     		$fes_place = $obj->lugar;
-    		$time1 = $obj->horario;
     		$ticket_type = $obj->tipoEntrada;
     		$price = $obj->costo;
     		$duration = $obj->duracion;

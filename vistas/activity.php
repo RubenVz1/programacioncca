@@ -76,17 +76,13 @@
                     $query1->setFetchMode(PDO::FETCH_NUM);
                     $result1 = $query1->fetchAll();
                     for($i = 0 ; $i < count($result1) ; $i++)
-                    {
                         echo "<p>Horarios ".($i+1).": ".$result1[$i][0]."</p><br>";
-                    }
-
                     echo "<p>tipo de entrada: ".$result[0][22]."</p><br>";
                     echo "<p>Costo: $".$result[0][23]."</p><br>";
                     echo "<p>Duracion: ".$result[0][24]."hrs</p><br>";
                     echo "<p>Observacion: ".$result[0][25]."</p><br>";
                     echo "<h3>Requerimientos de Diseño</h3><br>";
                     echo "<p>fecha de entrega: ".$result[0][27]."</p><br>";
-                    /***********************************************************************/
                     $query1 = $db->connect()->prepare("SELECT f.fotografia
                                                       FROM Actividad a, Programacion p, requerimientoDiseno r, fotografia f
                                                       WHERE a.idProgramacion = p.idProgramacion
@@ -97,12 +93,7 @@
                     $query1->setFetchMode(PDO::FETCH_NUM);
                     $result1 = $query1->fetchAll();
                     for($i = 0 ; $i < count($result1) ; $i++)
-                    {
-                        echo "<p>Fotografia ".($i+1).":<img height='100px' src='data:image/jpg;base64,".base64_encode($result1[$i][0])."'/></p><br>";
-                    }
-
-                    /***********************************************************************/
-
+                        echo "<p>Fotografia ".($i+1).":<img height='100px' src='".$result1[$i][0]."'/></p><br>";
                     $query2 = $db->connect()->prepare("SELECT l.logotipo
                                                       FROM Actividad a, Programacion p, requerimientoDiseno r, logotipo l
                                                       WHERE a.idProgramacion = p.idProgramacion
@@ -113,11 +104,7 @@
                     $query2->setFetchMode(PDO::FETCH_NUM);
                     $result2 = $query2->fetchAll();
                     for($i = 0 ; $i < count($result2) ; $i++)
-                    {
-                        echo "<p>Logo ".($i+1).":<img height='100px' src='data:image/jpg;base64,".base64_encode($result2[$i][0])."'/></p><br>";
-                    }
-
-                    /***********************************************************************/
+                        echo "<p>Fotografia ".($i+1).":<img height='100px' src='".$result2[$i][0]."'/></p><br>";
                     echo "<p>Semblanza compañia: ".$result[0][28]."</p><br>";
                     echo "<p>Semblanza actividad: ".$result[0][29]."</p><br>";
                     echo "<p>Programa de mano: ";
@@ -180,8 +167,7 @@
                     echo "<p>fecha de entrega al corrector: ".$result[0][62]."</p><br>";
                     echo "<p>fecha de entrega del corrector: ".$result[0][64]."</p><br>";
                     echo "<h1 id='cabecera'>Difusion</h1><br>";
-                    echo "<p>Fecha difusion: ".$result[0][14]."</p><br>";
-                    
+                    echo "<p>Fecha difusion: ".$result[0][14]."</p><br>";  
                 }
                 else
                 {

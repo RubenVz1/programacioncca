@@ -13,39 +13,45 @@ $('#pm').change(function(){
 var indice1 = 0;
 $('#masImagenes').click(function()
 {
-    indice1++;
-	$('#imagenes').append("<p id='p"+indice1+"'>Fotografia en alta resolucion: </p><input id='photo"+indice1+"' type='file' name='foto"+indice1+"'><br id='s"+indice1+"'>");
-	$('#numeroImagenes').val(indice1+1);
+	$('#imagenes').append("<p id='p"+indice1+"'>Fotografia en alta resolucion: </p><input id='photo"+indice1+"' type='file' accept='image/x-png,image/gif,image/jpeg' name='foto"+indice1+"'><br id='s"+indice1+"'>");
+	indice1++;
+    $('#numeroImagenes').val(indice1);
+    console.log("numero de imagenes: "+indice1);
 });
 
 $('#menosImagenes').click(function()
 {
 	if(indice1 > 0)
 	{
+        indice1--;
 		$("#photo"+indice1).remove();
 		$("#p"+indice1).remove();
 		$("#s"+indice1).remove();
-		indice1--;
-		$('#numeroImagenes').val(indice1+1);
+		$('#numeroImagenes').val(indice1); 
 	}
+    else
+        console.log("ya esta en 0");
 });
 
 var indice2 = 0;
 $('#masLogos').click(function()
 {
+    $('#logos').append("<p id='q"+indice2+"'>Logo en alta resolucion: </p><input id='logo"+indice2+"' type='file' accept='image/x-png,image/gif,image/jpeg' name='logo"+indice2+"'><br id='r"+indice2+"'>");
     indice2++;
-    $('#logos').append("<p id='q"+indice2+"'>Logo en alta resolucion: </p><input id='logo"+indice2+"' type='file' name='logo"+indice2+"'><br id='r"+indice2+"'>");
-    $('#numeroLogos').val(indice2+1);
+    $('#numeroLogos').val(indice2); 
+    console.log("numero de imagenes: "+indice2);
 });
 
 $('#menosLogos').click(function()
 {
     if(indice2 > 0)
     {
+        indice2--;
         $("#logo"+indice2).remove();
         $("#q"+indice2).remove();
         $("#r"+indice2).remove();
-        indice2--;
-        $('#numeroLogos').val(indice2+1);
+        $('#numeroLogos').val(indice2);
     }
+    else
+        console.log("ya esta en 0");
 });
