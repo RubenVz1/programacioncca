@@ -92,8 +92,14 @@
                     $query1->execute();
                     $query1->setFetchMode(PDO::FETCH_NUM);
                     $result1 = $query1->fetchAll();
+                    echo "<h2>Imagenes</h2><br>";
                     for($i = 0 ; $i < count($result1) ; $i++)
-                        echo "<p>Fotografia ".($i+1).":<img height='100px' src='".$result1[$i][0]."'/></p><br>";
+                    {
+                        echo "<p>Fotografia ".($i+1).":<br><img height='100px' src='".$result1[$i][0]."'/></p><br>";
+                        echo "<a href='".$result1[$i][0]."' target='_blank'>".substr($result1[$i][0],18)."</a><br>";
+                        if($i != count($result1)-1)
+                            echo "<img src='../img/separador.png' height='10px'>";
+                    }
                     $query2 = $db->connect()->prepare("SELECT l.logotipo
                                                       FROM Actividad a, Programacion p, requerimientoDiseno r, logotipo l
                                                       WHERE a.idProgramacion = p.idProgramacion
@@ -103,8 +109,14 @@
                     $query2->execute();
                     $query2->setFetchMode(PDO::FETCH_NUM);
                     $result2 = $query2->fetchAll();
+                    echo "<br><h2>Logos</h2><br>";
                     for($i = 0 ; $i < count($result2) ; $i++)
-                        echo "<p>Fotografia ".($i+1).":<img height='100px' src='".$result2[$i][0]."'/></p><br>";
+                    {
+                        echo "<p>Fotografia ".($i+1).":<br><img height='100px' src='".$result2[$i][0]."'/></p><br>";
+                        echo "<a href='".$result2[$i][0]."' target='_blank'>Click para descargar: ".substr($result2[$i][0],18)."</a><br><br>";
+                        if($i != count($result2)-1)
+                            echo "<img src='../img/separador.png' height='10px'>";
+                    }
                     echo "<p>Semblanza compañia: ".$result[0][28]."</p><br>";
                     echo "<p>Semblanza actividad: ".$result[0][29]."</p><br>";
                     echo "<p>Programa de mano: ";
@@ -114,6 +126,10 @@
                     echo "</p><br>";
                     echo "<h3>Requerimientos técnicos</h3><br>";
                     echo "<p>Requerimiento: ".$result[0][32]."</p><br>";
+                    if($result[0][33] != "")
+                    {
+                        echo "<a href='".$result[0][33]."' target='_blank'>".substr($result[0][33],16)."</a><br><br>";
+                    }
                     echo "<h1 id='cabecera'>Diseño</h1><br>";
                     echo "<p>Nombre del diseñador: ".$result[0][38]."</p><br>";
                     echo "<p>fecha de entrega al diseñador: ".$result[0][39]."</p><br>";

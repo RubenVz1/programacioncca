@@ -34,9 +34,13 @@
 					<h1 id="h1tec">Requerimientos técnicos</h1>
 			</section>
 			<section id="cuerpo">
-			<form method="post">
+			<form method="post" enctype="multipart/form-data">
 			<div id="reqtec">
-				<p>Requerimientos</p><br><textarea name="message" rows="5" cols="30"></textarea><br>
+				<br>
+				<p>Requerimientos</p><br><br>
+				<textarea name="message" rows="5" cols="30"></textarea><br>
+				<p>Requerimientos PDF</p>
+				<input name='pdf' type='file' accept='application/pdf'>
 				<br>
 				<input type="submit" name="agrega" value="Continuar">
 				<br>
@@ -45,19 +49,39 @@
 			</section>
 		</div>
 		<?php
+			function generateRandomString($length = 6)
+			{
+				$possibleChars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+				$id = '';
+				for($i = 0; $i < $length; $i++)
+				{
+					$rand = rand(0, strlen($possibleChars) - 1);
+					$id .= substr($possibleChars, $rand, 1);
+				}
+				return $id;
+			}
 			if(isset($_POST['agrega']))
 			{
 				if(isset($_POST['message']))
-				{
 					$requrimientotecnico = $_POST['message'];
-				}else $requrimientotecnico ="";
+				else
+					$requrimientotecnico ="";
+				if($_FILES['pdf']['tmp_name'])
+				{
+					$requrimientotecnicoPdf = $_FILES['pdf']['name'];
+					$direccionPdf = "../pdfs/".generateRandomString()."__".$requrimientotecnicoPdf;
+					move_uploaded_file($_FILES['pdf']['tmp_name'],$direccionPdf);
+				}
+				else
+					$direccionPdf ="";
 				$servidor = "localhost";
             	$nombreusuario = "root";
             	$password = "QQWWEERR1";
             	$db = "prueba";
 				$conexion = new mysqli($servidor, $nombreusuario, $password, $db);
-				$sql = "INSERT INTO `requerimientotecnico`( `requerimiento`) VALUES ('$requrimientotecnico')";
+				$sql = "INSERT INTO `requerimientotecnico`( `requerimiento`,`direccionPdf`) VALUES ('$requrimientotecnico','$direccionPdf')";
 				$resultado = $conexion->query($sql);
+
 				if($resultado)
 				{
 					echo "<script>window.location='reqpag.php';</script>";

@@ -36,31 +36,22 @@
 		<div id="datos">
 			<table border="1" id="tabla">
 				<?php
-				$db = new DB();
 				if(isset($_GET['id']))
 				{
-					$query = $db->connect()->prepare('SELECT a.idProgramacion, p.idRequerimientoActividad, p.idRequerimientoDiseno, p.idRequerimientoTecnico, p.idRequerimientoPago
-													FROM actividad a, programacion p
-													WHERE a.idProgramacion = p.idProgramacion 
-													AND a.idActividad ='.$_GET['id']);
-					$query->execute();
-					$result = $query->fetchAll();
-					if($query->rowCount())
-					{
-						$query = $db->connect()->prepare('DELETE FROM requerimientoPago WHERE idRequerimientoPago ='.$result[0][4]);
-						$query->execute();
-						$query = $db->connect()->prepare('DELETE FROM requerimientoTecnico WHERE idRequerimientoTecnico ='.$result[0][3]);
-						$query->execute();
-						$query = $db->connect()->prepare('DELETE FROM requerimientoDiseno WHERE idRequerimientoDiseno ='.$result[0][2]);
-						$query->execute();
-						$query = $db->connect()->prepare('DELETE FROM requerimientoActividad WHERE idRequerimientoActividad ='.$result[0][1]);
-						$query->execute();
-						$query = $db->connect()->prepare('DELETE FROM programacion WHERE idProgramacion ='.$result[0][0]);
-						$query->execute();
-						$query = $db->connect()->prepare('DELETE FROM actividad WHERE idActividad ='.$_GET['id']);
-						$query->execute();
-					}
+					echo "
+						<script language='javascript'>
+						function redireccion()
+						{
+							var condicion = confirm('¿Estas seguro de eliminar esta actividad?');
+							if(condicion)
+							{
+								window.location='delete.php?id=".$_GET['id']."';
+							}
+						}
+						window.onload = redireccion; 
+						</script>";
 				}
+				$db = new DB();
 			    $query = $db->connect()->prepare('SELECT a.idActividad,r.nombreActividad,r.fechaProgramacion
 			    						 		  FROM actividad a, programacion p, requerimientoActividad r
 			    						 		  WHERE a.idProgramacion = p.idProgramacion
@@ -76,6 +67,7 @@
 							<tr>
 								<th>Nombre del evento</th>
 								<th>Fecha del evento</th>
+								<th>Informacion</th>
 								<th>Actualizar</th>
 								<th>Eliminar</th>
 							</tr>";
@@ -86,6 +78,7 @@
 					    {
 					    	echo "<td>".$result[$i][$j]."</td>";
 					    }
+					    echo "<td><a href='activity.php?id=".$result[$i][0]."'>Informacion</a></td>";
 					    echo "<td><a href='actualizacion.php?id=".$result[$i][0]."'>Actualizar</a></td>";
 					    echo "<td><a href='administracion.php?id=".$result[$i][0]."'>Eliminar</a></td>";
 					    echo "</tr>";

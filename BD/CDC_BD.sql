@@ -130,6 +130,7 @@ CREATE TABLE `requerimientoTecnico`
 (
   `idRequerimientoTecnico` int(11) DEFAULT NULL AUTO_INCREMENT,
   `requerimiento` varchar(100) DEFAULT NULL,
+  `direccionPdf` varchar(100) DEFAULT NULL,
   PRIMARY KEY (idRequerimientoTecnico)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
