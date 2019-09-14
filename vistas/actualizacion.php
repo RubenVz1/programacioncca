@@ -242,14 +242,14 @@
 						<!--//======================Elementos de: Requerimentos fase 1========================-->
 
 						<p><b>Nombre de la la compañía, grupo, artista, ponente, ciclo, etc: </b></p>
-						<?php echo"<input type='text' id='compañia' name='nomcom' value='".$artist."' ><br>"?>
+						<?php echo"<input type='text' id='compañia' name='nomcom' value='".utf8_encode($artist)."' ><br>"?>
 
 						<p><b>Nombre de la actividad: </b></p>
-							<?php echo "<input type='text' id='actividad' name='nomact' value='".$activity."'><br>"?>
+							<?php echo "<input type='text' id='actividad' name='nomact' value='".utf8_encode($activity)."'><br>"?>
 						<p><b>Disciplina: </b></p>
-							<?php echo "<input type='text' id='disc' name='disciplina' value='".$discipline."'><br>"?>
+							<?php echo "<input type='text' id='disc' name='disciplina' value='".utf8_encode($discipline)."'><br>"?>
 						<p><b>Lugar: </b></p>
-							<?php echo "<input type='text' id='place' name='lugar' value='".$fes_place."'><br>"?>
+							<?php echo "<input type='text' id='place' name='lugar' value='".utf8_encode($fes_place)."'><br>"?>
 						<br>
 						<p><b>Horario: </b></p>
 						<button type='button' id = 'mas'>Agregar</button>
@@ -377,7 +377,11 @@
 							<br>
 							<section id="cuerpo">
                 					<p><b>Nombre del diseñador: </b></p>
-                						<?php echo "<input type='text' name='nombredisenador' value='".$designer."'><br>"?>
+									<?php 
+										//echo "<input type='text' name='nombredisenador' value='".utf8_decode($designer)."'><br>"
+										$test = utf8_encode($designer);
+										echo "<input type='text' name='nombredisenador' value='".$test."'><br>"
+									?>
                 					<p><b>Fecha de entrega de documentos e información al diseñador: </b></p>
                 						<?php echo "<input type='date' name='fechaentrega' value='".$des_date."'><br>"?>
                 					<p>Fotografías en alta resolución: </p>
@@ -417,13 +421,13 @@
 										?>
                 								
                 					<p><b>Lugar: </b></p>
-                						<?php echo "<input type='text' name='lugar' value='".$des_place."'>"?>
+                						<?php echo "<input type='text' name='lugar' value='".utf8_encode($des_place)."'>"?>
                 					<p><b> Fecha: </b></p>
                 							<?php echo "<input type='date' name='fechaentrega2' value='".$des_place_date."'>"?>
                 					<p><b> Hora: </b></p>
                 						<input type='number' min='0' max='24' step='1' id='horas1' name='horariohoras' value=''>hrs<input type='number' min='0' max='60' step='5' id='minutos1' name='horariominutos' value=''>min<br>
                 					<p><b>Leyenda, repertorio, etc. </b></p>
-                						<?php echo "<input type='message' name='leyenda' value='".$repertory."'><br>"?>
+                						<?php echo "<input type='message' name='leyenda' value='".utf8_encode($repertory)."'><br>"?>
                 					<p><b>Fecha estimada de entrega del diseño: </b></p>
                 						<?php echo "<input type='date' name='fechadiseño' value='".$prob_del_date."'><br>"?>
                						<p>Cartel: </p>
@@ -521,7 +525,7 @@
                 					<p><b>Fecha de entrega de textos al corrector: </b></p>
                 						<?php echo "<input type='date' name='fechacorrector' value='".$cortext_init_date."'><br>"?>
                 					<p><b>Nombre del corrector de textos: </b></p>
-                						<?php echo "<input type='text' name='nombre' value='".$cortext_name."'><br>"?>
+                						<?php echo "<input type='text' name='nombre' value='".utf8_encode($cortext_name)."'><br>"?>
                 					<p><b>Fecha de entrega de textos del corrector de textos: </b></p>
                 						<?php echo "<input type='date' name='entregacorrector' value='".$cortext_due_date."'><br>"?>
        						</section>

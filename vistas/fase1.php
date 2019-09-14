@@ -38,18 +38,18 @@
 					<br><p id="diadehoy">Fecha de programacion: </p>
 					<br>
 					<p id="fcheve">Fecha del evento: </p>
-					<input type="date" id="fch" name="fechaeve" value=""><br>
+					<input type="date" id="fch" name="fechaeve" value="" required><br>
 					<div id="retraso"></div>
-					<p>Nombre de la la compañía, grupo, artista, ponente, ciclo, etc: </p><input type="text" id="compañia"name="nomcom" value="" ><br>
-					<p>Nombre de la actividad: </p><input type="text" id="actividad" name="nomact" value=""><br>
-					<p>Disciplina: </p><input type="text" id="disc" name="disciplina" value=""><br>
-					<p>Lugar: </p><input type="text" id="place" name="lugar" value=""><br>
+					<p>Nombre de la la compañía, grupo, artista, ponente, ciclo, etc: </p><input type="text" id="compañia"name="nomcom" value="" required><br>
+					<p>Nombre de la actividad: </p><input type="text" id="actividad" name="nomact" value=""required><br>
+					<p>Disciplina: </p><input type="text" id="disc" name="disciplina" value=""required><br>
+					<p>Lugar: </p><input type="text" id="place" name="lugar" value=""required><br>
 					<input type="hidden" name="numeroHorarios" id="numeroHorarios" value="1" size="1" ><br>
 					<br><p>Horario: </p>
 					<button type="button" id="mas">Agregar</button>
 					<button type="button" id="menos">Quitar</button>
 					<div id='agrhor'>
-						<input type="number" min="0" max="24" step="1" id="horas1" name="horariohoras1" value=""> hrs <input type="number" min="0" max="60" step="5" id="minutos1" name="horariominutos1" value=""> min
+						<input type="number" min="0" max="24" step="1" id="horas1" name="horariohoras1" value=""required> hrs <input type="number" min="0" max="60" step="5" id="minutos1" name="horariominutos1" value=""required> min
 					</div>
 					<br>
 					<p>Tipo de entrada:</p>
@@ -65,6 +65,7 @@
 					if($user->getCargo() == "Administrador")
 					{
 						echo "<a type='button' id = \"boton\" href=\"home.php\">Regresar</a><br>";
+						echo "<button id ='crea' type='submit' name='confirma'>Confirmar</button>";
 					}
 					if(isset($_POST['confirma']))
 					{
@@ -84,19 +85,19 @@
 						}
 						if(isset($_POST['nomcom']))
 						{
-							$nomcom = $_POST['nomcom'];
+							$nomcom = utf8_decode($_POST['nomcom']);
 						}
 						if(isset($_POST['nomact']))
 						{
-							$nomact = $_POST['nomact'];
+							$nomact = utf8_decode($_POST['nomact']);
 						}
 						if(isset($_POST['disciplina']))
 						{
-							$disciplina = $_POST['disciplina'];
+							$disciplina = utf8_decode($_POST['disciplina']);
 						}
 						if(isset($_POST['lugar']))
 						{
-							$lugar = $_POST['lugar'];
+							$lugar = utf8_decode($_POST['lugar']);
 						}
 						$numeroHorarios = $_POST['numeroHorarios'];
 						for($i = 1; $i <= $numeroHorarios; $i++)
@@ -139,7 +140,7 @@
 							$duracionm = $_POST['duracionm'];
 						}
 						
-						$sql = "INSERT INTO `requerimientoactividad`(`fechaProgramacion`, `fechaEvento`, `nombreCompania`, `nombreActividad`, `disciplina`, `lugar`, `tipoEntrada`, `duracion`,`costo`,`observacion`) VALUES (CURRENT_DATE(),'".$fechaeve."','".$nomcom."','".$nomact."','".$disciplina."','".$lugar."',1,'".$duracionh.":".$duracionm.":00',".$costo.",'".$_POST['observacion']."')"; 
+						$sql = "INSERT INTO `requerimientoactividad`(`fechaProgramacion`, `fechaEvento`, `nombreCompania`, `nombreActividad`, `disciplina`, `lugar`, `tipoEntrada`, `duracion`,`costo`,`observacion`) VALUES (CURRENT_DATE(),'".$fechaeve."','".$nomcom."','".$nomact."','".$disciplina."','".$lugar."',1,'".$duracionh.":".$duracionm.":00',".$costo.",'".utf8_decode($_POST['observacion'])."')"; 
 						$resultado = $conexion->query($sql);
 						$sql = "SELECT MAX(idRequerimientoActividad) as id FROM requerimientoactividad;";
 						$resultado = $conexion->query($sql);
@@ -165,9 +166,10 @@
 				</form>
 			</section>
 		</div>
-		<script src="../js/fase1e.js"></script>
 			</section>
 		</div>
 		<div id="abajo"></div>
 	</body>
+	<script src="../js/fase1a.js"></script>
+
 </html>

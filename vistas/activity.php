@@ -17,6 +17,7 @@
 <html>
     <head>
         <meta charset="utf-8">
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>Calendario</title>
         <link rel="stylesheet" href="../styles/activityStylo.css">
@@ -57,7 +58,7 @@
                 $query->setFetchMode(PDO::FETCH_NUM);
                 $result = $query->fetchAll();
                 if($query->rowCount())
-                {
+                {//utf8_decode(
                     echo "<h1 id='cabecera'>Requerimientos de Programacion</h1><br>";
                     echo "<p>Fecha de programacion: ".$result[0][16]."</p><br>";
                     echo "<p>Fecha de actividad: ".$result[0][17]."</p><br>";
@@ -117,22 +118,28 @@
                         if($i != count($result2)-1)
                             echo "<img src='../img/separador.png' height='10px'>";
                     }
-                    echo "<p>Semblanza compañia: ".$result[0][28]."</p><br>";
-                    echo "<p>Semblanza actividad: ".$result[0][29]."</p><br>";
+                    if($result[0][28] == "")
+                    {
+                        echo "<p>Semblanza compañia: N/A</p><br>";
+                    }else
+                    {//echo html_entity_decode(htmlentities($test))
+                        echo "<p>Semblanza compañia: ".utf8_decode($result[0][28])."</p><br>";
+                    }
+                    echo "<p>Semblanza actividad: ".utf8_decode($result[0][29])."</p><br>";
                     echo "<p>Programa de mano: ";
                     if($result[0][30] == 0)
                     echo "No";
                     else echo"Sí";
                     echo "</p><br>";
                     echo "<h3>Requerimientos técnicos</h3><br>";
-                    echo "<p>Requerimiento: ".$result[0][32]."</p><br>";
+                    echo "<p>Requerimiento: ".utf8_decode($result[0][32])."</p><br>";
                     if($result[0][33] != "")
                     {
                         echo "<a href='".$result[0][33]."' target='_blank'>".substr($result[0][33],16)."</a><br><br>";
                     }
                     echo "<h1 id='cabecera'>Diseño</h1><br>";
-                    echo "<p>Nombre del diseñador: ".$result[0][38]."</p><br>";
-                    echo "<p>fecha de entrega al diseñador: ".$result[0][39]."</p><br>";
+                    echo "<p>Nombre del diseñador: ".$result[0][39]."</p><br>";
+                    echo "<p>fecha de entrega al diseñador: ".$result[0][40]."</p><br>";
                     echo "<p>fotos: ";
                     if($result[0][40] == 0)echo "No";
                     else echo "Sí";
@@ -171,17 +178,17 @@
                     else echo "Sí";
                     echo "</p><br>";
                     echo "<h3>Cartel y cortesias</h3><br>";
-                    echo "<p>Digital: ".$result[0][54]."</p><br>";
-                    echo "<p>offset: ".$result[0][55]."</p><br>";
-                    echo "<p>Serigrafía: ".$result[0][56]."</p><br>";
-                    echo "<p>Por fuera: ".$result[0][57]."</p><br>";
-                    echo "<p>Entrega de programa de mano: ".$result[0][58]."</p><br>";
-                    echo "<p>invitacion: ".$result[0][59]."</p><br>";
-                    echo "<p>volante: ".$result[0][60]."</p><br>";
+                    echo "<p>Digital: ".$result[0][55]."</p><br>";
+                    echo "<p>offset: ".$result[0][56]."</p><br>";
+                    echo "<p>Serigrafía: ".$result[0][57]."</p><br>";
+                    echo "<p>Por fuera: ".$result[0][58]."</p><br>";
+                    echo "<p>Entrega de programa de mano: ".$result[0][59]."</p><br>";
+                    echo "<p>invitacion: ".$result[0][60]."</p><br>";
+                    echo "<p>volante: ".$result[0][61]."</p><br>";
                     echo "<h3>Corrector</h3><br>";
-                    echo "<p>Nombre corrector: ".$result[0][63]."</p><br>";
-                    echo "<p>fecha de entrega al corrector: ".$result[0][62]."</p><br>";
-                    echo "<p>fecha de entrega del corrector: ".$result[0][64]."</p><br>";
+                    echo "<p>Nombre corrector: ".utf8_decode(utf8_encode($result[0][64]))."</p><br>";
+                    echo "<p>fecha de entrega al corrector: ".$result[0][63]."</p><br>";
+                    echo "<p>fecha de entrega del corrector: ".$result[0][65]."</p><br>";
                     echo "<h1 id='cabecera'>Difusion</h1><br>";
                     echo "<p>Fecha difusion: ".$result[0][14]."</p><br>";  
                 }

@@ -53,19 +53,58 @@
             {
                 $nombrediseñador = $_POST['nombrediseñador'];
                 $entregaaldiseñador = $_POST['fechaentrega'];
-                $fotos = $_POST['fotografias'];
-                $viñeta = $_POST['viñeta'];
-                $logos = $_POST['logotipos'];
-                $lugar = $_POST['lugar'];
-                $fecha = $_POST['fechaentrega2'];
-                $Hora = $_POST['horariohoras'].":".$_POST['horariominutos'].":00";
-                $leyenda = $_POST['leyenda'];
-                $fechaentrega = $_POST['fechadiseño'];
-                $cartel = $_POST['cartel'];
-                $web = $_POST['web'];
-                $cortesias = $_POST['cortesias'];
-                $programa = $_POST['programamano'];
-                $invitacion = $_POST['invitacion'];
+                if(isset($_POST['fotografias']))
+                {
+                    $fotos = $_POST['fotografias'];
+                }else $fotos=0;
+                if(isset($_POST['viñeta']))
+                {
+                    $viñeta = $_POST['viñeta'];
+                }else $viñeta=0;
+                if(isset($_POST['logotipos']))
+                {
+                    $logos = $_POST['logotipos'];
+                }else $logos=0;
+                if(isset($_POST['lugar']))
+                {
+                    $lugar = $_POST['lugar'];
+                }
+                if(isset($_POST['fechaentrega2']))
+                {
+                    $fecha = $_POST['fechaentrega2'];
+                }
+                if(isset($_POST['horariohoras']) && isset($_POST['horariominutos']))
+                {
+                    $Hora = $_POST['horariohoras'].":".$_POST['horariominutos'].":00";
+                }
+                if(isset($_POST['leyenda']))
+                {
+                    $leyenda = $_POST['leyenda'];
+                }
+                if(isset($_POST['fechadiseño']))
+                {
+                    $fechaentrega = $_POST['fechadiseño'];
+                }
+                if(isset($_POST['cartel']))
+                {
+                    $cartel = $_POST['cartel'];
+                }else $cartel=0;
+                if(isset($_POST['web']))
+                {
+                    $web = $_POST['web'];
+                }else $web=0;
+                if(isset($_POST['cortesias']))
+                {
+                    $cortesias = $_POST['cortesias'];
+                }else $cortesias=0;
+                if(isset($_POST['programamano']))
+                {
+                    $programa = $_POST['programamano'];
+                }else $programa=0;
+                if(isset($_POST['invitacion']))
+                {
+                    $invitacion = $_POST['invitacion'];
+                }else $invitacion=0;
 
                 $db = new DB();
                 $query = $db->connect()->prepare("INSERT INTO `fase2`(`nombredisenador`, `fechaentra`, `fotos`, `vineta`, `logos`, `lugar`, `fecha`, `hora`, `leyenda`, `fechasalida`, `cartel`, `web`, `cortesias`, `programa`, `invitacion`) VALUES ('$nombrediseñador','$entregaaldiseñador','$fotos','$viñeta','$logos','$lugar','$fecha','$Hora','$leyenda','$fechaentrega','$cartel','$web','$cortesias','$programa','$invitacion')");

@@ -30,7 +30,7 @@ $('#mas').click(function()
     if(numerodehorarios < 3)
     {
         numerodehorarios++;
-        $('#agrhor').append("<br id='br1"+numerodehorarios+"'><input id='horas"+numerodehorarios+"' name='horariohoras"+numerodehorarios+"' type='number' min='0' max='24' step='1' value=''><p id='jsjsjs"+numerodehorarios+"'> hrs </p><input type='number' min='0' max='60' step='5' id='minutos"+numerodehorarios+"' name='horariominutos"+numerodehorarios+"' value=''><p id='jsjs"+numerodehorarios+"'> min</p>");
+        $('#agrhor').append("<br id='br1"+numerodehorarios+"'><input id='horas"+numerodehorarios+"' name='horariohoras"+numerodehorarios+"' type='number' min='0' max='24' step='1' value=''required><p id='jsjsjs"+numerodehorarios+"'> hrs </p><input type='number' min='0' max='60' step='5' id='minutos"+numerodehorarios+"' name='horariominutos"+numerodehorarios+"' value=''required><p id='jsjs"+numerodehorarios+"'> min</p>");
         $('#numeroHorarios').val(numerodehorarios);
         console.log(numerodehorarios);
     }
@@ -57,7 +57,7 @@ $('#menos').click(function()
 $('#cst').change(function(){
     if($(this).is(":checked"))
     {
-        $('#cstvalor').append("<div id='si'><p>Costo: $</p><input type='number' name='costo' value=''><br></div>");
+        $('#cstvalor').append("<div id='si'><p>Costo: $</p><input type='number' name='costo' value=''required><br></div>");
         $('#lbr').hide();
     }
     else
@@ -81,14 +81,12 @@ $('#lbr').change(function(){
 
 //Script que impide que continue con campos vacios
 //opcion 1
+/*
 var faltancampos = true;
 var aparecerboton = 0;
 
 $(document).change(function(){
-/*
-});
-$('#boton').click(function()
-{*/
+
     var valoresopciones = [$('#lbr').prop('checked') , $('#cort').prop('checked') , $('#cst').prop('checked')];
     var excepcion = 0;
     for(var i = 0 ; i < 3 ; i++)
@@ -109,8 +107,6 @@ $('#boton').click(function()
                 $('#error').remove();
                 faltancampos=true;
             }
-            /*$('#boton').attr("type","submit");
-            window.location='reqdis.php';*/
         }
     }
     else
@@ -134,7 +130,7 @@ $('#boton').click(function()
         }
     }
 });
-
+*/
 //Script para mostrar alerta si hay días de retraso
 var errores=0;
 $('#fch').change(function(){

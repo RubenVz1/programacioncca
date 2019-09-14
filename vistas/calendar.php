@@ -146,8 +146,9 @@
 									for($k = 0 ; $k < count($result) ; $k++)
 									{
 									    if($result[$k][2] == fechaString($dia,$mes,$anio))
-									    {
-									    	echo "<br><a href='calendar.php?mes=".$mes."&anio=".$anio."&id=".$result[$k][0]."'>".$result[$k][1]."</a><br>";
+										{//echo utf8_decode(  /  html_entity_decode(htmlentities($test))
+											$caracteresespeciales = $result[$k][1];
+									    	echo "<br><a href='calendar.php?mes=".$mes."&anio=".$anio."&id=".$result[$k][0]."'>".$caracteresespeciales."</a><br>";
 									    }
 									}
 								}
@@ -213,7 +214,7 @@
 	                $query->setFetchMode(PDO::FETCH_NUM);
 	                $result = $query->fetchAll();
 	                if($query->rowCount())
-	                {
+	                {//utf8_decode($caracteresespeciales)
 	                	echo "<p>Nombre de la compania: ".$result[0][1]."</p>";
 	                    echo "<p>Nombre de la actividad: ".$result[0][0]."</p>";
 	                    echo "<p>Lugar del evento: ".$result[0][2]."</p>";
