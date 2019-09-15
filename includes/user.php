@@ -10,7 +10,7 @@ class User extends DB
 	public function userExists($user,$pass)
 	{
 		$query = $this->connect()->prepare('SELECT *
-											FROM usuarios 
+											FROM Usuarios 
 											WHERE username = :user 
 											AND password = :pass');
 		$query->execute(['user' => $user, 'pass' => $pass]);
@@ -28,7 +28,7 @@ class User extends DB
 	public function setUser($user)
 	{
 		$query = $this->connect()->prepare('SELECT u.nombre,u.username,t.nombreCargo
-											FROM usuarios u, tipousuarios t 
+											FROM Usuarios u, TipoUsuarios t 
 											WHERE u.idTipoUsuario = t.idTipoUsuario
 											AND username = :user');
 		$query->execute(['user' => $user]);

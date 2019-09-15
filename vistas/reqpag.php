@@ -1,6 +1,7 @@
 <?php
 	include_once '../includes/user.php';
     include_once '../includes/user_session.php';
+    include_once '../includes/dbA.php';
     $userSession = new UserSession();
     $user = new User();
 	if(isset($_SESSION['user']))
@@ -63,43 +64,35 @@
 					{
 						$fechapago=$_POST['fechapago'];
 					}else $fechapago="";
-					
-					$servidor = "localhost";
-            		$nombreusuario = "root";
-            		$password = "QQWWEERR1";
-            		$db = "prueba";
-					$mysqli = new mysqli($servidor, $nombreusuario, $password, $db);
-
-					
-					$sqlreqpag = "INSERT INTO `requerimientopago`(`requerimiento`, `fechaDocumentacion`, `fechaTentativa`) VALUES ('$requerimientos','$fecha','$fechapago')";
-
-
-					$resultadoreqpag = $mysqli->query($sqlreqpag);
+					$mysqli = new DBA();
+                	$conexion = $mysqli->connect();
+					$sqlreqpag = "INSERT INTO `requerimientoPago`(`requerimiento`, `fechaDocumentacion`, `fechaTentativa`) VALUES ('$requerimientos','$fecha','$fechapago')";
+					$resultadoreqpag = $conexion->query($sqlreqpag);
 					if($resultadoreqpag)
 					{
 						//trae el id del ultimo insert de requerimientos de programacion
-						$getidprogramacion = "SELECT MAX(idRequerimientoActividad) as id FROM `requerimientoactividad`";
-						$resprogramacion = $mysqli->query($getidprogramacion);
+						$getidprogramacion = "SELECT MAX(idRequerimientoActividad) as id FROM `requerimientoActividad`";
+						$resprogramacion = $conexion->query($getidprogramacion);
 						$objetoidprogramacion = $resprogramacion->fetch_assoc();
 						$idprogramacion = $objetoidprogramacion['id'];
 						//trae el id del ultimo insert de requerimientos de diseño
-						$getiddiseño =  "SELECT MAX(idRequerimientoDiseno) as id FROM `requerimientodiseno`";
-						$resdiseno =  $mysqli->query($getiddiseño);
+						$getiddiseño =  "SELECT MAX(idRequerimientoDiseno) as id FROM `requerimientoDiseno`";
+						$resdiseno =  $conexion->query($getiddiseño);
 						$objetoiddiseño = $resdiseno->fetch_assoc();
 						$iddiseño = $objetoiddiseño['id'];
 						//trae el id del ultimo insert de requerimientos técnicos
-						$getidtecnico =  "SELECT MAX(idRequerimientoTecnico) as id FROM `requerimientotecnico`";
-						$restecnico =  $mysqli->query($getidtecnico);
+						$getidtecnico =  "SELECT MAX(idRequerimientoTecnico) as id FROM `requerimientoTecnico`";
+						$restecnico =  $conexion->query($getidtecnico);
 						$objetoidtecnico = $restecnico->fetch_assoc();
 						$idtecnico = $objetoidtecnico['id'];
 						//trae el id del ultimo insert de requerimientos para pagos
-						$getidpagos =  "SELECT MAX(idRequerimientoPago) as id FROM `requerimientopago`";
-						$respago =  $mysqli->query($getidpagos);
+						$getidpagos =  "SELECT MAX(idRequerimientoPago) as id FROM `requerimientoPago`";
+						$respago =  $conexion->query($getidpagos);
 						$objetoidpago = $respago->fetch_assoc();
 						$idpago = $objetoidpago['id'];
 						//inset que junta todas las tablas de la fase de programacion
-						$sqlprogramacion = "INSERT INTO `programacion`(`idRequerimientoActividad`, `idRequerimientoDiseno`, `idRequerimientoTecnico`, `idRequerimientoPago`) VALUES ('$idprogramacion','$iddiseño','$idtecnico','$idpago')";
-						$resultadofusion = $mysqli->query($sqlprogramacion);
+						$sqlprogramacion = "INSERT INTO `Programacion`(`idRequerimientoActividad`, `idRequerimientoDiseno`, `idRequerimientoTecnico`, `idRequerimientoPago`) VALUES ('$idprogramacion','$iddiseño','$idtecnico','$idpago')";
+						$resultadofusion = $conexion->query($sqlprogramacion);
 
 						
 						echo "<script>window.location='fase2.php';</script>";

@@ -53,7 +53,7 @@
 				}
 				$db = new DB();
 			    $query = $db->connect()->prepare('SELECT a.idActividad,r.nombreActividad,r.fechaProgramacion
-			    						 		  FROM actividad a, programacion p, requerimientoActividad r
+			    						 		  FROM Actividad a, Programacion p, requerimientoActividad r
 			    						 		  WHERE a.idProgramacion = p.idProgramacion
 			    						 		  AND p.idRequerimientoActividad = r.idRequerimientoActividad');
 				$query->execute();

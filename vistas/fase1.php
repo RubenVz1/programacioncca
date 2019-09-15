@@ -1,6 +1,7 @@
 <?php
 	include_once '../includes/user.php';
-    include_once '../includes/user_session.php';
+	include_once '../includes/user_session.php';
+	include_once '../includes/dbA.php';
     $userSession = new UserSession();
     $user = new User();
 	if(isset($_SESSION['user']))
@@ -69,11 +70,8 @@
 					}
 					if(isset($_POST['confirma']))
 					{
-						$servidor = "localhost";
-            			$nombreusuario = "root";
-            			$password = "QQWWEERR1";
-            			$db = "prueba";
-            			$conexion = new mysqli($servidor, $nombreusuario, $password, $db);
+						$mysqli = new DBA();
+						$conexion = $mysqli->connect();
 						if($conexion->connect_error)
 						{
              			   die("Conexión fallida: " . $conexion->connect_error);
@@ -140,9 +138,9 @@
 							$duracionm = $_POST['duracionm'];
 						}
 						
-						$sql = "INSERT INTO `requerimientoactividad`(`fechaProgramacion`, `fechaEvento`, `nombreCompania`, `nombreActividad`, `disciplina`, `lugar`, `tipoEntrada`, `duracion`,`costo`,`observacion`) VALUES (CURRENT_DATE(),'".$fechaeve."','".$nomcom."','".$nomact."','".$disciplina."','".$lugar."',1,'".$duracionh.":".$duracionm.":00',".$costo.",'".utf8_decode($_POST['observacion'])."')"; 
+						$sql = "INSERT INTO `requerimientoActividad`(`fechaProgramacion`, `fechaEvento`, `nombreCompania`, `nombreActividad`, `disciplina`, `lugar`, `tipoEntrada`, `duracion`,`costo`,`observacion`) VALUES (CURRENT_DATE(),'".$fechaeve."','".$nomcom."','".$nomact."','".$disciplina."','".$lugar."',1,'".$duracionh.":".$duracionm.":00',".$costo.",'".utf8_decode($_POST['observacion'])."')"; 
 						$resultado = $conexion->query($sql);
-						$sql = "SELECT MAX(idRequerimientoActividad) as id FROM requerimientoactividad;";
+						$sql = "SELECT MAX(idRequerimientoActividad) as id FROM requerimientoActividad;";
 						$resultado = $conexion->query($sql);
 						$row = $resultado->fetch_assoc();
 						$idk = $row['id'];

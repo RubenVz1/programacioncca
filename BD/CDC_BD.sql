@@ -44,7 +44,7 @@ CREATE TABLE `requerimientoActividad`
   PRIMARY KEY (idRequerimientoActividad)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-INSERT INTO `requerimientoactividad` (`idRequerimientoActividad`, `fechaProgramacion`, `fechaEvento`, `nombreCompania`, `nombreActividad`, `disciplina`, `lugar`, `tipoEntrada`, `costo`, `duracion`, `observacion`) VALUES
+INSERT INTO `requerimientoActividad` (`idRequerimientoActividad`, `fechaProgramacion`, `fechaEvento`, `nombreCompania`, `nombreActividad`, `disciplina`, `lugar`, `tipoEntrada`, `costo`, `duracion`, `observacion`) VALUES
 (1, '2019-07-05', '2019-08-05', 'programacioncca', 'estreno', 'informatica', 'fesAcatlan', 3, NULL, '02:30:40', 'Esta observacion es de la actividad estreno'),
 (5, '2018-04-03', '2019-09-01', 'finalizacionPro', 'cierre', 'cedetec', 'fesAcatlanUnam', 2, NULL, '02:02:02', 'Esta observacion es de la actividad cierre'),
 (6, '2019-07-28', '2019-10-14', 'notcelis', 'fortnite', 'juegos', 'el chain', 1, NULL, '02:30:00', NULL),
@@ -64,7 +64,7 @@ CREATE TABLE `Horario`
   FOREIGN KEY (idRequerimientoActividad) REFERENCES requerimientoActividad(idRequerimientoActividad)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-INSERT INTO `horario` (`horario`, `idRequerimientoActividad`) VALUES
+INSERT INTO `Horario` (`horario`, `idRequerimientoActividad`) VALUES
 ('02:21:00', 1),
 ('03:22:00', 1),
 ('04:20:00', 1),
@@ -98,7 +98,7 @@ CREATE TABLE `requerimientoDiseno`
   PRIMARY KEY (idRequerimientoDiseno)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-INSERT INTO `requerimientodiseno` (`idRequerimientoDiseno`, `fechaEntrega`, `semblanzaCompania`, `semblanzaActividad`, `programaMano`) VALUES
+INSERT INTO `requerimientoDiseno` (`idRequerimientoDiseno`, `fechaEntrega`, `semblanzaCompania`, `semblanzaActividad`, `programaMano`) VALUES
 (1, '2019-10-05', 'semblanzaCompan', 'semblanzaActivi', 'programaMano1'),
 (7, '2017-11-03', 'semblanzaCompan', 'semblanzaActivi', 'programaMano2'),
 (8, '0000-00-00', '', '', '0'),
@@ -108,19 +108,19 @@ INSERT INTO `requerimientodiseno` (`idRequerimientoDiseno`, `fechaEntrega`, `sem
 (12, '0000-00-00', '', '', '0'),
 (13, '2019-10-14', 'Semblanza de la', 'Semblanza de la', '1');
 
-CREATE TABLE `fotografia`
+CREATE TABLE `Fotografia`
 (
   `idFotografia` int(11) DEFAULT NULL AUTO_INCREMENT,
-  `fotografia`varchar(100) DEFAULT NULL,
+  `fotografia`varchar(50) DEFAULT NULL,
   `idRequerimientoDiseno` int(11),
   PRIMARY KEY (idFotografia),
   FOREIGN KEY (idRequerimientoDiseno) REFERENCES requerimientoDiseno(idRequerimientoDiseno) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-CREATE TABLE `logotipo`
+CREATE TABLE `Logotipo`
 (
   `idLogotipo` int(11) DEFAULT NULL AUTO_INCREMENT,
-  `logotipo` varchar(100) DEFAULT NULL,
+  `logotipo` varchar(50) DEFAULT NULL,
   `idRequerimientoDiseno` int(11),
   PRIMARY KEY (idLogotipo),
   FOREIGN KEY (idRequerimientoDiseno) REFERENCES requerimientoDiseno(idRequerimientoDiseno) ON DELETE CASCADE
@@ -130,7 +130,7 @@ CREATE TABLE `requerimientoTecnico`
 (
   `idRequerimientoTecnico` int(11) DEFAULT NULL AUTO_INCREMENT,
   `requerimiento` varchar(100) DEFAULT NULL,
-  `direccionPdf` varchar(100) DEFAULT NULL,
+  `direccionPdf` varchar(50) DEFAULT NULL,
   PRIMARY KEY (idRequerimientoTecnico)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -153,7 +153,7 @@ CREATE TABLE `requerimientoPago`
   PRIMARY KEY (idRequerimientoPago)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-INSERT INTO `requerimientopago` (`idRequerimientoPago`, `requerimiento`, `fechaDocumentacion`, `fechaTentativa`) VALUES
+INSERT INTO `requerimientoPago` (`idRequerimientoPago`, `requerimiento`, `fechaDocumentacion`, `fechaTentativa`) VALUES
 (1, 'Este es el requerimientoPago para la actividad1', '2019-07-01', '2019-06-06'),
 (32, 'Este es el requerimientoPago para la actividad2', '2018-06-01', '2019-03-06'),
 (33, '', '0000-00-00', '0000-00-00'),
@@ -177,7 +177,7 @@ CREATE TABLE `Programacion`
   FOREIGN KEY (idRequerimientoPago) REFERENCES requerimientoPago(idRequerimientoPago) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-INSERT INTO `programacion` (`idProgramacion`, `idRequerimientoActividad`, `idRequerimientoDiseno`, `idRequerimientoTecnico`, `idRequerimientoPago`) VALUES
+INSERT INTO `Programacion` (`idProgramacion`, `idRequerimientoActividad`, `idRequerimientoDiseno`, `idRequerimientoTecnico`, `idRequerimientoPago`) VALUES
 (1, 1, 1, 1, 1),
 (4, 5, 7, 2, 32),
 (5, 6, 8, 3, 33),
@@ -187,7 +187,7 @@ INSERT INTO `programacion` (`idProgramacion`, `idRequerimientoActividad`, `idReq
 (9, 11, 12, 7, 37),
 (10, 12, 13, 8, 38);
 
-create TABLE `fase2`
+create TABLE `Fase2`
 (
   `idFase2` int(11) DEFAULT NULL AUTO_INCREMENT,
   `nombreDisenador` varchar(25) DEFAULT NULL,
@@ -205,10 +205,10 @@ create TABLE `fase2`
   `cortesias` int(2) DEFAULT NULL,
   `programa` int(2) DEFAULT NULL,
   `invitacion` int(2) DEFAULT NULL,
-  PRIMARY KEY (idfase2)
+  PRIMARY KEY (idFase2)
 )ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-INSERT INTO `fase2` (`idfase2`, `nombredisenador`, `fechaentra`, `fotos`, `vineta`, `logos`, `lugar`, `fecha`, `hora`, `leyenda`, `fechasalida`, `cartel`, `web`, `cortesias`, `programa`, `invitacion`) VALUES
+INSERT INTO `Fase2` (`idFase2`, `nombreDisenador`, `fechaEntra`, `fotos`, `vineta`, `logos`, `lugar`, `fecha`, `hora`, `leyenda`, `fechaSalida`, `cartel`, `web`, `cortesias`, `programa`, `invitacion`) VALUES
 (1, '', '0000-00-00', 0, 0, 0, '', '0000-00-00', '00:00:00', '', '0000-00-00', 0, 0, 0, 0, 0),
 (2, '', '0000-00-00', 0, 0, 0, '', '0000-00-00', '00:00:00', '', '0000-00-00', 0, 0, 0, 0, 0),
 (3, '', '0000-00-00', 0, 0, 0, '', '0000-00-00', '00:00:00', '', '0000-00-00', 0, 0, 0, 0, 0),
@@ -229,7 +229,7 @@ create TABLE `CartelyCortesias`
   PRIMARY KEY(idCartelyCortesias)
 )ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-INSERT INTO `cartelycortesias` (`idcartelycortesias`, `digital`, `offset`, `serigrafia`, `fuera`, `entregaprograma`, `invitacion`, `volante`) VALUES
+INSERT INTO `CartelyCortesias` (`idCartelyCortesias`, `digital`, `offset`, `serigrafia`, `fuera`, `entregaPrograma`, `invitacion`, `volante`) VALUES
 (1, '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00'),
 (2, '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00'),
 (3, '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00', '0000-00-00'),
@@ -246,7 +246,7 @@ create TABLE `Corrector`
   PRIMARY KEY(idCorrector)
 )ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-INSERT INTO `corrector` (`idcorrector`, `fechaentra`, `nombrecorrector`, `fechasale`) VALUES
+INSERT INTO `Corrector` (`idCorrector`, `fechaEntra`, `nombreCorrector`, `fechaSale`) VALUES
 (1, '0000-00-00', '', '0000-00-00'),
 (2, '0000-00-00', '', '0000-00-00'),
 (3, '0000-00-00', '', '0000-00-00'),
@@ -266,7 +266,7 @@ CREATE TABLE `Diseno`
   FOREIGN KEY (idCorrector) REFERENCES Corrector(idCorrector) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-INSERT INTO `diseno` (`iddiseno`, `idfase2`, `idcartelycortesias`, `idcorrector`) VALUES
+INSERT INTO `Diseno` (`idDiseno`, `idFase2`, `idCartelyCortesias`, `idCorrector`) VALUES
 (1, 1, 1, 1),
 (2, 2, 2, 2),
 (3, 3, 3, 3),
@@ -274,14 +274,14 @@ INSERT INTO `diseno` (`iddiseno`, `idfase2`, `idcartelycortesias`, `idcorrector`
 (5, 5, 5, 5),
 (6, 6, 6, 6);
 
-create TABLE `Difusion`
+CREATE TABLE `Difusion`
 (
   `idDifusion` int(11) DEFAULT NULL AUTO_INCREMENT,
   `fechaDifusion` date DEFAULT NULL,
   PRIMARY KEY(idDifusion)
 )ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-INSERT INTO `difusion` (`idDifusion`, `fechadifusion`) VALUES
+INSERT INTO `Difusion` (`idDifusion`, `fechaDifusion`) VALUES
 (1, '0000-00-00'),
 (2, '0000-00-00'),
 (3, '0000-00-00'),
@@ -301,7 +301,7 @@ CREATE TABLE `Actividad`
   FOREIGN KEY (idDiseno) REFERENCES Diseno(idDiseno) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-INSERT INTO `actividad` (`idActividad`, `idProgramacion`, `idDiseno`, `idDifusion`) VALUES
+INSERT INTO `Actividad` (`idActividad`, `idProgramacion`, `idDiseno`, `idDifusion`) VALUES
 (1, 1, 1, 1),
 (5, 4, 6, 6),
 (6, 5, 1, 1),

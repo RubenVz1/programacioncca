@@ -37,11 +37,11 @@
             {
                 $id = $_GET['id'];
                 $query = $db->connect()->prepare("SELECT *
-                                                  FROM actividad a, programacion b, diseno c, difusion d, 
-                                                  requerimientoActividad e, requerimientodiseno f,
-                                                  requerimientotecnico g, requerimientopago h, 
-                                                  fase2 i, cartelycortesias j,
-                                                  corrector k
+                                                  FROM Actividad a, Programacion b, Diseno c, Difusion d, 
+                                                  requerimientoActividad e, requerimientoDiseno f,
+                                                  requerimientoTecnico g, requerimientoPago h, 
+                                                  Fase2 i, CartelyCortesias j,
+                                                  Corrector k
                                                   WHERE a.idProgramacion = b.idProgramacion
                                                   AND a.idDiseno = c.iddiseno
                                                   AND a.idDifusion = d.idDifusion
@@ -68,7 +68,7 @@
                     echo "<p>Lugar: ".$result[0][21]."</p><br>";
 
                     $query1 = $db->connect()->prepare("SELECT h.horario
-                                                       FROM Actividad a, Programacion p, requerimientoActividad r, horario h
+                                                       FROM Actividad a, Programacion p, requerimientoActividad r, Horario h
                                                        WHERE a.idProgramacion = p.idProgramacion
                                                        AND p.idRequerimientoActividad = r.idRequerimientoActividad
                                                        AND r.idRequerimientoActividad = h.idRequerimientoActividad 
@@ -77,15 +77,22 @@
                     $query1->setFetchMode(PDO::FETCH_NUM);
                     $result1 = $query1->fetchAll();
                     for($i = 0 ; $i < count($result1) ; $i++)
-                        echo "<p>Horarios ".($i+1).": ".$result1[$i][0]."</p><br>";
-                    echo "<p>tipo de entrada: ".$result[0][22]."</p><br>";
-                    echo "<p>Costo: $".$result[0][23]."</p><br>";
-                    echo "<p>Duracion: ".$result[0][24]."hrs</p><br>";
+                        echo "<p>Horarios ".($i+1).": ".$result1[$i][0]." hrs</p><br>";
+                    if($result[0][22] == 1)
+                        echo "<p>tipo de entrada: Libre</p><br>";
+                    elseif($result[0][22] == 2)
+                        echo "<p>tipo de entrada: Cortesia</p><br>";
+                    elseif($result[0][22] == 3)
+                    {
+                        echo "<p>tipo de entrada: Costo</p><br>";
+                        echo "<p>Costo: $".$result[0][23]."</p><br>";
+                    }
+                    echo "<p>Duracion: ".$result[0][24]." hrs</p><br>";
                     echo "<p>Observacion: ".$result[0][25]."</p><br>";
                     echo "<h3>Requerimientos de Diseño</h3><br>";
                     echo "<p>fecha de entrega: ".$result[0][27]."</p><br>";
                     $query1 = $db->connect()->prepare("SELECT f.fotografia
-                                                      FROM Actividad a, Programacion p, requerimientoDiseno r, fotografia f
+                                                      FROM Actividad a, Programacion p, requerimientoDiseno r, Fotografia f
                                                       WHERE a.idProgramacion = p.idProgramacion
                                                       AND p.idRequerimientoDiseno = r.idRequerimientoDiseno
                                                       AND f.idRequerimientoDiseno = r.idRequerimientoDiseno 
@@ -102,7 +109,7 @@
                             echo "<img src='../img/separador.png' height='10px'>";
                     }
                     $query2 = $db->connect()->prepare("SELECT l.logotipo
-                                                      FROM Actividad a, Programacion p, requerimientoDiseno r, logotipo l
+                                                      FROM Actividad a, Programacion p, requerimientoDiseno r, Logotipo l
                                                       WHERE a.idProgramacion = p.idProgramacion
                                                       AND p.idRequerimientoDiseno = r.idRequerimientoDiseno
                                                       AND l.idRequerimientoDiseno = r.idRequerimientoDiseno 
@@ -118,19 +125,23 @@
                         if($i != count($result2)-1)
                             echo "<img src='../img/separador.png' height='10px'>";
                     }
-                    if($result[0][28] == "")
-                    {
-                        echo "<p>Semblanza compañia: N/A</p><br>";
-                    }else
-                    {//echo html_entity_decode(htmlentities($test))
-                        echo "<p>Semblanza compañia: ".utf8_decode($result[0][28])."</p><br>";
-                    }
-                    echo "<p>Semblanza actividad: ".utf8_decode($result[0][29])."</p><br>";
                     echo "<p>Programa de mano: ";
                     if($result[0][30] == 0)
-                    echo "No";
-                    else echo"Sí";
-                    echo "</p><br>";
+                        echo "No</p><br>";
+                    else
+                    {
+                        echo"Sí</p><br>";
+                        if($result[0][28] == "")
+                            echo "<p>Semblanza compañia: N/A</p><br>";
+                        else
+                            echo "<p>Semblanza compañia: ".utf8_decode($result[0][28])."</p><br>";
+                        if($result[0][29] == "")
+                            echo "<p>Semblanza compañia: N/A</p><br>";
+                        else
+                            echo "<p>Semblanza actividad: ".utf8_decode($result[0][29])."</p><br>";
+                    }
+                    
+                    
                     echo "<h3>Requerimientos técnicos</h3><br>";
                     echo "<p>Requerimiento: ".utf8_decode($result[0][32])."</p><br>";
                     if($result[0][33] != "")
@@ -187,8 +198,8 @@
                     echo "<p>volante: ".$result[0][61]."</p><br>";
                     echo "<h3>Corrector</h3><br>";
                     echo "<p>Nombre corrector: ".utf8_decode(utf8_encode($result[0][64]))."</p><br>";
-                    echo "<p>fecha de entrega al corrector: ".$result[0][63]."</p><br>";
-                    echo "<p>fecha de entrega del corrector: ".$result[0][65]."</p><br>";
+                    echo "<p>fecha de entrega al corrector: ".$result[0][65]."</p><br>";
+                    echo "<p>fecha de entrega del corrector: ".$result[0][63]."</p><br>";
                     echo "<h1 id='cabecera'>Difusion</h1><br>";
                     echo "<p>Fecha difusion: ".$result[0][14]."</p><br>";  
                 }

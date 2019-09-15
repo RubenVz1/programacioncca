@@ -1,6 +1,7 @@
 <?php
 	include_once '../includes/user.php';
     include_once '../includes/user_session.php';
+    include_once '../includes/dbA.php';
     $userSession = new UserSession();
     $user = new User();
 	if(isset($_SESSION['user']))
@@ -88,11 +89,8 @@
 				}
 				if(isset($_POST['agrega']))
 				{
-					$servidor = "localhost";
-            		$nombreusuario = "root";
-            		$password = "QQWWEERR1";
-            		$db = "prueba";
-					$conexion = new mysqli($servidor, $nombreusuario, $password, $db);
+					$mysqli = new DBA();
+                	$conexion = $mysqli->connect();
 					if($_POST['entregareq'])
 					{
 						$fechaentrega = $_POST['entregareq'];
@@ -151,9 +149,9 @@
 						$programamano = "1";
 					}
 					else{$programamano = "0";}
-					$sql = "INSERT INTO `requerimientodiseno`(`fechaEntrega`, `semblanzaCompania`, `semblanzaActividad`, `programaMano`) VALUES ('$fechaentrega','$semblanzacom','$semblanzaact','$programamano');";
+					$sql = "INSERT INTO `requerimientoDiseno`(`fechaEntrega`, `semblanzaCompania`, `semblanzaActividad`, `programaMano`) VALUES ('$fechaentrega','$semblanzacom','$semblanzaact','$programamano');";
 					$resultado = $conexion->query($sql);
-					$sql = "SELECT MAX(idRequerimientoDiseno) as id FROM requerimientodiseno;";
+					$sql = "SELECT MAX(idRequerimientoDiseno) as id FROM requerimientoDiseno;";
 					$resultado = $conexion->query($sql);
 					$row = $resultado->fetch_assoc();
 					$idk = $row['id'];

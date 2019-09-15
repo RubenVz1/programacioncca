@@ -4,7 +4,7 @@ $db = new DB();
 if(isset($_GET['id']))
 {
 	$query = $db->connect()->prepare('SELECT a.idProgramacion, p.idRequerimientoActividad, p.idRequerimientoDiseno, p.idRequerimientoTecnico, p.idRequerimientoPago
-									FROM actividad a, programacion p
+									FROM Actividad a, Programacion p
 									WHERE a.idProgramacion = p.idProgramacion 
 									AND a.idActividad ='.$_GET['id']);
 	$query->execute();
@@ -19,10 +19,11 @@ if(isset($_GET['id']))
 		$query->execute();
 		$query = $db->connect()->prepare('DELETE FROM requerimientoActividad WHERE idRequerimientoActividad ='.$result[0][1]);
 		$query->execute();
-		$query = $db->connect()->prepare('DELETE FROM programacion WHERE idProgramacion ='.$result[0][0]);
+		$query = $db->connect()->prepare('DELETE FROM Programacion WHERE idProgramacion ='.$result[0][0]);
 		$query->execute();
-		$query = $db->connect()->prepare('DELETE FROM actividad WHERE idActividad ='.$_GET['id']);
+		$query = $db->connect()->prepare('DELETE FROM Actividad WHERE idActividad ='.$_GET['id']);
 		$query->execute();
 	}
 }
+header("location: ../index.php");
 ?>

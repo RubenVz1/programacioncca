@@ -95,7 +95,7 @@
 					$db = new DB();
 					
 					$query = $db->connect()->prepare("SELECT a.idActividad,r.nombreCompania,r.fechaEvento
-			    						 		  FROM actividad a, programacion p, requerimientoActividad r
+			    						 		  FROM Actividad a, Programacion p, requerimientoActividad r
 			    						 		  WHERE a.idProgramacion = p.idProgramacion
 			    						 		  AND p.idRequerimientoActividad = r.idRequerimientoActividad
 			    						 		  AND r.fechaEvento >= '$anio-$mes-01'
@@ -177,7 +177,7 @@
             	{
 	                $id = $_GET['id'];
 	                $query = $db->connect()->prepare("SELECT r.observacion
-	                                                  FROM actividad a, programacion p, requerimientoActividad r
+	                                                  FROM Actividad a, Programacion p, requerimientoActividad r
 	                                                  WHERE a.idProgramacion = p.idProgramacion
 	                                                  AND p.idRequerimientoActividad = r.idRequerimientoActividad
 	                                                  AND a.idActividad = $id");
@@ -206,7 +206,7 @@
             	{
 	                $id = $_GET['id'];
 	                $query = $db->connect()->prepare("SELECT r.nombreActividad,r.nombreCompania,r.lugar,r.fechaProgramacion, r.fechaEvento
-	                                                  FROM actividad a, programacion p, requerimientoActividad r
+	                                                  FROM Actividad a, Programacion p, requerimientoActividad r
 	                                                  WHERE a.idProgramacion = p.idProgramacion
 	                                                  AND p.idRequerimientoActividad = r.idRequerimientoActividad
 	                                                  AND a.idActividad = $id");
@@ -222,7 +222,7 @@
 	                    echo "<p>Fecha del evento: ".$result[0][4]."</p>";
 	                }
 	                $query = $db->connect()->prepare("SELECT h.horario
-	                                                  FROM actividad a, programacion p, requerimientoActividad r, horario h
+	                                                  FROM Actividad a, Programacion p, requerimientoActividad r, Horario h
 	                                                  WHERE a.idProgramacion = p.idProgramacion
 	                                                  AND p.idRequerimientoActividad = r.idRequerimientoActividad
 	                                                  AND r.idRequerimientoActividad = h.idRequerimientoActividad

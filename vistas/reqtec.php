@@ -1,6 +1,7 @@
 <?php
 	include_once '../includes/user.php';
     include_once '../includes/user_session.php';
+    include_once '../includes/dbA.php';
     $userSession = new UserSession();
     $user = new User();
 	if(isset($_SESSION['user']))
@@ -74,12 +75,9 @@
 				}
 				else
 					$direccionPdf ="";
-				$servidor = "localhost";
-            	$nombreusuario = "root";
-            	$password = "QQWWEERR1";
-            	$db = "prueba";
-				$conexion = new mysqli($servidor, $nombreusuario, $password, $db);
-				$sql = "INSERT INTO `requerimientotecnico`( `requerimiento`,`direccionPdf`) VALUES ('$requrimientotecnico','$direccionPdf')";
+				$mysqli = new DBA();
+                $conexion = $mysqli->connect();
+				$sql = "INSERT INTO `requerimientoTecnico`( `requerimiento`,`direccionPdf`) VALUES ('$requrimientotecnico','$direccionPdf')";
 				$resultado = $conexion->query($sql);
 
 				if($resultado)

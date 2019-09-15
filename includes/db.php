@@ -16,14 +16,6 @@ class DB
 		$this->user = 'root';
 		$this->password = 'QQWWEERR1';
 		$this->charset = 'utf8mb4';
-		
-		/*
-		$this->host = '50.62.209.187:3306';
-		$this->db = 'BDprogramacioncca';
-		$this->user = 'programacion';
-		$this->password = 'QQWWEERR1';
-		$this->charset = 'utf8mb4';
-		*/
 	}
 
 	public function connect()

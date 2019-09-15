@@ -1,6 +1,7 @@
 <?php
 	include_once '../includes/user.php';
     include_once '../includes/user_session.php';
+    include_once '../includes/dbA.php';
     $userSession = new UserSession();
     $user = new User();
 	if(isset($_SESSION['user']))
@@ -47,42 +48,33 @@
             {
                 $difusion = $_POST['fechadifusion'];
 
-                /*$db = new DB();
-                $query = $db->connect()->prepare("INSERT INTO `difusion`(`fechadifusion`) VALUES ('$difusion')");
-                $query->execute();
-                $result = $query->fetchAll();*/
-
-                $servidor = "localhost";
-            		$nombreusuario = "root";
-            		$password = "QQWWEERR1";
-            		$db = "prueba";
-                    $mysqli = new mysqli($servidor, $nombreusuario, $password, $db);
-                
-                $mysqli->query("INSERT INTO `difusion`(`fechadifusion`) VALUES ('$difusion')");
+                $mysqli = new DBA();
+                $conexion = $mysqli->connect();
+                $conexion->query("INSERT INTO `Difusion`(`fechaDifusion`) VALUES ('$difusion')");
 
                 //trae el id del ultimo insert de fase1
-				$getidprogramacion = "SELECT MAX(idProgramacion) as id FROM `programacion`";
-				$resprogramacion = $mysqli->query($getidprogramacion);
+				$getidprogramacion = "SELECT MAX(idProgramacion) as id FROM `Programacion`";
+				$resprogramacion = $conexion->query($getidprogramacion);
 				$objetoidprogramacion = $resprogramacion->fetch_assoc();
                 $idprogramacion = $objetoidprogramacion['id'];
                 
                 //trae el id del ultimo insert de fase2
-                $getiddiseño = "SELECT MAX(iddiseno) as id FROM `diseno`";
-                $resdiseño = $mysqli->query($getiddiseño);
-                echo $mysqli->error; 
+                $getiddiseño = "SELECT MAX(idDiseno) as id FROM `Diseno`";
+                $resdiseño = $conexion->query($getiddiseño);
+                echo $conexion->error; 
 				$objetoiddiseño = $resdiseño->fetch_assoc();
                 $iddiseño = $objetoiddiseño['id'];
                 echo $iddiseño;
 
                 //trae el id del ultimo insert de fase3
-                $getiddifusion = "SELECT MAX(idDifusion) as id FROM `difusion`";
-				$resdifusion = $mysqli->query($getiddifusion);
+                $getiddifusion = "SELECT MAX(idDifusion) as id FROM `Difusion`";
+				$resdifusion = $conexion->query($getiddifusion);
 				$objetoiddifusion = $resdifusion->fetch_assoc();
                 $idDifusion = $objetoiddifusion['id'];
                         
                 // inserta en una tabla de actividad
-				$sqlactividad = "INSERT INTO `actividad`(`idProgramacion`, `idDiseno`, `idDifusion`) VALUES ('$idprogramacion','$iddiseño','$idDifusion')";
-                $mysqli->query($sqlactividad);
+				$sqlactividad = "INSERT INTO `Actividad`(`idProgramacion`, `idDiseno`, `idDifusion`) VALUES ('$idprogramacion','$iddiseño','$idDifusion')";
+                $conexion->query($sqlactividad);
                 
                 echo "<script>window.location='home.php';</script>";            
             }
