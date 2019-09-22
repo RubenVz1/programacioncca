@@ -76,7 +76,7 @@
 				$sqlactividad = "INSERT INTO `Actividad`(`idProgramacion`, `idDiseno`, `idDifusion`) VALUES ('$idprogramacion','$iddiseño','$idDifusion')";
                 $conexion->query($sqlactividad);
                 
-                echo "<script>window.location='home.php';</script>";            
+                header("location: ../vistas/home.php");
             }
         ?>
     </div>

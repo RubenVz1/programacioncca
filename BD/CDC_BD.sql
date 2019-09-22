@@ -61,7 +61,7 @@ CREATE TABLE `Horario`
   `horario` time DEFAULT NULL,
   `idRequerimientoActividad` int(11),
   PRIMARY KEY (idHorario),
-  FOREIGN KEY (idRequerimientoActividad) REFERENCES requerimientoActividad(idRequerimientoActividad)
+  FOREIGN KEY (idRequerimientoActividad) REFERENCES requerimientoActividad(idRequerimientoActividad) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 INSERT INTO `Horario` (`horario`, `idRequerimientoActividad`) VALUES

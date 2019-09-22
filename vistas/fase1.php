@@ -152,7 +152,7 @@
 						}
 						if($resultado)
 						{
-                    		echo "<script>window.location='reqdis.php';</script>";
+							header("location: ../vistas/reqdis.php");
 						}
 						else
 						{

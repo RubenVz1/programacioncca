@@ -175,7 +175,7 @@
 						}
 					if($resultado)
 					{
-						echo "<script>window.location='reqtec.php';</script>";
+						header("location: ../vistas/reqtec.php");
 					}
 					else
 					{

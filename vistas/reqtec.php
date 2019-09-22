@@ -82,7 +82,7 @@
 
 				if($resultado)
 				{
-					echo "<script>window.location='reqpag.php';</script>";
+					header("location: ../vistas/reqpag.php");
 				}
 				else
 				{

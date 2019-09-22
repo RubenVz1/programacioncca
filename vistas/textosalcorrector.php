@@ -49,7 +49,6 @@
         <?php
             if(isset($_POST['agrega']))
             {
-                echo "<script>window.location='fase3.php';</script>"; 
                 $fechacorrector = $_POST['fechacorrector'];
                 $nombre = $_POST['nombre'];
                 $fechaentrega = $_POST['entregacorrector'];
@@ -82,7 +81,9 @@
                 $sqlprogramacion = "INSERT INTO `Diseno`(`idFase2`, `idCartelyCortesias`, `idCorrector`) VALUES ('$idfase2','$idcartelycortesias','$idcorrector')";
 
                 $conexion->query($sqlprogramacion);
-                echo $conexion->error;                        
+                echo $conexion->error;  
+                header("location: ../vistas/fase3.php");
+                      
             }
         ?>
     </div>

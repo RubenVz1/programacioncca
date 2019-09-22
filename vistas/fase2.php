@@ -50,7 +50,6 @@
         <?php
             if(isset($_POST['agrega']))
             {
-                echo "<script>window.location='entregacartelycortesias.php';</script>"; 
                 $nombrediseñador = $_POST['nombrediseñador'];
                 $entregaaldiseñador = $_POST['fechaentrega'];
                 if(isset($_POST['fotografias']))
@@ -108,7 +107,9 @@
                 $db = new DB();
                 $query = $db->connect()->prepare("INSERT INTO `Fase2`(`nombreDisenador`, `fechaEntra`, `fotos`, `vineta`, `logos`, `lugar`, `fecha`, `hora`, `leyenda`, `fechaSalida`, `cartel`, `web`, `cortesias`, `programa`, `invitacion`) VALUES ('$nombrediseñador','$entregaaldiseñador','$fotos','$viñeta','$logos','$lugar','$fecha','$Hora','$leyenda','$fechaentrega','$cartel','$web','$cortesias','$programa','$invitacion')");
                 $query->execute();
-				$result = $query->fetchAll();           
+                $result = $query->fetchAll();  
+                header("location: ../vistas/entregacartelycortesias.php");
+         
             }
         ?>
     </div>

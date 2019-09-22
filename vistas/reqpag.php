@@ -95,8 +95,7 @@
 						$resultadofusion = $conexion->query($sqlprogramacion);
 
 						
-						echo "<script>window.location='fase2.php';</script>";
-						//echo "<script>alert('ahuevo soy la vrga');</script>";
+						header("location: ../vistas/fase2.php");
 					}
 					else
 					{

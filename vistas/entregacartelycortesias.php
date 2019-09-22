@@ -51,7 +51,6 @@
         <?php
             if(isset($_POST['agrega']))
             {
-                echo "<script>window.location='textosalcorrector.php';</script>"; 
                 $digital = $_POST['digital'];
                 $offset = $_POST['offset'];
                 $serigrafia = $_POST['serigrafia'];
@@ -63,7 +62,9 @@
                 $db = new DB();
                 $query = $db->connect()->prepare("INSERT INTO `CartelyCortesias`(`digital`, `offset`, `serigrafia`, `fuera`, `entregaPrograma`, `invitacion`, `volante`) VALUES ('$digital','$offset','$serigrafia','$fuera','$programa','$invitacion','$volante')");
                 $query->execute();
-                $result = $query->fetchAll();      
+                $result = $query->fetchAll();
+                header("location: ../vistas/textosalcorrector.php");
+      
             }
         ?>
     </div>
