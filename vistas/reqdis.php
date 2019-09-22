@@ -25,7 +25,7 @@
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<title>Fase 1</title>
-		<link href="../img/icon.ico" type="image/ico" rel="shortcut icon">
+		<link href="../images/icon.ico" type="image/ico" rel="shortcut icon">
 		<script src="../js/jquery.min.js"></script>
 		<link href="http://cdn.jsdelivr.net/timepicker.js/latest/timepicker.min.css" rel="stylesheet"/>
 		<link rel="stylesheet" href="../styles/Fase1Stylo.css">

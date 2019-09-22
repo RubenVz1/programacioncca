@@ -24,7 +24,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Fase 3</title>
-	<link href="../img/icon.ico" type="image/ico" rel="shortcut icon">
+    <link href="../images/icon.ico" type="image/ico" rel="shortcut icon">
 	<script src="../js/jquery.min.js"></script>
 	<link href="http://cdn.jsdelivr.net/timepicker.js/latest/timepicker.min.css" rel="stylesheet"/>
 	<link rel="stylesheet" href="../styles/Fase1Stylo.css">

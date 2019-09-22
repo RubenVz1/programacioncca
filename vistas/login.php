@@ -5,7 +5,7 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<title>Inicio de sesion</title>
 		<link rel="stylesheet" href="styles/indexStylo.css">
-		<link href="img/icon.ico" type="image/ico" rel="shortcut icon">
+		<link href="../images/icon.ico" type="image/ico" rel="shortcut icon">
 	</head>
 	<body>
 		<div id="inicioSesion">
