@@ -2,7 +2,7 @@
 $('#si').change(function(){
     if($(this).is(":checked"))
     {
-        $('#ok').append("<div id='no'><p>Fecha tentativa de pago</p><input type='date' name='fechapago' value=''><br><br><div>");
+        $('#ok').append("<div id='no'><p><b>Fecha tentativa de pago:</b> </p><input type='date' name='fechapago' value=''><br><br><div>");
     }
     else
     {

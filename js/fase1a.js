@@ -57,13 +57,15 @@ $('#menos').click(function()
 $('#cst').change(function(){
     if($(this).is(":checked"))
     {
-        $('#cstvalor').append("<div id='si'><p>Costo: $</p><input type='number' name='costo' value=''required><br></div>");
+        $('#cstvalor').append("<div id='si'><p><b>Costo: </b>$</p><input type='number' name='costo' value=''><br></div>");
         $('#lbr').hide();
+        $('#nobox').append("<p id='crossbox'><b> X </b></p>");
     }
     else
     {
         $('#si').remove();
         $('#lbr').show();
+        $('#crossbox').remove();
     }
 });
 
@@ -72,10 +74,12 @@ $('#lbr').change(function(){
     if($(this).is(":checked"))
     {
         $('#cst').hide();
+        $('#nobox2').append("<p id='croxbox'><b> X </b></p>");
     }
     else
     {
         $('#cst').show();
+        $('#nobox2').remove();
     }
 });
 

@@ -108,7 +108,7 @@
 					echo "<th id='siguiente'><a href='calendar.php?mes=".$siguiente[0]."&anio=".$siguiente[1]."'>siguiente</a></th>";
 					?>
 				</tr>
-				<tr>
+				<tr id='semana'>
 					<th>Lunes</th>
 					<th>Martes</th>
 					<th>Miercoles</th>
@@ -137,9 +137,9 @@
 						echo "<tr>";
 						for($j = 0 ; $j < 7 ; $j++)
 						{
-							echo "<th>";
 							if($contador >= $primeraCelda && $contador < $ultimaCelda)
 							{
+								echo "<th id='exists'>";
 								echo $dia;
 								if($query->rowCount())
 								{
@@ -156,7 +156,7 @@
 							}
 							else
 							{
-								echo "-";
+								echo "<th id='noexists'>-";
 							}
 							echo "</th>";
 							$contador++;
