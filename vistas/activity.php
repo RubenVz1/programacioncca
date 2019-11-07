@@ -143,7 +143,7 @@
                     
                     
                     echo "<h3>Requerimientos técnicos</h3><br>";
-                    echo "<p>Requerimiento: ".utf8_decode($result[0][32])."</p><br>";
+                    echo "<p>Requerimiento: ".$result[0][32]."</p><br>";
                     if($result[0][33] != "")
                     {
                         echo "<a href='".$result[0][33]."' target='_blank'>".substr($result[0][33],16)."</a><br><br>";

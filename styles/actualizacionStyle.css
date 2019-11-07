@@ -1,3 +1,5 @@
+@charset "UTF-8";
+
 body
 {
 	font-family: verdana;
@@ -80,4 +82,37 @@ input
 #boton:hover
 {
 	background-color: rgb(227,200,156);
+}
+
+#franja
+{
+	background-image: url(../img/black_paper.png);
+	opacity:0.75;
+	border-style:dashed;
+	border-width: thin;
+	border-radius: 0px 0px 0px 0px;
+	border-color: rgba(154, 9, 0, .6);
+	height: 20%;
+	width: 100%;
+	color: white;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	position: relative;
+	font-size: 25px;
+}
+
+
+#franja2
+{
+	background-image: url(../img/black_paper.png);
+	opacity:0.85;
+	border-style:dashed;
+	border-width: thin;
+	border-color: rgba(154, 9, 0, .6);
+	height: 20%;
+	width: 100%;
+	color: white;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	position: relative;
 }

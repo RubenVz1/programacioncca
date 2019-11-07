@@ -2,66 +2,106 @@
 {
 	padding: 0px;
 	margin: 0px;
-	font-family: Verdana, Geneva, Tahoma, sans-serif;
-	font-size: 13px;
 }
-
+html
+{
+	background-image: url(../img/prism.png);
+	background-repeat: repeat;
+}
 body
 {
+	font-family: Verdana;
+	font-weight:700;
 	display: grid;
 	grid-gap: 10px;
 	grid-template-rows: 1fr 1fr 1fr;
 	grid-template-areas: ". . ."
 						 ". b ." 
 						 ". c .";
-	background-image: radial-gradient(circle,rgb(255,255,255),rgb(19,122,157));
+
+	min-height: 100%;
+	background-image: url('../img/loginbg.jpg');
 	background-repeat: no-repeat;
-	background-size: 100% 300%;
+	background-size: contain;
+	background-position: center;
+	overflow: hidden;
 	text-align: center;
 }
 
 #inicioSesion
 {
-	margin: auto;
+	background-color:rgba(2, 0, 51, 0.65);
 	grid-area: b;
-	background-color: white;
 	width: 300px;
 	height: 200px;
 	box-shadow: 3px 3px 10px;
+	border-radius:8px;
+	border-color: #cfcfcf;
+	border-style:solid;
+	border-width: thin;
+	position: relative;
+	left: 22%;
 }
 
 #cabecera
 {
-	background-color: rgb(75,86,92);
-	color: white;
+	background:linear-gradient(#4a4a4a,#bfbfbf);
+	border-style:solid;
+	border-width:thin;
+	border-color: #cfcfcf;
+	border-radius: 8px;
+	color: #f0f0f0;
 	height: 20%;
 	width: 100%;
 	padding-top: 10px;
 	font-size: 18px;
+	position: relative;
+	left: -1px;
+	bottom: +1px;
+
 }
 
 p
 {
 	display: inline;
+	color: #e3e3e3;
 }
 
 input
 {
 	margin-top: 25px;
+	width: 50%;
+	font-family: verdana;
+	font-size: small;
+	color: white;
+	background-color: rgba(255,255,255,0.3);
 }
+
 
 #boton
 {
-	background-color: rgb(227,221,197);
+	font-family: verdana;
+	background-color: rgba(173, 179, 0, 0.8);
+	border-radius: 20px;
+	width: 35%;
+	color: black;
 }
 
 #boton:hover
 {
-	background-color: rgb(227,200,156);
+	background-color: rgba(202, 209, 0, 0.8);
 }
 
 #error
 {
 	grid-area: c;
-	background-color: rgb(75,86,92);
+	background-image: linear-gradient(rgba(74, 74, 74,0.6),rgba(105, 105, 105,0.6));
+	border-style:solid;
+	border-width:thin;
+	border-color: #cfcfcf;
+	border-radius: 8px;
+	font-size: x-small;
+	display: inline-block;
+	position:relative;
+	left: 8%;
 }
