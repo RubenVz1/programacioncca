@@ -60,9 +60,8 @@
                 $volante = $_POST['volante'];
 
                 $db = new DB();
-                $query = $db->connect()->prepare("INSERT INTO `CartelyCortesias`(`digital`, `offset`, `serigrafia`, `fuera`, `entregaPrograma`, `invitacion`, `volante`) VALUES ('$digital','$offset','$serigrafia','$fuera','$programa','$invitacion','$volante')");
+                $query = $db->connect()->prepare("INSERT INTO `cartelycortesias`(`digital`, `offset`, `serigrafia`, `fuera`, `entregaPrograma`, `invitacion`, `volante`) VALUES ('$digital','$offset','$serigrafia','$fuera','$programa','$invitacion','$volante')");
                 $query->execute();
-                $result = $query->fetchAll();
                 header("location: ../vistas/textosalcorrector.php");
       
             }

@@ -105,9 +105,8 @@
                     $invitacion = $_POST['invitacion'];
                 }else $invitacion=0;
                 $db = new DB();
-                $query = $db->connect()->prepare("INSERT INTO `Fase2`(`nombreDisenador`, `fechaEntra`, `fotos`, `vineta`, `logos`, `lugar`, `fecha`, `hora`, `leyenda`, `fechaSalida`, `cartel`, `web`, `cortesias`, `programa`, `invitacion`) VALUES ('$nombrediseñador','$entregaaldiseñador','$fotos','$viñeta','$logos','$lugar','$fecha','$Hora','$leyenda','$fechaentrega','$cartel','$web','$cortesias','$programa','$invitacion')");
+                $query = $db->connect()->prepare("INSERT INTO `fase2`(`nombreDisenador`, `fechaEntra`, `fotos`, `vineta`, `logos`, `lugar`, `fecha`, `hora`, `leyenda`, `fechaSalida`, `cartel`, `web`, `cortesias`, `programa`, `invitacion`) VALUES ('$nombrediseñador','$entregaaldiseñador','$fotos','$viñeta','$logos','$lugar','$fecha','$Hora','$leyenda','$fechaentrega','$cartel','$web','$cortesias','$programa','$invitacion')");
                 $query->execute();
-                $result = $query->fetchAll();  
                 header("location: ../vistas/entregacartelycortesias.php");
          
             }

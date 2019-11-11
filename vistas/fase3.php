@@ -50,16 +50,16 @@
 
                 $mysqli = new DBA();
                 $conexion = $mysqli->connect();
-                $conexion->query("INSERT INTO `Difusion`(`fechaDifusion`) VALUES ('$difusion')");
+                $conexion->query("INSERT INTO `difusion`(`fechaDifusion`) VALUES ('$difusion')");
 
                 //trae el id del ultimo insert de fase1
-				$getidprogramacion = "SELECT MAX(idProgramacion) as id FROM `Programacion`";
+				$getidprogramacion = "SELECT MAX(idProgramacion) as id FROM `programacion`";
 				$resprogramacion = $conexion->query($getidprogramacion);
 				$objetoidprogramacion = $resprogramacion->fetch_assoc();
                 $idprogramacion = $objetoidprogramacion['id'];
                 
                 //trae el id del ultimo insert de fase2
-                $getiddiseño = "SELECT MAX(idDiseno) as id FROM `Diseno`";
+                $getiddiseño = "SELECT MAX(idDiseno) as id FROM `diseno`";
                 $resdiseño = $conexion->query($getiddiseño);
                 echo $conexion->error; 
 				$objetoiddiseño = $resdiseño->fetch_assoc();
@@ -67,13 +67,13 @@
                 echo $iddiseño;
 
                 //trae el id del ultimo insert de fase3
-                $getiddifusion = "SELECT MAX(idDifusion) as id FROM `Difusion`";
+                $getiddifusion = "SELECT MAX(idDifusion) as id FROM `difusion`";
 				$resdifusion = $conexion->query($getiddifusion);
 				$objetoiddifusion = $resdifusion->fetch_assoc();
                 $idDifusion = $objetoiddifusion['id'];
                         
                 // inserta en una tabla de actividad
-				$sqlactividad = "INSERT INTO `Actividad`(`idProgramacion`, `idDiseno`, `idDifusion`) VALUES ('$idprogramacion','$iddiseño','$idDifusion')";
+				$sqlactividad = "INSERT INTO `actividad`(`idProgramacion`, `idDiseno`, `idDifusion`) VALUES ('$idprogramacion','$iddiseño','$idDifusion')";
                 $conexion->query($sqlactividad);
                 
                 header("location: ../vistas/home.php");

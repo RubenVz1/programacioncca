@@ -385,7 +385,10 @@
 						<br>
 						<p><b>Horario(s): </b></p>
 
-                        <input type="hidden" name="numeroHorarios" id="numeroHorarios" value="1" size="1" ><br><br>
+                        <?php 
+
+                            echo "<input type=\"hidden\" name=\"numeroHorarios\" id=\"numeroHorarios\" value=".$hcount." size=\"1\" ><br><br>";
+                        ?>
                         <button type="button" id="mas">Agregar</button>
                         <button type="button" id="menos">Quitar</button>
 
@@ -471,7 +474,7 @@
 								<?php
 									$db = new DB();
 									$query = $db->connect()->prepare("SELECT f.fotografia
-                                                      FROM Actividad a, Programacion p, requerimientoDiseno r, Fotografia f
+                                                      FROM actividad a, programacion p, requerimientodiseno r, fotografia f
                                                       WHERE a.idProgramacion = p.idProgramacion
                                                       AND p.idRequerimientoDiseno = r.idRequerimientoDiseno
                                                       AND f.idRequerimientoDiseno = r.idRequerimientoDiseno 
@@ -500,7 +503,7 @@
                                 <br>
                                 <?php
                                     $query2 = $db->connect()->prepare("SELECT l.logotipo
-                                                      FROM Actividad a, Programacion p, requerimientoDiseno r, Logotipo l
+                                                      FROM actividad a, programacion p, requerimientodiseno r, logotipo l
                                                       WHERE a.idProgramacion = p.idProgramacion
                                                       AND p.idRequerimientoDiseno = r.idRequerimientoDiseno
                                                       AND l.idRequerimientoDiseno = r.idRequerimientoDiseno 
@@ -840,17 +843,17 @@
                             if(isset($id_horario[$i])&&isset($horarios[$i]))
                             {
                                 
-                                $sql = "UPDATE `Horario` SET `horario` = '$hrk' WHERE `idRequerimientoActividad` =".$id_req_act." AND `idHorario` =".$id_horario[$i];
+                                $sql = "UPDATE `horario` SET `horario` = '$hrk' WHERE `idRequerimientoActividad` =".$id_req_act." AND `idHorario` =".$id_horario[$i];
                                 if(!($conexion->query($sql) === true)){die("Error al insertar datos: " . $conexion->error);}
                             }
                             if(!(isset($id_horario[$i]))&&isset($horarios[$i]))
                             {
-                                $sql = "INSERT INTO `Horario`(`horario`, `idRequerimientoActividad`) VALUES ('$hrk','$id_req_act');";
+                                $sql = "INSERT INTO `horario`(`horario`, `idRequerimientoActividad`) VALUES ('$hrk','$id_req_act');";
                                 $resultado = $conexion->query($sql);
                             }
                             if((isset($id_horario[$i]))&&!isset($horarios[$i]))
                             {
-                                $sql = "DELETE FROM `Horario` WHERE `idHorario` =".$id_horario[$i];
+                                $sql = "DELETE FROM `horario` WHERE `idHorario` =".$id_horario[$i];
                                 $resultado = $conexion->query($sql);
                             }
                         }
@@ -881,23 +884,23 @@
 							$duracionm = $_POST['duracionm'];
 						}
 
-						$sql = "UPDATE `RequerimientoActividad` SET `fechaProgramacion` = CURRENT_DATE() WHERE `idRequerimientoActividad` =".$id_req_act."";
+						$sql = "UPDATE `requerimientoactividad` SET `fechaProgramacion` = CURRENT_DATE() WHERE `idRequerimientoActividad` =".$id_req_act."";
 						if(!($conexion->query($sql) === true)){die("Error al insertar datos: " . $conexion->error);}
-						$sql = "UPDATE `RequerimientoActividad` SET `fechaEvento` = '".$fechaeve."' WHERE `idRequerimientoActividad` =".$id_req_act."";
+						$sql = "UPDATE `requerimientoactividad` SET `fechaEvento` = '".$fechaeve."' WHERE `idRequerimientoActividad` =".$id_req_act."";
 						if(!($conexion->query($sql) === true)){die("Error al insertar datos: " . $conexion->error);}
-						$sql = "UPDATE `RequerimientoActividad` SET `nombreCompania` ='".$nomcom."' WHERE `idRequerimientoActividad` =".$id_req_act."";
+						$sql = "UPDATE `requerimientoactividad` SET `nombreCompania` ='".$nomcom."' WHERE `idRequerimientoActividad` =".$id_req_act."";
 						if(!($conexion->query($sql) === true)){die("Error al insertar datos: " . $conexion->error);}
-						$sql = "UPDATE `RequerimientoActividad` SET `nombreActividad` ='".$nomact."' WHERE `idRequerimientoActividad` = ".$id_req_act."";
+						$sql = "UPDATE `requerimientoactividad` SET `nombreActividad` ='".$nomact."' WHERE `idRequerimientoActividad` = ".$id_req_act."";
 						if(!($conexion->query($sql) === true)){die("Error al insertar datos: " . $conexion->error);}
-						$sql = "UPDATE `RequerimientoActividad` SET `disciplina` ='".$disciplina."' WHERE `idRequerimientoActividad` =".$id_req_act."";
+						$sql = "UPDATE `requerimientoactividad` SET `disciplina` ='".$disciplina."' WHERE `idRequerimientoActividad` =".$id_req_act."";
 						if(!($conexion->query($sql) === true)){die("Error al insertar datos: " . $conexion->error);}
-						$sql = "UPDATE `RequerimientoActividad` SET `lugar` ='".$lugar."' WHERE `idRequerimientoActividad` =".$id_req_act."";
+						$sql = "UPDATE `requerimientoactividad` SET `lugar` ='".$lugar."' WHERE `idRequerimientoActividad` =".$id_req_act."";
 						if(!($conexion->query($sql) === true)){die("Error al insertar datos: " . $conexion->error);}
-						$sql = "UPDATE `RequerimientoActividad` SET `tipoEntrada` ='".$ticket_type."' WHERE `idRequerimientoActividad` =".$id_req_act."";
+						$sql = "UPDATE `requerimientoactividad` SET `tipoEntrada` ='".$ticket_type."' WHERE `idRequerimientoActividad` =".$id_req_act."";
 						if(!($conexion->query($sql) === true)){die("Error al insertar datos: " . $conexion->error);}
-                        $sql = "UPDATE `RequerimientoActividad` SET `costo` ='".$costo."' WHERE `idRequerimientoActividad` =".$id_req_act."";
+                        $sql = "UPDATE `requerimientoactividad` SET `costo` ='".$costo."' WHERE `idRequerimientoActividad` =".$id_req_act."";
                         if(!($conexion->query($sql) === true)){die("Error al insertar datos: " . $conexion->error);}
-						$sql = "UPDATE `RequerimientoActividad` SET `duracion` ='".$duracionh.":".$duracionm.":00' WHERE `idRequerimientoActividad` =".$id_req_act."";
+						$sql = "UPDATE `requerimientoactividad` SET `duracion` ='".$duracionh.":".$duracionm.":00' WHERE `idRequerimientoActividad` =".$id_req_act."";
 						if(!($conexion->query($sql) === true)){die("Error al insertar datos: " . $conexion->error);}
 
 
@@ -925,7 +928,7 @@
 						else{$programamano = "0";}
 
 
-						$sql = "UPDATE `requerimientoDiseno` SET `fechaEntrega` ='".$fechaentrega."' WHERE `idRequerimientoDiseno` =".$id_req_dis."";
+						$sql = "UPDATE `requerimientodiseno` SET `fechaEntrega` ='".$fechaentrega."' WHERE `idRequerimientoDiseno` =".$id_req_dis."";
 						if(!($conexion->query($sql) === true)){die("Error al insertar datos: " . $conexion->error);}
 
 						//ELIMINANDO FOTOS Y LOGOS DE BD
@@ -1019,7 +1022,7 @@
                                 if($imagenes[$i] != "")
                                 {
                                     $imgk = $imagenes[$i];
-                                    $sql = "INSERT INTO `Fotografia` (`fotografia`, `idRequerimientoDiseno`) VALUES ('".$imgk."','".$id_req_dis."')";
+                                    $sql = "INSERT INTO `fotografia` (`fotografia`, `idRequerimientoDiseno`) VALUES ('".$imgk."','".$id_req_dis."')";
                                     $resultado = $conexion->query($sql);
                                 }
                             }
@@ -1031,18 +1034,18 @@
                                 if($logos[$i] != "")
                                 {
                                     $logok = $logos[$i];
-                                    $sql = "INSERT INTO `Logotipo` (`logotipo`, `idRequerimientoDiseno`) VALUES ('".$logok."','".$id_req_dis."')";
+                                    $sql = "INSERT INTO `logotipo` (`logotipo`, `idRequerimientoDiseno`) VALUES ('".$logok."','".$id_req_dis."')";
                                     $resultado = $conexion->query($sql);
                                 }
                             }
                         }
                         //---
 						if(!($conexion->query($sql) === true)){die("Error al insertar datos: " . $conexion->error);}
-						$sql = "UPDATE `requerimientoDiseno` SET `semblanzaCompania` ='".utf8_encode($semblanzacom)."' WHERE `idRequerimientoDiseno` =".$id_req_dis."";
+						$sql = "UPDATE `requerimientodiseno` SET `semblanzaCompania` ='".utf8_encode($semblanzacom)."' WHERE `idRequerimientoDiseno` =".$id_req_dis."";
 						if(!($conexion->query($sql) === true)){die("Error al insertar datos: " . $conexion->error);}
-						$sql = "UPDATE `requerimientoDiseno` SET `semblanzaActividad` ='".utf8_encode($semblanzaact)."' WHERE `idRequerimientoDiseno` =".$id_req_dis."";
+						$sql = "UPDATE `requerimientodiseno` SET `semblanzaActividad` ='".utf8_encode($semblanzaact)."' WHERE `idRequerimientoDiseno` =".$id_req_dis."";
 						if(!($conexion->query($sql) === true)){die("Error al insertar datos: " . $conexion->error);}
-						$sql = "UPDATE `requerimientoDiseno` SET `programaMano` ='".$programamano."' WHERE `idRequerimientoDiseno` =".$id_req_dis."";
+						$sql = "UPDATE `requerimientodiseno` SET `programaMano` ='".$programamano."' WHERE `idRequerimientoDiseno` =".$id_req_dis."";
 						if(!($conexion->query($sql) === true)){die("Error al insertar datos: " . $conexion->error);}
 
 						//:::::::::::::::::::::::::REQ TECNICO:::::::::::::::::::::::::::::::::
@@ -1064,11 +1067,11 @@
                             $direccionPdf = $tech_pdf;
                         }
 
-                        $sql = "UPDATE `requerimientoTecnico` SET `direccionPdf` ='".$direccionPdf."' WHERE `idRequerimientoTecnico` =".utf8_encode($id_req_tec)."";
+                        $sql = "UPDATE `requerimientotecnico` SET `direccionPdf` ='".$direccionPdf."' WHERE `idRequerimientoTecnico` =".utf8_encode($id_req_tec)."";
                             if(!($conexion->query($sql) === true)){die("Error al insertar datos: " . $conexion->error);}
 
 
-						$sql = "UPDATE `requerimientoTecnico` SET `requerimiento` ='".$requerimientotecnico."' WHERE `idRequerimientoTecnico` =".utf8_encode($id_req_tec)."";
+						$sql = "UPDATE `requerimientotecnico` SET `requerimiento` ='".$requerimientotecnico."' WHERE `idRequerimientoTecnico` =".utf8_encode($id_req_tec)."";
 						if(!($conexion->query($sql) === true)){die("Error al insertar datos: " . $conexion->error);}
 
 						//:::::::::::::::::::::::::REQ PAGO:::::::::::::::::::::::::::::::::
@@ -1085,11 +1088,11 @@
 							$fechapago=$_POST['fechapago'];
 						}else $fechapago="";
 
-						$sql = "UPDATE `requerimientoPago` SET `requerimiento` ='".utf8_encode($requerimientos)."' WHERE `idRequerimientoPago` =".$id_req_pago."";
+						$sql = "UPDATE `requerimientopago` SET `requerimiento` ='".utf8_encode($requerimientos)."' WHERE `idRequerimientoPago` =".$id_req_pago."";
 						if(!($conexion->query($sql) === true)){die("Error al insertar datos: " . $conexion->error);}
-						$sql = "UPDATE `requerimientoPago` SET `fechaDocumentacion` ='".$fecha."' WHERE `idRequerimientoPago` =".$id_req_pago."";
+						$sql = "UPDATE `requerimientopago` SET `fechaDocumentacion` ='".$fecha."' WHERE `idRequerimientoPago` =".$id_req_pago."";
 						if(!($conexion->query($sql) === true)){die("Error al insertar datos: " . $conexion->error);}
-						$sql = "UPDATE `requerimientoPago` SET `fechaTentativa` ='".$fechapago."' WHERE `idRequerimientoPago` =".$id_req_pago."";
+						$sql = "UPDATE `requerimientopago` SET `fechaTentativa` ='".$fechapago."' WHERE `idRequerimientoPago` =".$id_req_pago."";
 						if(!($conexion->query($sql) === true)){die("Error al insertar datos: " . $conexion->error);}
 
 						//:::::::::::::::::::::::::FASE 2:::::::::::::::::::::::::::::::::
@@ -1143,35 +1146,35 @@
                         }
                         else $invitacion = 0;
 						
-						$sql = "UPDATE `Fase2` SET `nombreDisenador` ='".$nombrediseñador."' WHERE `idFase2` =".$id_f2."";
+						$sql = "UPDATE `fase2` SET `nombreDisenador` ='".$nombrediseñador."' WHERE `idFase2` =".$id_f2."";
 						if(!($conexion->query($sql) === true)){die("Error al insertar datos: " . $conexion->error);}
-						$sql = "UPDATE `Fase2` SET `fechaentra` ='".$entregaaldiseñador."' WHERE `idFase2` =".$id_f2."";
+						$sql = "UPDATE `fase2` SET `fechaentra` ='".$entregaaldiseñador."' WHERE `idFase2` =".$id_f2."";
 						if(!($conexion->query($sql) === true)){die("Error al insertar datos: " . $conexion->error);}
-						$sql = "UPDATE `Fase2` SET `fotos` ='".$fotos."' WHERE `idFase2` =".$id_f2."";
+						$sql = "UPDATE `fase2` SET `fotos` ='".$fotos."' WHERE `idFase2` =".$id_f2."";
 						if(!($conexion->query($sql) === true)){die("Error al insertar datos: " . $conexion->error);}
-						$sql = "UPDATE `Fase2` SET `vineta` ='".$vineta."' WHERE `idFase2` =".$id_f2."";
+						$sql = "UPDATE `fase2` SET `vineta` ='".$vineta."' WHERE `idFase2` =".$id_f2."";
 						if(!($conexion->query($sql) === true)){die("Error al insertar datos: " . $conexion->error);}
-						$sql = "UPDATE `Fase2` SET `logos` ='".$logos."' WHERE `idFase2` =".$id_f2."";
+						$sql = "UPDATE `fase2` SET `logos` ='".$logos."' WHERE `idFase2` =".$id_f2."";
 						if(!($conexion->query($sql) === true)){die("Error al insertar datos: " . $conexion->error);}
-						$sql = "UPDATE `Fase2` SET `lugar` ='".$lugardiseno."' WHERE `idFase2` =".$id_f2."";
+						$sql = "UPDATE `fase2` SET `lugar` ='".$lugardiseno."' WHERE `idFase2` =".$id_f2."";
 						if(!($conexion->query($sql) === true)){die("Error al insertar datos: " . $conexion->error);}
-						$sql = "UPDATE `Fase2` SET `fecha` ='".$fecha."' WHERE `idFase2` =".$id_f2."";
+						$sql = "UPDATE `fase2` SET `fecha` ='".$fecha."' WHERE `idFase2` =".$id_f2."";
 						if(!($conexion->query($sql) === true)){die("Error al insertar datos: " . $conexion->error);}
-						$sql = "UPDATE `Fase2` SET `hora` ='".$Hora."' WHERE `idFase2` =".$id_f2."";
+						$sql = "UPDATE `fase2` SET `hora` ='".$Hora."' WHERE `idFase2` =".$id_f2."";
 						if(!($conexion->query($sql) === true)){die("Error al insertar datos: " . $conexion->error);}
-						$sql = "UPDATE `Fase2` SET `leyenda` ='".$leyenda."' WHERE `idFase2` =".$id_f2."";
+						$sql = "UPDATE `fase2` SET `leyenda` ='".$leyenda."' WHERE `idFase2` =".$id_f2."";
 						if(!($conexion->query($sql) === true)){die("Error al insertar datos: " . $conexion->error);}
-						$sql = "UPDATE `Fase2` SET `fechasalida` ='".$fechaentrega."' WHERE `idFase2` =".$id_f2."";
+						$sql = "UPDATE `fase2` SET `fechasalida` ='".$fechaentrega."' WHERE `idFase2` =".$id_f2."";
 						if(!($conexion->query($sql) === true)){die("Error al insertar datos: " . $conexion->error);}
-						$sql = "UPDATE `Fase2` SET `cartel` ='".$cartel."' WHERE `idFase2` =".$id_f2."";
+						$sql = "UPDATE `fase2` SET `cartel` ='".$cartel."' WHERE `idFase2` =".$id_f2."";
 						if(!($conexion->query($sql) === true)){die("Error al insertar datos: " . $conexion->error);}
-						$sql = "UPDATE `Fase2` SET `web` ='".$web."' WHERE `idFase2` =".$id_f2."";
+						$sql = "UPDATE `fase2` SET `web` ='".$web."' WHERE `idFase2` =".$id_f2."";
 						if(!($conexion->query($sql) === true)){die("Error al insertar datos: " . $conexion->error);}
-						$sql = "UPDATE `Fase2` SET `cortesias` ='".$cortesias."' WHERE `idFase2` =".$id_f2."";
+						$sql = "UPDATE `fase2` SET `cortesias` ='".$cortesias."' WHERE `idFase2` =".$id_f2."";
 						if(!($conexion->query($sql) === true)){die("Error al insertar datos: " . $conexion->error);}
-						$sql = "UPDATE `Fase2` SET `programa` ='".$programa."' WHERE `idFase2` =".$id_f2."";
+						$sql = "UPDATE `fase2` SET `programa` ='".$programa."' WHERE `idFase2` =".$id_f2."";
 						if(!($conexion->query($sql) === true)){die("Error al insertar datos: " . $conexion->error);}
-						$sql = "UPDATE `Fase2` SET `invitacion` ='".$invitacion."' WHERE `idFase2` =".$id_f2."";
+						$sql = "UPDATE `fase2` SET `invitacion` ='".$invitacion."' WHERE `idFase2` =".$id_f2."";
 						if(!($conexion->query($sql) === true)){die("Error al insertar datos: " . $conexion->error);}
 
 						//:::::::::::::::::::::::::CARTELES Y CORTESIAS:::::::::::::::::::::::::::::::::
@@ -1183,19 +1186,19 @@
    		             	$invitacionf = $_POST['invitacionfecha'];
    			            $volante = $_POST['volante'];
 
-   			            $sql= "UPDATE `CartelyCortesias` SET `digital` ='".$digital."' WHERE `idCartelyCortesias` =".$id_cartel."";
+   			            $sql= "UPDATE `cartelycortesias` SET `digital` ='".$digital."' WHERE `idCartelyCortesias` =".$id_cartel."";
 						if(!($conexion->query($sql) === true)){die("Error al insertar datos: " . $conexion->error);}
-						$sql= "UPDATE `CartelyCortesias` SET `offset` ='".$offset."' WHERE `idCartelyCortesias` =".$id_cartel."";
+						$sql= "UPDATE `cartelycortesias` SET `offset` ='".$offset."' WHERE `idCartelyCortesias` =".$id_cartel."";
 						if(!($conexion->query($sql) === true)){die("Error al insertar datos: " . $conexion->error);}
-						$sql= "UPDATE `CartelyCortesias` SET `serigrafia` ='".$serigrafia."' WHERE `idCartelyCortesias` =".$id_cartel."";
+						$sql= "UPDATE `cartelycortesias` SET `serigrafia` ='".$serigrafia."' WHERE `idCartelyCortesias` =".$id_cartel."";
 						if(!($conexion->query($sql) === true)){die("Error al insertar datos: " . $conexion->error);}
-						$sql= "UPDATE `CartelyCortesias` SET `fuera` ='".$fuera."' WHERE `idCartelyCortesias` =".$id_cartel."";
+						$sql= "UPDATE `cartelycortesias` SET `fuera` ='".$fuera."' WHERE `idCartelyCortesias` =".$id_cartel."";
 						if(!($conexion->query($sql) === true)){die("Error al insertar datos: " . $conexion->error);}
-						$sql= "UPDATE `CartelyCortesias` SET `entregaprograma` ='".$programaf."' WHERE `idCartelyCortesias` =".$id_cartel."";
+						$sql= "UPDATE `cartelycortesias` SET `entregaprograma` ='".$programaf."' WHERE `idCartelyCortesias` =".$id_cartel."";
 						if(!($conexion->query($sql) === true)){die("Error al insertar datos: " . $conexion->error);}
-						$sql= "UPDATE `CartelyCortesias` SET `invitacion` ='".$invitacionf."' WHERE `idCartelyCortesias` =".$id_cartel."";
+						$sql= "UPDATE `cartelycortesias` SET `invitacion` ='".$invitacionf."' WHERE `idCartelyCortesias` =".$id_cartel."";
 						if(!($conexion->query($sql) === true)){die("Error al insertar datos: " . $conexion->error);}
-						$sql= "UPDATE `CartelyCortesias` SET `volante` ='".$volante."' WHERE `idCartelyCortesias` =".$id_cartel."";
+						$sql= "UPDATE `cartelycortesias` SET `volante` ='".$volante."' WHERE `idCartelyCortesias` =".$id_cartel."";
 						if(!($conexion->query($sql) === true)){die("Error al insertar datos: " . $conexion->error);}
 
 						//:::::::::::::::::::::::::TEXTOS AL CORR:::::::::::::::::::::::::::::::::
@@ -1204,18 +1207,18 @@
                 		$nombre = utf8_decode($_POST['nombre']);
                 		$fechaentrega = $_POST['entregacorrector'];
 
-                		$sql= "UPDATE `Corrector` SET `fechaEntra` ='".$fechaentrega."' WHERE `idCorrector` =".$id_corrector."";
+                		$sql= "UPDATE `corrector` SET `fechaEntra` ='".$fechaentrega."' WHERE `idCorrector` =".$id_corrector."";
 						if(!($conexion->query($sql) === true)){die("Error al insertar datos: " . $conexion->error);}
-						$sql= "UPDATE `Corrector` SET `nombreCorrector` ='".$nombre."' WHERE `idCorrector` =".$id_corrector."";
+						$sql= "UPDATE `corrector` SET `nombreCorrector` ='".$nombre."' WHERE `idCorrector` =".$id_corrector."";
 						if(!($conexion->query($sql) === true)){die("Error al insertar datos: " . $conexion->error);}
-						$sql= "UPDATE `Corrector` SET `fechaSale` ='".$fechacorrector."' WHERE `idCorrector` =".$id_corrector."";
+						$sql= "UPDATE `corrector` SET `fechaSale` ='".$fechacorrector."' WHERE `idCorrector` =".$id_corrector."";
 						if(!($conexion->query($sql) === true)){die("Error al insertar datos: " . $conexion->error);}
 
 						//:::::::::::::::::::::::::FASE 3:::::::::::::::::::::::::::::::::
 
 						$difusion = $_POST['fechadifusion'];
 
-						$sql= "UPDATE `Difusion` SET `fechaDifusion` ='".$difusion."' WHERE `idDifusion` =".$id_f3."";
+						$sql= "UPDATE `difusion` SET `fechaDifusion` ='".$difusion."' WHERE `idDifusion` =".$id_f3."";
 						if(!($conexion->query($sql) === true)){die("Error al insertar datos: " . $conexion->error);}
                         $conexion->close();
 

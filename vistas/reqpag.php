@@ -66,32 +66,32 @@
 					}else $fechapago="";
 					$mysqli = new DBA();
                 	$conexion = $mysqli->connect();
-					$sqlreqpag = "INSERT INTO `requerimientoPago`(`requerimiento`, `fechaDocumentacion`, `fechaTentativa`) VALUES ('$requerimientos','$fecha','$fechapago')";
+					$sqlreqpag = "INSERT INTO `requerimientopago`(`requerimiento`, `fechaDocumentacion`, `fechaTentativa`) VALUES ('$requerimientos','$fecha','$fechapago')";
 					$resultadoreqpag = $conexion->query($sqlreqpag);
 					if($resultadoreqpag)
 					{
 						//trae el id del ultimo insert de requerimientos de programacion
-						$getidprogramacion = "SELECT MAX(idRequerimientoActividad) as id FROM `requerimientoActividad`";
+						$getidprogramacion = "SELECT MAX(idRequerimientoActividad) as id FROM `requerimientoactividad`";
 						$resprogramacion = $conexion->query($getidprogramacion);
 						$objetoidprogramacion = $resprogramacion->fetch_assoc();
 						$idprogramacion = $objetoidprogramacion['id'];
 						//trae el id del ultimo insert de requerimientos de diseño
-						$getiddiseño =  "SELECT MAX(idRequerimientoDiseno) as id FROM `requerimientoDiseno`";
+						$getiddiseño =  "SELECT MAX(idRequerimientoDiseno) as id FROM `requerimientodiseno`";
 						$resdiseno =  $conexion->query($getiddiseño);
 						$objetoiddiseño = $resdiseno->fetch_assoc();
 						$iddiseño = $objetoiddiseño['id'];
 						//trae el id del ultimo insert de requerimientos técnicos
-						$getidtecnico =  "SELECT MAX(idRequerimientoTecnico) as id FROM `requerimientoTecnico`";
+						$getidtecnico =  "SELECT MAX(idRequerimientoTecnico) as id FROM `requerimientotecnico`";
 						$restecnico =  $conexion->query($getidtecnico);
 						$objetoidtecnico = $restecnico->fetch_assoc();
 						$idtecnico = $objetoidtecnico['id'];
 						//trae el id del ultimo insert de requerimientos para pagos
-						$getidpagos =  "SELECT MAX(idRequerimientoPago) as id FROM `requerimientoPago`";
+						$getidpagos =  "SELECT MAX(idRequerimientoPago) as id FROM `requerimientopago`";
 						$respago =  $conexion->query($getidpagos);
 						$objetoidpago = $respago->fetch_assoc();
 						$idpago = $objetoidpago['id'];
 						//inset que junta todas las tablas de la fase de programacion
-						$sqlprogramacion = "INSERT INTO `Programacion`(`idRequerimientoActividad`, `idRequerimientoDiseno`, `idRequerimientoTecnico`, `idRequerimientoPago`) VALUES ('$idprogramacion','$iddiseño','$idtecnico','$idpago')";
+						$sqlprogramacion = "INSERT INTO `programacion`(`idRequerimientoActividad`, `idRequerimientoDiseno`, `idRequerimientoTecnico`, `idRequerimientoPago`) VALUES ('$idprogramacion','$iddiseño','$idtecnico','$idpago')";
 						$resultadofusion = $conexion->query($sqlprogramacion);
 
 						

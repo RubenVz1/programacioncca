@@ -37,11 +37,11 @@
             {
                 $id = $_GET['id'];
                 $query = $db->connect()->prepare("SELECT *
-                                                  FROM Actividad a, Programacion b, Diseno c, Difusion d, 
-                                                  requerimientoActividad e, requerimientoDiseno f,
-                                                  requerimientoTecnico g, requerimientoPago h, 
-                                                  Fase2 i, CartelyCortesias j,
-                                                  Corrector k
+                                                  FROM actividad a, programacion b, diseno c, difusion d, 
+                                                  requerimientoactividad e, requerimientodiseno f,
+                                                  requerimientotecnico g, requerimientopago h, 
+                                                  fase2 i, cartelycortesias j,
+                                                  corrector k
                                                   WHERE a.idProgramacion = b.idProgramacion
                                                   AND a.idDiseno = c.iddiseno
                                                   AND a.idDifusion = d.idDifusion
@@ -68,7 +68,7 @@
                     echo "<p>Lugar: ".$result[0][21]."</p><br>";
 
                     $query1 = $db->connect()->prepare("SELECT h.horario
-                                                       FROM Actividad a, Programacion p, requerimientoActividad r, Horario h
+                                                       FROM actividad a, programacion p, requerimientoactividad r, horario h
                                                        WHERE a.idProgramacion = p.idProgramacion
                                                        AND p.idRequerimientoActividad = r.idRequerimientoActividad
                                                        AND r.idRequerimientoActividad = h.idRequerimientoActividad 
@@ -92,7 +92,7 @@
                     echo "<h3>Requerimientos de Diseño</h3><br>";
                     echo "<p>fecha de entrega: ".$result[0][27]."</p><br>";
                     $query1 = $db->connect()->prepare("SELECT f.fotografia
-                                                      FROM Actividad a, Programacion p, requerimientoDiseno r, Fotografia f
+                                                      FROM actividad a, programacion p, requerimientodiseno r, fotografia f
                                                       WHERE a.idProgramacion = p.idProgramacion
                                                       AND p.idRequerimientoDiseno = r.idRequerimientoDiseno
                                                       AND f.idRequerimientoDiseno = r.idRequerimientoDiseno 
@@ -109,7 +109,7 @@
                             echo "<img src='../img/separador.png' height='10px'>";
                     }
                     $query2 = $db->connect()->prepare("SELECT l.logotipo
-                                                      FROM Actividad a, Programacion p, requerimientoDiseno r, Logotipo l
+                                                      FROM actividad a, programacion p, requerimientodiseno r, logotipo l
                                                       WHERE a.idProgramacion = p.idProgramacion
                                                       AND p.idRequerimientoDiseno = r.idRequerimientoDiseno
                                                       AND l.idRequerimientoDiseno = r.idRequerimientoDiseno 

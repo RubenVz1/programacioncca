@@ -19,8 +19,8 @@
 ?>
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
+	<head><meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+		
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<title>Administracion</title>
 		<link rel="stylesheet" href="../styles/adminStylo.css">
@@ -53,7 +53,7 @@
 				}
 				$db = new DB();
 			    $query = $db->connect()->prepare('SELECT a.idActividad,r.nombreActividad,r.fechaProgramacion
-			    						 		  FROM Actividad a, Programacion p, requerimientoActividad r
+			    						 		  FROM actividad a, programacion p, requerimientoactividad r
 			    						 		  WHERE a.idProgramacion = p.idProgramacion
 			    						 		  AND p.idRequerimientoActividad = r.idRequerimientoActividad');
 				$query->execute();

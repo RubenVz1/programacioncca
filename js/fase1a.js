@@ -59,12 +59,14 @@ $('#cst').change(function(){
     {
         $('#cstvalor').append("<div id='si'><p><b>Costo: </b>$</p><input type='number' name='costo' value=''><br></div>");
         $('#lbr').hide();
+        $('#cort').hide();
         $('#nobox').append("<p id='crossbox'><b> X </b></p>");
     }
     else
     {
         $('#si').remove();
         $('#lbr').show();
+        $('#cort').show();
         $('#crossbox').remove();
     }
 });
@@ -74,12 +76,27 @@ $('#lbr').change(function(){
     if($(this).is(":checked"))
     {
         $('#cst').hide();
+        $('#cort').hide();
         $('#nobox2').append("<p id='croxbox'><b> X </b></p>");
     }
     else
     {
         $('#cst').show();
+        $('#cort').show();
         $('#nobox2').remove();
+    }
+});
+
+$('#cort').change(function(){
+    if($(this).is(":checked"))
+    {
+        $('#cst').hide();
+        $('#lbr').hide();
+    }
+    else
+    {
+        $('#cst').show();
+        $('#lbr').show();
     }
 });
 

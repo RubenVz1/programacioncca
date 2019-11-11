@@ -77,7 +77,7 @@
 					$direccionPdf ="";
 				$mysqli = new DBA();
                 $conexion = $mysqli->connect();
-				$sql = "INSERT INTO `requerimientoTecnico`( `requerimiento`,`direccionPdf`) VALUES ('$requrimientotecnico','$direccionPdf')";
+				$sql = "INSERT INTO `requerimientotecnico`( `requerimiento`,`direccionPdf`) VALUES ('$requrimientotecnico','$direccionPdf')";
 				$resultado = $conexion->query($sql);
 
 				if($resultado)

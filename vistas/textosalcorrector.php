@@ -20,8 +20,8 @@
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+<head><meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Fase 2</title>
@@ -54,31 +54,31 @@
                 $fechaentrega = $_POST['entregacorrector'];
 
                 $db = new DB();
-                $query = $db->connect()->prepare("INSERT INTO `Corrector`(`fechaEntra`, `nombreCorrector`, `fechaSale`) VALUES ('$fechaentrega','$nombre','$fechacorrector')");
+                $query = $db->connect()->prepare("INSERT INTO `corrector`(`fechaEntra`, `nombreCorrector`, `fechaSale`) VALUES ('$fechaentrega','$nombre','$fechacorrector')");
                 $result = $query->execute();
 
                 $mysqli = new DBA();
                 $conexion = $mysqli->connect();
                    
                 //trae el id del ultimo insert de fase2
-				$getidprogramacion = "SELECT MAX(idFase2) as id FROM `Fase2`";
+				$getidprogramacion = "SELECT MAX(idFase2) as id FROM `fase2`";
 				$resprogramacion = $conexion->query($getidprogramacion);
 				$objetoidprogramacion = $resprogramacion->fetch_assoc();
                 $idfase2 = $objetoidprogramacion['id'];
                 
 				//trae el id del ultimo insert de cartel y cortesias
-				$getiddiseño =  "SELECT MAX(idCartelyCortesias) as id FROM `CartelyCortesias`";
+				$getiddiseño =  "SELECT MAX(idCartelyCortesias) as id FROM `cartelycortesias`";
 				$resdiseno =  $conexion->query($getiddiseño);
 				$objetoiddiseño = $resdiseno->fetch_assoc();
                 $idcartelycortesias = $objetoiddiseño['id'];
 
 				//trae el id del ultimo insert de corrector
-				$getidtecnico =  "SELECT MAX(idCorrector) as id FROM `Corrector`";
+				$getidtecnico =  "SELECT MAX(idCorrector) as id FROM `corrector`";
 				$restecnico =  $conexion->query($getidtecnico);
 				$objetoidtecnico = $restecnico->fetch_assoc();
                 $idcorrector = $objetoidtecnico['id'];
 
-                $sqlprogramacion = "INSERT INTO `Diseno`(`idFase2`, `idCartelyCortesias`, `idCorrector`) VALUES ('$idfase2','$idcartelycortesias','$idcorrector')";
+                $sqlprogramacion = "INSERT INTO `diseno`(`idFase2`, `idCartelyCortesias`, `idCorrector`) VALUES ('$idfase2','$idcartelycortesias','$idcorrector')";
 
                 $conexion->query($sqlprogramacion);
                 echo $conexion->error;  

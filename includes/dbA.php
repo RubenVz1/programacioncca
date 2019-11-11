@@ -11,8 +11,8 @@ class DBA
 	public function __construct()
 	{
 		$this->host = 'localhost';
-		$this->db = 'prueba';
-		$this->user = 'root';
+		$this->db = 'root';
+		$this->user = 'userprogramacion';
 		$this->password = 'QQWWEERR1';
 	}
 

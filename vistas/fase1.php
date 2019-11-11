@@ -55,7 +55,7 @@
 					<br>
 					<p>Tipo de entrada:</p>
 					<p>libre:</p><p id="silbr"><input id="lbr" type="checkbox" name="elibre" ></p>
-					<p>cortesia:</p><input type="checkbox" id="cort"name="ecortesia" >
+					<p>cortesia:</p><p id="sicort"><input id="cort" type="checkbox" id="cort"name="ecortesia" ></p>
 					<p>costo:</p><p id="sicst"><input type="checkbox" id="cst" name="ecosto" ></p><br>
 					<div id='cstvalor'></div>
 					<p>Duracion: </p><input type="number" id="durh" name="duracionh" min="0" max="5" step="1" value=""><p>horas</p><input type="number" id="durmin" min="0" max="60" step="5" name="duracionm" value="" ><p>minutos</p><br>
@@ -138,16 +138,16 @@
 							$duracionm = $_POST['duracionm'];
 						}
 						
-						$sql = "INSERT INTO `requerimientoActividad`(`fechaProgramacion`, `fechaEvento`, `nombreCompania`, `nombreActividad`, `disciplina`, `lugar`, `tipoEntrada`, `duracion`,`costo`,`observacion`) VALUES (CURRENT_DATE(),'".$fechaeve."','".$nomcom."','".$nomact."','".$disciplina."','".$lugar."',1,'".$duracionh.":".$duracionm.":00',".$costo.",'".utf8_decode($_POST['observacion'])."')"; 
+						$sql = "INSERT INTO `requerimientoactividad`(`fechaProgramacion`, `fechaEvento`, `nombreCompania`, `nombreActividad`, `disciplina`, `lugar`, `tipoEntrada`, `duracion`,`costo`,`observacion`) VALUES (CURRENT_DATE(),'".$fechaeve."','".$nomcom."','".$nomact."','".$disciplina."','".$lugar."',1,'".$duracionh.":".$duracionm.":00',".$costo.",'".utf8_decode($_POST['observacion'])."')"; 
 						$resultado = $conexion->query($sql);
-						$sql = "SELECT MAX(idRequerimientoActividad) as id FROM requerimientoActividad;";
+						$sql = "SELECT MAX(idRequerimientoActividad) as id FROM requerimientoactividad;";
 						$resultado = $conexion->query($sql);
 						$row = $resultado->fetch_assoc();
 						$idk = $row['id'];
 						for($i = 0; $i < $numeroHorarios; $i++)
 						{
 							$hrk = $horarios[$i];
-							$sql = "INSERT INTO `Horario`(`horario`, `idRequerimientoActividad`) VALUES ('$hrk','$idk');";
+							$sql = "INSERT INTO `horario`(`horario`, `idRequerimientoActividad`) VALUES ('$hrk','$idk');";
 							$resultado = $conexion->query($sql);
 						}
 						if($resultado)

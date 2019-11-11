@@ -1,0 +1,63 @@
+[11-Nov-2019 00:20:18 UTC] PHP Notice:  Undefined index: cartel in /home/f7rn4snycwvo/public_html/programacioncca.info/vistas/actualizacion.php on line 1120
+[11-Nov-2019 00:20:18 UTC] PHP Notice:  Undefined index: web in /home/f7rn4snycwvo/public_html/programacioncca.info/vistas/actualizacion.php on line 1125
+[11-Nov-2019 00:20:18 UTC] PHP Notice:  Undefined index: cortesias in /home/f7rn4snycwvo/public_html/programacioncca.info/vistas/actualizacion.php on line 1130
+[11-Nov-2019 00:20:18 UTC] PHP Notice:  Undefined index: programamano in /home/f7rn4snycwvo/public_html/programacioncca.info/vistas/actualizacion.php on line 1135
+[11-Nov-2019 00:20:18 UTC] PHP Notice:  Undefined index: invitacion in /home/f7rn4snycwvo/public_html/programacioncca.info/vistas/actualizacion.php on line 1140
+[11-Nov-2019 00:20:28 UTC] PHP Notice:  Undefined offset: 1 in /home/f7rn4snycwvo/public_html/programacioncca.info/vistas/actualizacion.php on line 839
+[11-Nov-2019 00:20:28 UTC] PHP Notice:  Undefined offset: 2 in /home/f7rn4snycwvo/public_html/programacioncca.info/vistas/actualizacion.php on line 839
+[11-Nov-2019 00:20:28 UTC] PHP Notice:  Undefined index: cartel in /home/f7rn4snycwvo/public_html/programacioncca.info/vistas/actualizacion.php on line 1120
+[11-Nov-2019 00:20:28 UTC] PHP Notice:  Undefined index: web in /home/f7rn4snycwvo/public_html/programacioncca.info/vistas/actualizacion.php on line 1125
+[11-Nov-2019 00:20:28 UTC] PHP Notice:  Undefined index: cortesias in /home/f7rn4snycwvo/public_html/programacioncca.info/vistas/actualizacion.php on line 1130
+[11-Nov-2019 00:20:28 UTC] PHP Notice:  Undefined index: programamano in /home/f7rn4snycwvo/public_html/programacioncca.info/vistas/actualizacion.php on line 1135
+[11-Nov-2019 00:20:28 UTC] PHP Notice:  Undefined index: invitacion in /home/f7rn4snycwvo/public_html/programacioncca.info/vistas/actualizacion.php on line 1140
+[11-Nov-2019 00:27:49 UTC] PHP Notice:  Undefined index: cartel in /home/f7rn4snycwvo/public_html/programacioncca.info/vistas/actualizacion.php on line 1123
+[11-Nov-2019 00:27:49 UTC] PHP Notice:  Undefined index: web in /home/f7rn4snycwvo/public_html/programacioncca.info/vistas/actualizacion.php on line 1128
+[11-Nov-2019 00:27:49 UTC] PHP Notice:  Undefined index: cortesias in /home/f7rn4snycwvo/public_html/programacioncca.info/vistas/actualizacion.php on line 1133
+[11-Nov-2019 00:27:49 UTC] PHP Notice:  Undefined index: programamano in /home/f7rn4snycwvo/public_html/programacioncca.info/vistas/actualizacion.php on line 1138
+[11-Nov-2019 00:27:49 UTC] PHP Notice:  Undefined index: invitacion in /home/f7rn4snycwvo/public_html/programacioncca.info/vistas/actualizacion.php on line 1143
+[11-Nov-2019 00:27:56 UTC] PHP Notice:  Undefined index: cartel in /home/f7rn4snycwvo/public_html/programacioncca.info/vistas/actualizacion.php on line 1123
+[11-Nov-2019 00:27:56 UTC] PHP Notice:  Undefined index: web in /home/f7rn4snycwvo/public_html/programacioncca.info/vistas/actualizacion.php on line 1128
+[11-Nov-2019 00:27:56 UTC] PHP Notice:  Undefined index: cortesias in /home/f7rn4snycwvo/public_html/programacioncca.info/vistas/actualizacion.php on line 1133
+[11-Nov-2019 00:27:56 UTC] PHP Notice:  Undefined index: programamano in /home/f7rn4snycwvo/public_html/programacioncca.info/vistas/actualizacion.php on line 1138
+[11-Nov-2019 00:27:56 UTC] PHP Notice:  Undefined index: invitacion in /home/f7rn4snycwvo/public_html/programacioncca.info/vistas/actualizacion.php on line 1143
+[11-Nov-2019 00:28:05 UTC] PHP Notice:  Undefined index: cartel in /home/f7rn4snycwvo/public_html/programacioncca.info/vistas/actualizacion.php on line 1123
+[11-Nov-2019 00:28:05 UTC] PHP Notice:  Undefined index: web in /home/f7rn4snycwvo/public_html/programacioncca.info/vistas/actualizacion.php on line 1128
+[11-Nov-2019 00:28:05 UTC] PHP Notice:  Undefined index: cortesias in /home/f7rn4snycwvo/public_html/programacioncca.info/vistas/actualizacion.php on line 1133
+[11-Nov-2019 00:28:05 UTC] PHP Notice:  Undefined index: programamano in /home/f7rn4snycwvo/public_html/programacioncca.info/vistas/actualizacion.php on line 1138
+[11-Nov-2019 00:28:05 UTC] PHP Notice:  Undefined index: invitacion in /home/f7rn4snycwvo/public_html/programacioncca.info/vistas/actualizacion.php on line 1143
+[11-Nov-2019 00:30:31 UTC] PHP Notice:  Undefined offset: 2 in /home/f7rn4snycwvo/public_html/programacioncca.info/vistas/actualizacion.php on line 842
+[11-Nov-2019 00:30:31 UTC] PHP Warning:  unlink(../images/5azWEQ__72464099_1097499063786587_841564): No such file or directory in /home/f7rn4snycwvo/public_html/programacioncca.info/vistas/actualizacion.php on line 952
+[11-Nov-2019 00:30:31 UTC] PHP Notice:  Undefined index: cartel in /home/f7rn4snycwvo/public_html/programacioncca.info/vistas/actualizacion.php on line 1123
+[11-Nov-2019 00:30:31 UTC] PHP Notice:  Undefined index: web in /home/f7rn4snycwvo/public_html/programacioncca.info/vistas/actualizacion.php on line 1128
+[11-Nov-2019 00:30:31 UTC] PHP Notice:  Undefined index: cortesias in /home/f7rn4snycwvo/public_html/programacioncca.info/vistas/actualizacion.php on line 1133
+[11-Nov-2019 00:30:39 UTC] PHP Notice:  Undefined offset: 2 in /home/f7rn4snycwvo/public_html/programacioncca.info/vistas/actualizacion.php on line 842
+[11-Nov-2019 00:30:39 UTC] PHP Notice:  Undefined offset: 2 in /home/f7rn4snycwvo/public_html/programacioncca.info/vistas/actualizacion.php on line 972
+[11-Nov-2019 00:30:39 UTC] PHP Warning:  unlink(): No such file or directory in /home/f7rn4snycwvo/public_html/programacioncca.info/vistas/actualizacion.php on line 972
+[11-Nov-2019 00:30:39 UTC] PHP Notice:  Undefined index: cartel in /home/f7rn4snycwvo/public_html/programacioncca.info/vistas/actualizacion.php on line 1123
+[11-Nov-2019 00:30:39 UTC] PHP Notice:  Undefined index: web in /home/f7rn4snycwvo/public_html/programacioncca.info/vistas/actualizacion.php on line 1128
+[11-Nov-2019 00:30:39 UTC] PHP Notice:  Undefined index: cortesias in /home/f7rn4snycwvo/public_html/programacioncca.info/vistas/actualizacion.php on line 1133
+[11-Nov-2019 00:31:59 UTC] PHP Notice:  Undefined offset: 2 in /home/f7rn4snycwvo/public_html/programacioncca.info/vistas/actualizacion.php on line 842
+[11-Nov-2019 00:34:23 UTC] PHP Notice:  Undefined offset: 2 in /home/f7rn4snycwvo/public_html/programacioncca.info/vistas/actualizacion.php on line 842
+[11-Nov-2019 00:34:28 UTC] PHP Notice:  Undefined offset: 2 in /home/f7rn4snycwvo/public_html/programacioncca.info/vistas/actualizacion.php on line 842
+[11-Nov-2019 00:36:00 UTC] PHP Notice:  Undefined offset: 2 in /home/f7rn4snycwvo/public_html/programacioncca.info/vistas/actualizacion.php on line 842
+[11-Nov-2019 00:36:00 UTC] PHP Warning:  unlink(../images/LZQ1dF__35483260_616308362058499_4461733): No such file or directory in /home/f7rn4snycwvo/public_html/programacioncca.info/vistas/actualizacion.php on line 952
+[11-Nov-2019 00:36:00 UTC] PHP Warning:  unlink(../images/IKhfU6__39289217_1046358652238416_884636): No such file or directory in /home/f7rn4snycwvo/public_html/programacioncca.info/vistas/actualizacion.php on line 952
+[11-Nov-2019 00:36:00 UTC] PHP Notice:  Undefined offset: 2 in /home/f7rn4snycwvo/public_html/programacioncca.info/vistas/actualizacion.php on line 972
+[11-Nov-2019 00:36:00 UTC] PHP Warning:  unlink(): No such file or directory in /home/f7rn4snycwvo/public_html/programacioncca.info/vistas/actualizacion.php on line 972
+[11-Nov-2019 00:36:00 UTC] PHP Notice:  Undefined offset: 2 in /home/f7rn4snycwvo/public_html/programacioncca.info/vistas/actualizacion.php on line 972
+[11-Nov-2019 00:36:00 UTC] PHP Warning:  unlink(): No such file or directory in /home/f7rn4snycwvo/public_html/programacioncca.info/vistas/actualizacion.php on line 972
+[11-Nov-2019 00:36:00 UTC] PHP Notice:  Undefined offset: 2 in /home/f7rn4snycwvo/public_html/programacioncca.info/vistas/actualizacion.php on line 972
+[11-Nov-2019 00:36:00 UTC] PHP Warning:  unlink(): No such file or directory in /home/f7rn4snycwvo/public_html/programacioncca.info/vistas/actualizacion.php on line 972
+[11-Nov-2019 00:36:59 UTC] PHP Notice:  Undefined offset: 2 in /home/f7rn4snycwvo/public_html/programacioncca.info/vistas/actualizacion.php on line 842
+[11-Nov-2019 00:41:24 UTC] PHP Notice:  Undefined offset: 2 in /home/f7rn4snycwvo/public_html/programacioncca.info/vistas/actualizacion.php on line 842
+[11-Nov-2019 00:41:24 UTC] PHP Notice:  Undefined offset: 2 in /home/f7rn4snycwvo/public_html/programacioncca.info/vistas/actualizacion.php on line 972
+[11-Nov-2019 00:41:24 UTC] PHP Warning:  unlink(): No such file or directory in /home/f7rn4snycwvo/public_html/programacioncca.info/vistas/actualizacion.php on line 972
+[11-Nov-2019 00:41:37 UTC] PHP Notice:  Undefined offset: 2 in /home/f7rn4snycwvo/public_html/programacioncca.info/vistas/actualizacion.php on line 842
+[11-Nov-2019 00:41:37 UTC] PHP Notice:  Undefined offset: 2 in /home/f7rn4snycwvo/public_html/programacioncca.info/vistas/actualizacion.php on line 972
+[11-Nov-2019 00:41:37 UTC] PHP Warning:  unlink(): No such file or directory in /home/f7rn4snycwvo/public_html/programacioncca.info/vistas/actualizacion.php on line 972
+[11-Nov-2019 00:41:51 UTC] PHP Notice:  Undefined offset: 2 in /home/f7rn4snycwvo/public_html/programacioncca.info/vistas/actualizacion.php on line 842
+[11-Nov-2019 00:41:51 UTC] PHP Notice:  Undefined offset: 2 in /home/f7rn4snycwvo/public_html/programacioncca.info/vistas/actualizacion.php on line 972
+[11-Nov-2019 00:41:51 UTC] PHP Warning:  unlink(): No such file or directory in /home/f7rn4snycwvo/public_html/programacioncca.info/vistas/actualizacion.php on line 972
+[11-Nov-2019 00:41:51 UTC] PHP Notice:  Undefined offset: 2 in /home/f7rn4snycwvo/public_html/programacioncca.info/vistas/actualizacion.php on line 972
+[11-Nov-2019 00:41:51 UTC] PHP Warning:  unlink(): No such file or directory in /home/f7rn4snycwvo/public_html/programacioncca.info/vistas/actualizacion.php on line 972
+[11-Nov-2019 00:42:37 UTC] PHP Notice:  Undefined offset: 2 in /home/f7rn4snycwvo/public_html/programacioncca.info/vistas/actualizacion.php on line 842

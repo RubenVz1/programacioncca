@@ -21,8 +21,8 @@
 ?>
 <!DOCTYPE html>
 <html lang = "es">
-	<head>
-		<meta charset="utf-8">
+	<head><meta http-equiv="Content-Type" content="text/html; charset=euc-jp">
+		
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<title>Fase 1</title>
 		<link href="../images/icon.ico" type="image/ico" rel="shortcut icon">
@@ -149,9 +149,9 @@
 						$programamano = "1";
 					}
 					else{$programamano = "0";}
-					$sql = "INSERT INTO `requerimientoDiseno`(`fechaEntrega`, `semblanzaCompania`, `semblanzaActividad`, `programaMano`) VALUES ('$fechaentrega','$semblanzacom','$semblanzaact','$programamano');";
+					$sql = "INSERT INTO `requerimientodiseno`(`fechaEntrega`, `semblanzaCompania`, `semblanzaActividad`, `programaMano`) VALUES ('$fechaentrega','$semblanzacom','$semblanzaact','$programamano');";
 					$resultado = $conexion->query($sql);
-					$sql = "SELECT MAX(idRequerimientoDiseno) as id FROM requerimientoDiseno;";
+					$sql = "SELECT MAX(idRequerimientoDiseno) as id FROM requerimientodiseno;";
 					$resultado = $conexion->query($sql);
 					$row = $resultado->fetch_assoc();
 					$idk = $row['id'];
@@ -161,7 +161,7 @@
 							if($imagenes[$i] == "")
 								continue;
 							$imgk = $imagenes[$i];
-							$sql = "INSERT INTO `Fotografia`(`fotografia`, `idRequerimientoDiseno`) VALUES ('$imgk','$idk');";
+							$sql = "INSERT INTO `fotografia`(`fotografia`, `idRequerimientoDiseno`) VALUES ('$imgk','$idk');";
 							$resultado = $conexion->query($sql);
 						}
 					if($numeroLogos != 0)
@@ -170,7 +170,7 @@
 							if($logos[$i] == "")
 								continue;
 							$logok = $logos[$i];
-							$sql = "INSERT INTO `Logotipo`(`logotipo`, `idRequerimientoDiseno`) VALUES ('$logok','$idk');";
+							$sql = "INSERT INTO `logotipo`(`logotipo`, `idRequerimientoDiseno`) VALUES ('$logok','$idk');";
 							$resultado = $conexion->query($sql);
 						}
 					if($resultado)
@@ -185,7 +185,7 @@
 				}
 			?>
 		</div>
-		<script src="../js/reqdiseño.js"></script>
+		<script src="../js/reqdiseno.js"></script>
 			</section>
 		</div>
 		<div id="abajo"></div>
