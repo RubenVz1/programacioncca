@@ -17,82 +17,85 @@
     	header("location: calendar.php");
     }
 ?>
-<!DOCTYPE html>
-<html lang = "es">
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<title>Fase 1</title>
-		<link href="../images/icon.ico" type="image/ico" rel="shortcut icon">
-		<script src="../js/jquery.min.js"></script>
-		<link href="http://cdn.jsdelivr.net/timepicker.js/latest/timepicker.min.css" rel="stylesheet"/>
-		<link rel="stylesheet" href="../styles/Fase1Stylo.css">
-	</head>
-	<body>
-	<div id="arriba"></div>
-        <div id="inicioSesion">
-			<section id="cabecera">
-					<h1 id="h1tec">Requerimientos técnicos</h1>
-			</section>
-			<section id="cuerpo">
-			<form method="post" enctype="multipart/form-data">
-			<div id="reqtec">
-				<br>
-				<p>Requerimientos</p><br><br>
-				<textarea name="message" rows="5" cols="30"></textarea><br>
-				<p>Requerimientos PDF</p>
-				<input name='pdf' type='file' accept='application/pdf'>
-				<br>
-				<input type="submit" name="agrega" value="Continuar">
-				<br>
-				</form>
+<?php include 'header.php' ?>
+	<div class="container-fluid">
+		<div class="row justify-content-center my-5">
+			<div class="col-7">
+				<div class="section-menu__container">
+					<section class="section-menu__header text-center">
+						<h1>Requerimientos técnicos</h1>
+					</section>
+					<section class="section-menu__body fase-form__wrapper text-center">
+						<form method="post" enctype="multipart/form-data">
+							<p>Requerimientos</p>
+							<textarea name="message" rows="5" cols="30"></textarea>
+							<div class="mt-3">
+								<p>Requerimientos PDF</p>
+								<input name='pdf' type='file' accept='application/pdf'>
+							</div>
+							<div class="my-3">
+								<p>Requerimientos Word</p>
+								<input name='word' type='file' accept='application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/msword'>
+							</div>
+							<input class="button-golden" id='boton' type="submit" name="agrega" value="Siguiente">
+						</form>
+					</section>
+				</div>
 			</div>
-			</section>
 		</div>
-		<?php
-			function generateRandomString($length = 6)
+	</div>
+<?php include 'footer.php' ?>
+<?php
+	function generateRandomString($length = 6)
+	{
+		$possibleChars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		$id = '';
+		for($i = 0; $i < $length; $i++)
+		{
+			$rand = rand(0, strlen($possibleChars) - 1);
+			$id .= substr($possibleChars, $rand, 1);
+		}
+		return $id;
+	}
+	if(isset($_POST['agrega']))
+	{
+		if(isset($_POST['message']))
+			$requrimientotecnico = $_POST['message'];
+		else
+			$requrimientotecnico ="";
+		if($_FILES['pdf']['tmp_name'])
+		{
+			$requrimientotecnicoPdf = $_FILES['pdf']['name'];
+			$direccionPdf = "../pdfs/".generateRandomString()."__".$requrimientotecnicoPdf;
+			move_uploaded_file($_FILES['pdf']['tmp_name'],$direccionPdf);
+		}
+		else
+		{
+			$direccionPdf ="";
+		}
+		if($_FILES['word']['tmp_name'])
 			{
-				$possibleChars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-				$id = '';
-				for($i = 0; $i < $length; $i++)
-				{
-					$rand = rand(0, strlen($possibleChars) - 1);
-					$id .= substr($possibleChars, $rand, 1);
-				}
-				return $id;
+				$requrimientotecnicoPdf = $_FILES['word']['name'];
+				$direccionWord = "../words/".generateRandomString()."__".$requrimientotecnicoPdf;
+				move_uploaded_file($_FILES['word']['tmp_name'],$direccionWord);
 			}
-			if(isset($_POST['agrega']))
+			else
 			{
-				if(isset($_POST['message']))
-					$requrimientotecnico = $_POST['message'];
-				else
-					$requrimientotecnico ="";
-				if($_FILES['pdf']['tmp_name'])
-				{
-					$requrimientotecnicoPdf = $_FILES['pdf']['name'];
-					$direccionPdf = "../pdfs/".generateRandomString()."__".$requrimientotecnicoPdf;
-					move_uploaded_file($_FILES['pdf']['tmp_name'],$direccionPdf);
-				}
-				else
-					$direccionPdf ="";
-				$mysqli = new DBA();
-                $conexion = $mysqli->connect();
-				$sql = "INSERT INTO `requerimientoTecnico`( `requerimiento`,`direccionPdf`) VALUES ('$requrimientotecnico','$direccionPdf')";
-				$resultado = $conexion->query($sql);
-
-				if($resultado)
-				{
-					header("location: ../vistas/reqpag.php");
-				}
-				else
-				{
-					echo "<script>alert('error');</script>";
-					die("Error al insertar datos: " . $conexion->error);
-				}
-
+				$direccionWord ="";
 			}
-		?>
-		</div>
-		<div id="abajo"></div>
-	</body>
-</html>
+		$mysqli = new DBA();
+		$conexion = $mysqli->connect();
+		$sql = "INSERT INTO `requerimientotecnico`( `requerimiento`,`direccionPdf`,`Word`) VALUES ('$requrimientotecnico','$direccionPdf','$direccionWord')";
+		$resultado = $conexion->query($sql);
+		if($resultado)
+		{
+			echo "<script> location.href='../vistas/reqpag.php'; </script>";
+			exit;
+		}
+		else
+		{
+			echo "<script>alert('error');</script>";
+			die("Error al insertar datos: " . $conexion->error);
+		}
+	}
+?>

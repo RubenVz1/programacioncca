@@ -1,0 +1,248 @@
+body {
+    font-size: 1.171vw;
+}
+
+button:focus {
+    outline: none;
+}
+
+input:focus {
+    outline: solid #BB8800;
+}
+
+p {
+    margin-bottom: 0;
+    ;
+}
+
+h1 {
+    font-size: 2rem;
+}
+
+.button-golden {
+    background-color: #BB8800;
+    color: white!important;
+    border: inherit;
+    padding: 0.3rem 2rem;
+    margin-bottom: 0;
+    cursor: pointer;
+}
+
+.button-golden:hover {
+    text-decoration: none;
+    background-color: #BB8800;
+    color: white;
+}
+
+.main-header-logos__container {
+    background-color: #1B3D70;
+    padding: 1rem;
+}
+
+.main-header-menu__container {
+    background-color: #BB8800;
+}
+
+.main-header-menu__list {
+    list-style: none;
+    margin-bottom: 0;
+    padding: 0;
+}
+
+.main-header-menu__list li {
+    display: inline-block;
+    padding-right: 2rem;
+}
+
+.main-header-menu__list li a {
+    color: white;
+}
+
+.main-footer__container {
+    background-color: #1B3D70;
+}
+
+.main-footer__container p,
+.main-footer__container a {
+    color: white;
+    font-size: 0.85rem;
+}
+
+.footer-menu__container {
+    display: flex;
+    list-style: none;
+    justify-content: center;
+    margin-bottom: 0;
+}
+
+.footer-menu__container li {
+    background-color: #BB8800;
+    border-radius: 0.35rem;
+    margin: 0 0.7rem;
+    padding: 0 2rem;
+}
+
+.main-login__container {
+    border: solid #BB8800 0.1rem;
+}
+
+.main-login__head {
+    background-color: #BB8800;
+    color: white;
+}
+
+.main-login__body form div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-login-error {
+    color: red;
+}
+
+.user-action__container {
+    display: flex;
+    justify-content: space-between;
+    background-color: #1B3D70;
+}
+
+.user-action__container p {
+    color: white;
+}
+
+.section-menu__container {
+    border: solid #BB8800 0.1rem;
+}
+
+.section-menu__header {
+    background-color: #BB8800;
+}
+
+.section-menu__header h1 {
+    color: white;
+}
+
+.section-menu__body ul {
+    list-style: none;
+}
+
+.section-menu__body a {
+    color: black;
+}
+
+.section-menu__body a:hover {
+    text-decoration: none;
+    color: #BB8800;
+}
+
+.calendar-table__container,
+.calendar-table__container tr,
+.calendar-table__container th {
+    border: black solid 0.1rem;
+}
+
+.calendar-table__container tbody,
+.calendar-table__container tbody tr,
+.calendar-table__container tbody th,
+.calendar-table__container tbody td {
+    border: #BB8800 solid 0.1rem;
+}
+
+.calendar-table__container caption {
+    display: table-caption;
+    caption-side: top;
+    background-color: #BB8800;
+    text-align: center;
+    color: white;
+}
+
+.calendar-table__container thead {
+    background-color: #BB8800;
+    color: white;
+    text-align: center;
+}
+
+.calendar-table__container thead {
+    background-color: #BB8800;
+}
+
+.calendar-table__container th {
+    width: 2rem;
+    padding: 1rem 0.2rem;
+}
+
+.calendar-table__container th p {
+    text-align: center;
+}
+
+.calendar-table__container thead th a {
+    color: white;
+}
+
+.calendar-table__container tbody th a,
+.calendar-table__container tbody td a {
+    text-align: center;
+    display: block;
+    color: #BB8800;
+}
+
+.calendar-table__container tbody th a:hover,
+.calendar-table__container tbody td a:hover {
+    text-decoration: none;
+}
+
+.calendar-table__container .today {
+    background-color: #d8d8d8;
+}
+
+.calendar-info__container {
+    border: solid 0.1rem #BB8800;
+}
+
+.calendar-info__head {
+    background-color: #BB8800;
+    text-align: center;
+    color: white;
+    padding: 0.3rem 0;
+}
+
+.calendar-info__body {
+    padding: 1rem;
+}
+
+.activity__container p {
+    margin-bottom: 1rem;
+}
+
+.activity-menu__container {
+    padding: 1rem;
+}
+
+.fase-form__wrapper {
+    padding: 1rem 0.8rem;
+}
+
+.fase-input__container {
+    margin-bottom: 0.5rem;
+    display: grid;
+    grid-template-columns: max-content auto;
+}
+
+.fase-input__container p {
+    margin-right: 0.5rem;
+}
+
+.hour-element__container {
+    display: flex;
+    justify-content: center;
+}
+
+.hour-element__container p {
+    margin: 0 1rem;
+}
+
+.check-input__container {
+    grid-template-columns: max-content max-content;
+    justify-content: center;
+}

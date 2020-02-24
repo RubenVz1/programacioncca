@@ -16,31 +16,23 @@
     	header("location: calendar.php");
     }
 ?>
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<title>Home</title>
-		<link rel="stylesheet" href="../styles/homeStylo.css">
-		<link href="../images/icon.ico" type="image/ico" rel="shortcut icon">
-	</head>
-	<body>
-		<header>
-			<?php echo "<p>Bienvenido ".$user->getNombre()." con cargo ".$user->getCargo()."</p>"?>
-			<a href="../includes/logout.php">Cerrar sesion</a>
-		</header>
-		<section id="ventana">
-			<section id="cabecera">
-				<h1>Menu</h1>
-			</section>
-			<ul id="menu">
-				<li><a href="../vistas/calendar.php">Calendario</a></li>
-				<li><a href="../vistas/administracion.php">Administracion de Actividades</a></li>
-				<li><a href="../vistas/fase1.php">Nueva actividad</a></li>
-			</ul>
-		</section>
-		<footer>
-		</footer>
-	</body>
-</html>
+<?php include 'header.php' ?>
+	<div class="container-fluid px-0">
+		<div class="row justify-content-center py-5">
+			<div class="col-4">
+				<section class="section-menu__container">
+					<div class="section-menu__header text-center">
+						<h1>Menu</h1>
+					</div>
+					<div  class="section-menu__body text-center">
+						<ul>
+							<li class="my-3"><a href="../vistas/calendar.php">Calendario</a></li>
+							<li class="my-3"><a href="../vistas/administracion.php">Administracion de Actividades</a></li>
+							<li class="my-3"><a href="../vistas/fase1.php">Nueva actividad</a></li>
+						</ul>
+					</div>
+				</section>
+			</div>
+		</div>
+	</div>
+<?php include 'footer.php' ?>

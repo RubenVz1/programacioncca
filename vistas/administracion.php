@@ -17,79 +17,71 @@
     	header("location: calendar.php");
     }
 ?>
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<title>Administracion</title>
-		<link rel="stylesheet" href="../styles/adminStylo.css">
-		<link href="../images/icon.ico" type="image/ico" rel="shortcut icon">
-
-	</head>
-	<body>
-		<header>
-			<?php echo "<p>Bienvenido ".$user->getNombre()." con cargo ".$user->getCargo()."</p>"?>
-			<a id = "botonRegresar" href="home.php">Regresar</a>
-			<a id = "botonSalir" href="../includes/logout.php">Cerrar sesion</a>
-		</header>
-		<div id="datos">
-			<table border="1" id="tabla">
-				<?php
-				if(isset($_GET['id']))
-				{
-					echo "
-						<script language='javascript'>
-						function redireccion()
-						{
-							var condicion = confirm('¿Estas seguro de eliminar esta actividad?');
-							if(condicion)
+<?php include 'header.php' ?>
+	<div class="container-fluid">
+		<div class="row justify-content-center my-5">
+			<div class="col-10">
+				<table class="calendar-table__container w-100 text-center">
+					<?php
+					if(isset($_GET['id']))
+					{
+						echo "
+							<script language='javascript'>
+							function redireccion()
 							{
-								window.location='delete.php?id=".$_GET['id']."';
+								var condicion = confirm('¿Estas seguro de eliminar esta actividad?');
+								if(condicion)
+								{
+									window.location='delete.php?id=".$_GET['id']."';
+								}
 							}
-						}
-						window.onload = redireccion; 
-						</script>";
-				}
-				$db = new DB();
-			    $query = $db->connect()->prepare('SELECT a.idActividad,r.nombreActividad,r.fechaProgramacion
-			    						 		  FROM Actividad a, Programacion p, requerimientoActividad r
-			    						 		  WHERE a.idProgramacion = p.idProgramacion
-			    						 		  AND p.idRequerimientoActividad = r.idRequerimientoActividad');
-				$query->execute();
-				$query->setFetchMode(PDO::FETCH_NUM);
-			    $result = $query->fetchAll();
-			    if($query->rowCount())
-				{
-					echo "<section id='cabecera'>
+							window.onload = redireccion; 
+							</script>";
+					}
+					$db = new DB();
+					$query = $db->connect()->prepare('SELECT a.idActividad,r.nombreCompania,r.fechaEvento
+													FROM actividad a, programacion p, requerimientoactividad r
+													WHERE a.idProgramacion = p.idProgramacion
+													AND p.idRequerimientoActividad = r.idRequerimientoActividad');
+					$query->execute();
+					$query->setFetchMode(PDO::FETCH_NUM);
+					$result = $query->fetchAll();
+					if($query->rowCount())
+					{
+						echo "
+						<caption>
 							<h1>Eventos</h1>
-						  </section>
+						</caption>
+						<thead>
 							<tr>
-								<th>Nombre del evento</th>
+								<th>Compañia</th>
 								<th>Fecha del evento</th>
 								<th>Informacion</th>
 								<th>Actualizar</th>
 								<th>Eliminar</th>
-							</tr>";
-					for($i = 0 ; $i < count($result) ; $i++)
-					{
-						echo "<tr>";
-					    for($j = 1 ; $j < 3 ; $j++)
-					    {
-					    	echo "<td>".$result[$i][$j]."</td>";
-					    }
-					    echo "<td><a href='activity.php?id=".$result[$i][0]."'>Informacion</a></td>";
-					    echo "<td><a href='actualizacion.php?id=".$result[$i][0]."'>Actualizar</a></td>";
-					    echo "<td><a href='administracion.php?id=".$result[$i][0]."'>Eliminar</a></td>";
-					    echo "</tr>";
+							</tr>
+						</thead>
+						";
+						for($i = 0 ; $i < count($result) ; $i++)
+						{
+							echo "<tr>";
+							for($j = 1 ; $j < 3 ; $j++)
+							{
+								echo "<td>".$result[$i][$j]."</td>";
+							}
+							echo "<td><a href='activityadmin.php?id=".$result[$i][0]."'>Informacion</a></td>";
+							echo "<td><a href='actualizacion.php?id=".$result[$i][0]."'>Actualizar</a></td>";
+							echo "<td><a href='administracion.php?id=".$result[$i][0]."'>Eliminar</a></td>";
+							echo "</tr>";
+						}
 					}
-				}
-			    else
-			    {
-			    	echo "No hay actividades registradas";
-			    }
-				?>
-			</table>
+					else
+					{
+						echo "No hay actividades registradas";
+					}
+					?>
+				</table>
+			</div>
 		</div>
-	</body>
-</html>
+	</div>
+<?php include 'footer.php' ?>

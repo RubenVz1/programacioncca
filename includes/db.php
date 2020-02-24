@@ -10,11 +10,11 @@ class DB
 
 	public function __construct()
 	{
-		
+
 		$this->host = 'localhost';
-		$this->db = 'prueba';
+		$this->db = 'BDprogramacioncaa';
 		$this->user = 'root';
-		$this->password = 'QQWWEERR1';
+		$this->password = '';
 		$this->charset = 'utf8mb4';
 	}
 
@@ -26,7 +26,7 @@ class DB
 			$options = [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
 						PDO::ATTR_EMULATE_PREPARES => false,];
 			$pdo = new PDO($connection,$this->user,$this->password,$options);
-			
+
 			return $pdo;
 		}
 		catch(PDOException $e)

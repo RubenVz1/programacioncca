@@ -5,7 +5,7 @@ if(isset($_GET['id']))
 {
 //Elimina las fotografias
 	$query2 = $db->connect()->prepare('SELECT h.fotografia
-	FROM Actividad a, Programacion p,requerimientodiseno i, Fotografia h
+	FROM actividad a, programacion p,requerimientodiseno i, fotografia h
 	WHERE a.idProgramacion = p.idProgramacion 
     AND p.idRequerimientoDiseno = i.idRequerimientodiseno
     AND i.idRequerimientodiseno = h.idRequerimientoDiseno
@@ -18,7 +18,7 @@ if(isset($_GET['id']))
 	}
 //elimina los logotipos
 	$query3 = $db->connect()->prepare("SELECT l.logotipo
-                                                      FROM Actividad a, Programacion p, requerimientoDiseno r, Logotipo l
+                                                      FROM actividad a, programacion p, requerimientodiseno r, logotipo l
                                                       WHERE a.idProgramacion = p.idProgramacion
                                                       AND p.idRequerimientoDiseno = r.idRequerimientoDiseno
                                                       AND l.idRequerimientoDiseno = r.idRequerimientoDiseno 
@@ -32,7 +32,7 @@ if(isset($_GET['id']))
 	
 //elimina los pdfs
 $query4 = $db->connect()->prepare("SELECT r.direccionPdf
-FROM Actividad a, Programacion p, requerimientotecnico r
+FROM actividad a, programacion p, requerimientotecnico r
 WHERE a.idProgramacion = p.idProgramacion
 AND p.idRequerimientoTecnico = r.idRequerimientoTecnico
 AND a.idActividad =".$_GET['id']);
@@ -44,7 +44,7 @@ for($i=0;$i<count($resultActividad4);$i++)
 	}
 //elimina toda la actividad de la BD
 	$query = $db->connect()->prepare('SELECT a.idProgramacion, a.idDiseno, a.idDifusion, p.idRequerimientoActividad, q.idDiseno,w.idDifusion,p.idRequerimientoDiseno, p.idRequerimientoTecnico, p.idRequerimientoPago, x.idCartelyCortesias, y.idCorrector,z.idFase2,h.idHorario,t.idRequerimientotecnico
-	FROM Actividad a, Programacion p, Difusion w, Diseno q, Cartelycortesias x, Corrector y,fase2 z,horario h,requerimientotecnico t
+	FROM actividad a, programacion p, difusion w, diseno q, cartelycortesias x, corrector y,fase2 z,horario h,requerimientotecnico t
 	WHERE a.idProgramacion = p.idProgramacion 
 	AND a.idDifusion = w.idDifusion 
 	AND a.idDiseno = q.idDiseno 
@@ -58,7 +58,7 @@ for($i=0;$i<count($resultActividad4);$i++)
 	$resultActividad= $query->fetchAll();
 	if($query->rowCount())
 	{
-		$query = $db->connect()->prepare('DELETE FROM horario WHERE idRequerimientoActividad ='.$resultActividad[0][12]);
+		$query = $db->connect()->prepare('DELETE FROM horario WHERE idRequerimientoActividad ='.$resultActividad[0][3]);
 		$query->execute();
 		$query = $db->connect()->prepare('DELETE FROM fase2 WHERE idFase2 ='.$resultActividad[0][11]);
 		$query->execute();
@@ -66,23 +66,23 @@ for($i=0;$i<count($resultActividad4);$i++)
 		$query->execute();
 		$query = $db->connect()->prepare('DELETE FROM cartelycortesias WHERE idCartelycortesias ='.$resultActividad[0][9]);
 		$query->execute();
-		$query = $db->connect()->prepare('DELETE FROM requerimientoPago WHERE idRequerimientoPago ='.$resultActividad[0][8]);
+		$query = $db->connect()->prepare('DELETE FROM requerimientopago WHERE idRequerimientoPago ='.$resultActividad[0][8]);
 		$query->execute();
-		$query = $db->connect()->prepare('DELETE FROM requerimientoTecnico WHERE idRequerimientoTecnico ='.$resultActividad[0][3]);
+		$query = $db->connect()->prepare('DELETE FROM requerimientotecnico WHERE idRequerimientoTecnico ='.$resultActividad[0][7]);
 		$query->execute();
-		$query = $db->connect()->prepare('DELETE FROM requerimientoDiseno WHERE idRequerimientoDiseno ='.$resultActividad[0][6]);
+		$query = $db->connect()->prepare('DELETE FROM requerimientodiseno WHERE idRequerimientoDiseno ='.$resultActividad[0][6]);
 		$query->execute();
 		$query = $db->connect()->prepare('DELETE FROM difusion WHERE idDifusion ='.$resultActividad[0][5]);
 		$query->execute();
 		$query = $db->connect()->prepare('DELETE FROM diseno WHERE idDiseno ='.$resultActividad[0][1]);
 		$query->execute();
-		$query = $db->connect()->prepare('DELETE FROM requerimientotecnico WHERE idRequerimientotecnico ='.$resultActividad[0][13]);
+		$query = $db->connect()->prepare('DELETE FROM requerimientotecnico WHERE idRequerimientotecnico ='.$resultActividad[0][7]);
 		$query->execute();
-		$query = $db->connect()->prepare('DELETE FROM requerimientoActividad WHERE idRequerimientoActividad ='.$resultActividad[0][3]);
+		$query = $db->connect()->prepare('DELETE FROM requerimientoactividad WHERE idRequerimientoActividad ='.$resultActividad[0][3]);
 		$query->execute();
-		$query = $db->connect()->prepare('DELETE FROM Programacion WHERE idProgramacion ='.$resultActividad[0][0]);
+		$query = $db->connect()->prepare('DELETE FROM programacion WHERE idProgramacion ='.$resultActividad[0][0]);
 		$query->execute();
-		$query = $db->connect()->prepare('DELETE FROM Actividad WHERE idActividad ='.$_GET['id']);
+		$query = $db->connect()->prepare('DELETE FROM actividad WHERE idActividad ='.$_GET['id']);
 		$query->execute();
 	}
 }

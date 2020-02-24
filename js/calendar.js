@@ -1,0 +1,5 @@
+function eventos()
+{
+    alert("jq");
+
+}

@@ -1,5 +1,5 @@
-drop database prueba;
-create database prueba;
+drop database BDprogramacioncca;
+create database BDprogramacioncca;
 use prueba;
 
 CREATE TABLE `TipoUsuarios`
@@ -25,8 +25,8 @@ CREATE TABLE `Usuarios`
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 INSERT INTO `Usuarios` ( `nombre`, `username`, `password`,`idTipoUsuario`) VALUES
-('Ruben', 'hrvo', '1234',1),
-('Celis', 'notCelis', 'celiss',2);
+('admin', 'hrvo', 'admin1234',1),
+('personal', 'notCelis', 'persona123',2);
 
 CREATE TABLE `requerimientoActividad`
 (
