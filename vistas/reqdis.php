@@ -97,6 +97,14 @@
 			break;
 		}
 	}
+	function obtenid($nombreid,$tabla,$conexion)
+	{
+		$getid = "SELECT MAX($nombreid) as id FROM `$tabla`";
+        $res = $conexion->query($getid);
+        $objetoid = $res->fetch_assoc();
+		$id = $objetoid['id'];
+		return $id;
+	}
 	if(isset($_POST['agrega']))
 	{
 		$mysqli = new DBA();
@@ -182,19 +190,18 @@
 		{
 			$direccionWord ="";
 		}
-		$sql = "INSERT INTO `requerimientodiseno`(`fechaEntrega`, `semblanzaCompania`, `semblanzaActividad`, `programaMano`,`direccionPdf`,`Word`) VALUES ('$fechaentrega','$semblanzacom','$semblanzaact','$programamano','$direccionPdf','$direccionWord');";
+
+		$idreqdiseno = obtenid('idRequerimientoDiseno','requerimientodiseno',$conexion);
+		$sql = "UPDATE `requerimientodiseno` SET `fechaEntrega`='$fechaentrega',`semblanzaCompania`='$semblanzacom',`semblanzaActividad`='$semblanzaact',`programaMano`='$programamano',`direccionPdf`='$direccionPdf',`word`='$direccionWord' WHERE $idreqdiseno";
 		$resultado = $conexion->query($sql);
-		$sql = "SELECT MAX(idRequerimientoDiseno) as id FROM requerimientodiseno;";
-		$resultado = $conexion->query($sql);
-		$row = $resultado->fetch_assoc();
-		$idk = $row['id'];
+
 		if($numeroImagenes != 0)
 			for($i = 0; $i < $numeroImagenes; $i++)
 			{
 				if($imagenes[$i] == "")
 					continue;
 				$imgk = $imagenes[$i];
-				$sql = "INSERT INTO `fotografia`(`fotografia`, `idRequerimientoDiseno`) VALUES ('$imgk','$idk');";
+				$sql = "INSERT INTO `fotografia`(`fotografia`, `idRequerimientoDiseno`) VALUES ('$imgk','$idreqdiseno');";
 				$resultado = $conexion->query($sql);
 			}
 		if($numeroLogos != 0)
@@ -203,7 +210,7 @@
 				if($logos[$i] == "")
 					continue;
 				$logok = $logos[$i];
-				$sql = "INSERT INTO `logotipo`(`logotipo`, `idRequerimientoDiseno`) VALUES ('$logok','$idk');";
+				$sql = "INSERT INTO `logotipo`(`logotipo`, `idRequerimientoDiseno`) VALUES ('$logok','$idreqdiseno');";
 				$resultado = $conexion->query($sql);
 			}
 		if($resultado)

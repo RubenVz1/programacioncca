@@ -83,6 +83,14 @@
 			break;
 		}
 	}
+	function obtenid($nombreid,$tabla,$conexion)
+	{
+		$getid = "SELECT MAX($nombreid) as id FROM `$tabla`";
+        $res = $conexion->query($getid);
+        $objetoid = $res->fetch_assoc();
+		$id = $objetoid['id'];
+		return $id;
+	}
 	if(isset($_POST['agrega']))
 	{
 		if(isset($_POST['req']))
@@ -120,48 +128,30 @@
 		}
 		$imagen="";
 		if($_FILES['foto']['tmp_name'])
+		{
+			if(!isImageValid($_FILES['foto']))
 			{
-				if(!isImageValid($_FILES['foto']))
-				{
-					echo "<script>alert('La imagen tiene un formato invalido, no se guardara en la base de datos')</script>";
-				}
-				$imagen = "../images/".generateRandomString()."__".$_FILES['foto']['name'];
-				move_uploaded_file($_FILES['foto']['tmp_name'],$imagen);
+				echo "<script>alert('La imagen tiene un formato invalido, no se guardara en la base de datos')</script>";
 			}
-		
-		$mysqli = new DBA();
-		$conexion = $mysqli->connect();
+			$imagen = "../images/".generateRandomString()."__".$_FILES['foto']['name'];
+			move_uploaded_file($_FILES['foto']['tmp_name'],$imagen);
+		}
 		if($fechapago == '')
 			$fechapago = '0000-00-00';
 		if($fecha == '')
 			$fecha = '0000-00-00';
-		$sqlreqpag = "INSERT INTO `requerimientopago`(`requerimiento`, `fechaDocumentacion`, `fechaTentativa`, `direccionPdf`, `imagen`, `word`) VALUES ('$requerimientos','$fecha','$fechapago','$direccionPdf','$imagen','$direccionWord')";
+		
+		$mysqli = new DBA();
+		$conexion = $mysqli->connect();
+		//$sqlreqpag = "INSERT INTO `requerimientopago`(`requerimiento`, `fechaDocumentacion`, `fechaTentativa`, `direccionPdf`, `imagen`, `word`) VALUES ('$requerimientos','$fecha','$fechapago','$direccionPdf','$imagen','$direccionWord')";
+		$idreqpagos = obtenid('idRequerimientoPago','requerimientopago',$conexion);
+		$sqlreqpag = "UPDATE `requerimientopago` SET `requerimiento`='$requerimientos',`fechaDocumentacion`='$fecha',`fechaTentativa`='$fechapago',`direccionPdf`='$direccionPdf',`imagen`='$imagen',`word`='$direccionWord' WHERE $idreqpagos";
 		$resultadoreqpag = $conexion->query($sqlreqpag);
+
+
 		if($resultadoreqpag)
 		{
-			//trae el id del ultimo insert de requerimientos de programacion
-			$getidprogramacion = "SELECT MAX(idRequerimientoActividad) as id FROM `requerimientoactividad`";
-			$resprogramacion = $conexion->query($getidprogramacion);
-			$objetoidprogramacion = $resprogramacion->fetch_assoc();
-			$idprogramacion = $objetoidprogramacion['id'];
-			//trae el id del ultimo insert de requerimientos de diseño
-			$getiddiseño =  "SELECT MAX(idRequerimientoDiseno) as id FROM `requerimientodiseno`";
-			$resdiseno =  $conexion->query($getiddiseño);
-			$objetoiddiseño = $resdiseno->fetch_assoc();
-			$iddiseño = $objetoiddiseño['id'];
-			//trae el id del ultimo insert de requerimientos técnicos
-			$getidtecnico =  "SELECT MAX(idRequerimientoTecnico) as id FROM `requerimientotecnico`";
-			$restecnico =  $conexion->query($getidtecnico);
-			$objetoidtecnico = $restecnico->fetch_assoc();
-			$idtecnico = $objetoidtecnico['id'];
-			//trae el id del ultimo insert de requerimientos para pagos
-			$getidpagos =  "SELECT MAX(idRequerimientoPago) as id FROM `requerimientopago`";
-			$respago =  $conexion->query($getidpagos);
-			$objetoidpago = $respago->fetch_assoc();
-			$idpago = $objetoidpago['id'];
-			//inset que junta todas las tablas de la fase de programacion
-			$sqlprogramacion = "INSERT INTO `programacion`(`idRequerimientoActividad`, `idRequerimientoDiseno`, `idRequerimientoTecnico`, `idRequerimientoPago`) VALUES ('$idprogramacion','$iddiseño','$idtecnico','$idpago')";
-			$resultadofusion = $conexion->query($sqlprogramacion);			
+					
 			echo "<script> location.href='../vistas/fase2.php'; </script>";
 			exit;
 		}

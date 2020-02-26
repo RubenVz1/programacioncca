@@ -1,7 +1,7 @@
 <?php
 	include_once '../includes/user.php';
     include_once '../includes/user_session.php';
-    include_once '../includes/db.php';
+    include_once '../includes/dbA.php';
     $userSession = new UserSession();
     $user = new User();
 	if(isset($_SESSION['user']))
@@ -48,6 +48,14 @@
     </div>
 <?php include 'footer.php' ?>
 <?php
+    function obtenid($nombreid,$tabla,$conexion)
+	{
+		$getid = "SELECT MAX($nombreid) as id FROM `$tabla`";
+        $res = $conexion->query($getid);
+        $objetoid = $res->fetch_assoc();
+		$id = $objetoid['id'];
+		return $id;
+	}
     if(isset($_POST['agrega']))
     {
         $nombrediseñador = $_POST['nombrediseñador'];
@@ -86,9 +94,14 @@
             $fechaentrega = '0000-00-00';
         if($entregaaldiseñador == "")
             $entregaaldiseñador = '0000-00-00';
-        $db = new DB();
-        $query = $db->connect()->prepare("INSERT INTO `fase2`(`nombreDisenador`, `fechaEntra`,`fechaSalida`, `cartel`, `web`, `cortesias`, `programa`, `invitacion`) VALUES ('$nombrediseñador','$entregaaldiseñador','$fechaentrega','$cartel','$web','$cortesias','$programa','$invitacion')");
-        $query->execute();
+
+
+        $mysqli = new DBA();
+        $conexion = $mysqli->connect();
+        $idfase2 = obtenid('idFase2','fase2',$conexion);
+        $sql = "UPDATE `fase2` SET `nombreDisenador`='$nombrediseñador',`fechaEntra`='$entregaaldiseñador',`fechaSalida`='$fechaentrega',`cartel`='$cartel',`web`='$web',`cortesias`='$cortesias',`programa`='$programa',`invitacion`='$invitacion' WHERE $idfase2";
+        $resultado = $conexion->query($sql);
+
         echo "<script> location.href='../vistas/entregacartelycortesias.php'; </script>";
 		exit;
     }

@@ -39,34 +39,29 @@
 </div>
 <?php include 'footer.php' ?>
 <?php
+    function obtenid($nombreid,$tabla,$conexion)
+	{
+		$getid = "SELECT MAX($nombreid) as id FROM `$tabla`";
+        $res = $conexion->query($getid);
+        $objetoid = $res->fetch_assoc();
+		$id = $objetoid['id'];
+		return $id;
+	}
     if(isset($_POST['agrega']))
     {
         $difusion = $_POST['fechadifusion'];
-        $mysqli = new DBA();
-        $conexion = $mysqli->connect();
-        if($difusion == "") {
+        if($difusion == "") 
+        {
             $difusion = "0000-00-00";
         }
-        $conexion->query("INSERT INTO `difusion`(`fechaDifusion`) VALUES ('$difusion')");
-        //trae el id del ultimo insert de fase1
-        $getidprogramacion = "SELECT MAX(idProgramacion) as id FROM `programacion`";
-        $resprogramacion = $conexion->query($getidprogramacion);
-        $objetoidprogramacion = $resprogramacion->fetch_assoc();
-        $idprogramacion = $objetoidprogramacion['id'];
-        //trae el id del ultimo insert de fase2
-        $getiddiseño = "SELECT MAX(idDiseno) as id FROM `diseno`";
-        $resdiseño = $conexion->query($getiddiseño);
-        echo $conexion->error; 
-        $objetoiddiseño = $resdiseño->fetch_assoc();
-        $iddiseño = $objetoiddiseño['id'];
-        //trae el id del ultimo insert de fase3
-        $getiddifusion = "SELECT MAX(idDifusion) as id FROM `difusion`";
-        $resdifusion = $conexion->query($getiddifusion);
-        $objetoiddifusion = $resdifusion->fetch_assoc();
-        $idDifusion = $objetoiddifusion['id'];
-        // inserta en una tabla de actividad
-        $sqlactividad = "INSERT INTO `actividad`(`idProgramacion`, `idDiseno`, `idDifusion`) VALUES ('$idprogramacion','$iddiseño','$idDifusion')";
-        $conexion->query($sqlactividad);
+
+        $mysqli = new DBA();
+        $conexion = $mysqli->connect(); 
+        $iddifusion = obtenid('idDifusion','difusion',$conexion); 
+        $sql = "UPDATE `difusion` SET `fechaDifusion`='$difusion' WHERE $iddifusion";
+        $conexion->query($sql);
+
+
         echo "<script> location.href='../vistas/home.php'; </script>";
         exit; 
     }

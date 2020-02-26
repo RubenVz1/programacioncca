@@ -46,37 +46,34 @@
 </div>
 <?php include 'footer.php' ?>
 <?php
+    function obtenid($nombreid,$tabla,$conexion)
+	{
+		$getid = "SELECT MAX($nombreid) as id FROM `$tabla`";
+        $res = $conexion->query($getid);
+        $objetoid = $res->fetch_assoc();
+		$id = $objetoid['id'];
+		return $id;
+	}
     if(isset($_POST['agrega']))
     {
         $fechacorrector = $_POST['fechacorrector'];
         $nombre = $_POST['nombre'];
         $fechaentrega = $_POST['entregacorrector'];
-        $db = new DB();
         if($fechacorrector == "")
             $fechacorrector = "0000-00-00";
         if($fechaentrega == "")
             $fechaentrega = "0000-00-00";
+        /*
+        $db = new DB();
         $query = $db->connect()->prepare("INSERT INTO `corrector`(`fechaEntra`, `nombreCorrector`, `fechaSale`) VALUES ('$fechaentrega','$nombre','$fechacorrector')");
         $result = $query->execute();
+*/
         $mysqli = new DBA();
         $conexion = $mysqli->connect();
-        //trae el id del ultimo insert de fase2
-        $getidprogramacion = "SELECT MAX(idFase2) as id FROM `fase2`";
-        $resprogramacion = $conexion->query($getidprogramacion);
-        $objetoidprogramacion = $resprogramacion->fetch_assoc();
-        $idfase2 = $objetoidprogramacion['id'];
-        //trae el id del ultimo insert de cartel y cortesias
-        $getiddiseño =  "SELECT MAX(idCartelyCortesias) as id FROM `cartelycortesias`";
-        $resdiseno =  $conexion->query($getiddiseño);
-        $objetoiddiseño = $resdiseno->fetch_assoc();
-        $idcartelycortesias = $objetoiddiseño['id'];
-        //trae el id del ultimo insert de corrector
-        $getidtecnico =  "SELECT MAX(idCorrector) as id FROM `corrector`";
-        $restecnico =  $conexion->query($getidtecnico);
-        $objetoidtecnico = $restecnico->fetch_assoc();
-        $idcorrector = $objetoidtecnico['id'];
-        $sqlprogramacion = "INSERT INTO `diseno`(`idFase2`, `idCartelyCortesias`, `idCorrector`) VALUES ('$idfase2','$idcartelycortesias','$idcorrector')";
-        $conexion->query($sqlprogramacion);
+        $idcorrector = obtenid('idCorrector','corrector',$conexion);
+        $sql = "UPDATE `corrector` SET `fechaEntra`='$fechaentrega',`nombreCorrector`='$nombre',`fechaSale`='$fechacorrector' WHERE $idcorrector";
+        $resultado = $conexion->query($sql);
+
         echo $conexion->error;
         echo "<script> location.href='../vistas/fase3.php'; </script>";
         exit;    
