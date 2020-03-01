@@ -161,18 +161,133 @@
 		{
 			$duracionm = $_POST['duracionm'];
 		}
+		//Inserta datos en requerimiento actividad
 		$sql = "INSERT INTO `requerimientoactividad`(`fechaProgramacion`, `fechaEvento`, `nombreCompania`, `nombreActividad`, `disciplina`, `lugar`, `tipoEntrada`, `duracion`,`costo`,`observacion`) VALUES (CURRENT_DATE(),'".$fechaeve."','$nomcom','$nomact','$disciplina','$lugar',$entrada,'".$duracionh.":".$duracionm.":00',".$costo.",'".utf8_decode($_POST['observacion'])."')"; 
 		$resultado = $conexion->query($sql);
+
+		/*//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+			Creación de toda la actividad
+		
+
+		*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		//Crea requerimiento diseño en nulo
+		$sql = "INSERT INTO `requerimientodiseno`(`fechaEntrega`, `semblanzaCompania`, `semblanzaActividad`, `programaMano`, `direccionPdf`, `word`) VALUES ('','','','','','')"; 
+		$resultado = $conexion->query($sql);
+
+		//Crea requerimiento técnico en nulo
+		$sql = "INSERT INTO `requerimientotecnico`(`requerimiento`, `direccionPdf`, `word`) VALUES ('','','')"; 
+		$resultado = $conexion->query($sql);
+
+		//Crea requerimiento pago en nulo
+		$sql = "INSERT INTO `requerimientopago`(`requerimiento`, `fechaDocumentacion`, `fechaTentativa`, `direccionPdf`, `imagen`, `word`) VALUES ('','','','','','')"; 
+		$resultado = $conexion->query($sql);
+
+		//Crea fase2 en nulo
+		$sql = "INSERT INTO `fase2`(`nombreDisenador`, `fechaEntra`, `fechaSalida`, `cartel`, `web`, `cortesias`, `programa`, `invitacion`) VALUES ('','','','','','','','')		"; 
+		$resultado = $conexion->query($sql);
+		
+		//Crea CartelyCortesias en nulo
+		$sql = "INSERT INTO `cartelycortesias`(`digital`, `offset`, `serigrafia`, `fuera`, `entregaPrograma`, `invitacion`, `volante`) VALUES ('','','','','','','')"; 
+		$resultado = $conexion->query($sql);
+
+		//Crea corrector en nulo
+		$sql = "INSERT INTO `corrector`(`fechaEntra`, `nombreCorrector`, `fechaSale`) VALUES ('','','')"; 
+		$resultado = $conexion->query($sql);
+
+		//Crea difusión en nulo
+		$sql = "INSERT INTO `difusion`(`fechaDifusion`) VALUES ('')"; 
+		$resultado = $conexion->query($sql);
+
+		/*//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+										Obtiene Ids para relacionar las tablas
+		*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		function obtenid($nombreid,$tabla,$conexion)
+		{
+			$getid = "SELECT MAX($nombreid) as id FROM `$tabla`";
+        	$res = $conexion->query($getid);
+        	$objetoid = $res->fetch_assoc();
+			$id = $objetoid['id'];
+			return $id;
+		}
+
+		//trae el id del ultimo insert de requerimiento actividad
+		$idreqactividad = obtenid('idRequerimientoActividad','requerimientoactividad',$conexion);
+	
+		//trae el id del ultimo insert de requerimientodiseno
+		$idreqdiseno = obtenid('idRequerimientoDiseno','requerimientodiseno',$conexion);
+
+		//trae el id del ultimo insert de requerimiento técnico
+		$idreqtecnico = obtenid('idRequerimientoTecnico','requerimientotecnico',$conexion);
+		
+		//trae el id del ultimo insert de requerimiento de pago
+		$idreqpago = obtenid('idRequerimientoPago','requerimientopago',$conexion);
+
+		//Crea programación con Ids previamente insertados
+		$sql = "INSERT INTO `programacion`(`idRequerimientoActividad`, `idRequerimientoDiseno`, `idRequerimientoTecnico`, `idRequerimientoPago`) VALUES ('$idreqactividad','$idreqdiseno','$idreqtecnico','$idreqpago')"; 
+		$resultado = $conexion->query($sql);
+
+
+
+		//trae el id del ultimo insert de Fase2
+		$idfase2 = obtenid('idFase2','fase2',$conexion);
+
+		//trae el id del ultimo insert de Cartel y Cortesias
+		$idcartelycortesias = obtenid('idCartelyCortesias','cartelycortesias',$conexion);
+
+
+		//trae el id del ultimo insert de Corrector
+		$idcorrector = obtenid('idCorrector','corrector',$conexion);
+
+
+		//Crea diseño con Ids previamente insertados
+		$sql = "INSERT INTO `diseno`(`idFase2`, `idCartelyCortesias`, `idCorrector`) VALUES ('$idfase2','$idcartelycortesias','$idcorrector')"; 
+		$resultado = $conexion->query($sql);
+
+
+
+
+		//trae el id del ultimo insert de programación
+		$idprogramacion = obtenid('idProgramacion','programacion',$conexion);
+
+
+		//trae el id del ultimo insert de difusión
+		$iddifusion = obtenid('idDifusion','difusion',$conexion);
+
+
+		//trae el id del ultimo insert de diseño
+		$iddiseno = obtenid('idDiseno','diseno',$conexion);
+
+
+		//Crea Actividad con Ids previamente insertados
+		$sql = "INSERT INTO `actividad`(`idProgramacion`, `idDifusion`, `idDiseno`) VALUES ('$idprogramacion','$iddifusion','$iddiseno')"; 
+		$resultado = $conexion->query($sql);
+
+		/*//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+		
+
+		*///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		
+
+		/*
 		$sql = "SELECT MAX(idRequerimientoActividad) as id FROM requerimientoactividad;";
 		$resultado = $conexion->query($sql);
 		$row = $resultado->fetch_assoc();
 		$idk = $row['id'];
+		*/
+
+
 		for($i = 0; $i < $numeroHorarios; $i++)
 		{
 			$hrk = $horarios[$i];
-			$sql = "INSERT INTO `horario`(`horario`, `idRequerimientoActividad`) VALUES ('$hrk','$idk');";
+			$sql = "INSERT INTO `horario`(`horario`, `idRequerimientoActividad`) VALUES ('$hrk','$idreqactividad');";
 			$resultado = $conexion->query($sql);
 		}
+		
 		if($resultado)
 		{
 			echo "<script> location.href='../vistas/reqdis.php'; </script>";

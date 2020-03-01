@@ -1,6 +1,8 @@
 <?php
 	include_once '../includes/user.php';
     include_once '../includes/user_session.php';
+    include_once '../includes/dbA.php';
+
     $userSession = new UserSession();
     $user = new User();
 	if(isset($_SESSION['user']))
@@ -56,6 +58,14 @@
     </div>
 <?php include 'footer.php' ?>
 <?php
+    function obtenid($nombreid,$tabla,$conexion)
+	{
+		$getid = "SELECT MAX($nombreid) as id FROM `$tabla`";
+        $res = $conexion->query($getid);
+        $objetoid = $res->fetch_assoc();
+		$id = $objetoid['id'];
+		return $id;
+	}
     if(isset($_POST['agrega']))
     {
         $digital = $_POST['digital'];
@@ -79,9 +89,19 @@
             $invitacion = '0000-00-00';
         if($volante == '')
             $volante = '0000-00-00';
-        $db = new DB();
-        $query = $db->connect()->prepare("INSERT INTO `cartelycortesias`(`digital`, `offset`, `serigrafia`, `fuera`, `entregaPrograma`, `invitacion`, `volante`) VALUES ('$digital','$offset','$serigrafia','$fuera','$programa','$invitacion','$volante')");
+
+        $mysqli = new DBA();
+        $conexion = $mysqli->connect();
+        $idcartelycortesias = obtenid('idCartelyCortesias','cartelycortesias',$conexion);
+        $sql = "UPDATE `cartelycortesias` SET `digital`='$digital',`offset`='$offset',`serigrafia`='$serigrafia',`fuera`='$fuera',`entregaPrograma`='$programa',`invitacion`='$invitacion',`volante`='$volante' WHERE $idcartelycortesias";
+        $resultado = $conexion->query($sql);
+
+
+        /*$db = new DB();
+        $query = $db->connect()->prepare("INSERT INTO `cartelycortesias` VALUES ('$digital','$offset','$serigrafia','$fuera','$programa','$invitacion','$volante')");
         $query->execute();
+        */
+
         echo "<script> location.href='../vistas/textosalcorrector.php'; </script>";
         exit;
     }

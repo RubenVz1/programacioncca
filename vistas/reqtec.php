@@ -57,6 +57,14 @@
 		}
 		return $id;
 	}
+	function obtenid($nombreid,$tabla,$conexion)
+	{
+		$getid = "SELECT MAX($nombreid) as id FROM `$tabla`";
+        $res = $conexion->query($getid);
+        $objetoid = $res->fetch_assoc();
+		$id = $objetoid['id'];
+		return $id;
+	}
 	if(isset($_POST['agrega']))
 	{
 		if(isset($_POST['message']))
@@ -74,19 +82,22 @@
 			$direccionPdf ="";
 		}
 		if($_FILES['word']['tmp_name'])
-			{
-				$requrimientotecnicoPdf = $_FILES['word']['name'];
-				$direccionWord = "../words/".generateRandomString()."__".$requrimientotecnicoPdf;
-				move_uploaded_file($_FILES['word']['tmp_name'],$direccionWord);
-			}
-			else
-			{
-				$direccionWord ="";
-			}
+		{
+			$requrimientotecnicoPdf = $_FILES['word']['name'];
+			$direccionWord = "../words/".generateRandomString()."__".$requrimientotecnicoPdf;
+			move_uploaded_file($_FILES['word']['tmp_name'],$direccionWord);
+		}
+		else
+		{
+			$direccionWord ="";
+		}
+
 		$mysqli = new DBA();
 		$conexion = $mysqli->connect();
-		$sql = "INSERT INTO `requerimientotecnico`( `requerimiento`,`direccionPdf`,`Word`) VALUES ('$requrimientotecnico','$direccionPdf','$direccionWord')";
+		$idrequerimientotecnico = obtenid('idRequerimientoTecnico','requerimientotecnico',$conexion);
+		$sql = "UPDATE `requerimientotecnico` SET `requerimiento`='$requrimientotecnico',`direccionPdf`='$direccionPdf',`word`='$direccionWord' WHERE $idrequerimientotecnico";
 		$resultado = $conexion->query($sql);
+
 		if($resultado)
 		{
 			echo "<script> location.href='../vistas/reqpag.php'; </script>";
@@ -95,7 +106,7 @@
 		else
 		{
 			echo "<script>alert('error');</script>";
-			die("Error al insertar datos: " . $conexion->error);
+			die("sentencia=$sql Error al insertar datos: " . $conexion->error);
 		}
 	}
 ?>
